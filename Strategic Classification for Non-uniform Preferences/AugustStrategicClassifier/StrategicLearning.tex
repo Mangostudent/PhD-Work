@@ -1,0 +1,342 @@
+% Style
+
+\documentclass[journal, 12pt, onecolumn]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{bbm}
+\usepackage{environ}
+% Functionallity
+
+% LaTeX package for machine learning research papers.
+
+\usepackage{amsmath,amsfonts} % Mathematical equations, font and symbols
+\usepackage{amssymb} % Additional mathematical symbols
+\usepackage{graphicx} % Including figures and plots
+\usepackage{booktabs} % Professional-looking tables
+\usepackage{algorithm2e} % Formatting machine learning algorithms
+\usepackage{listings} % Code snippet formatting
+\usepackage{caption} % Customized captions for figures and tables
+\usepackage{color} % Adding color to text and elements
+%\usepackage{biblatex} % Advanced citation management
+\usepackage{textcomp} % Different symbols
+\usepackage{mathrsfs}
+\usepackage{enumitem} % alphabet enumerating
+
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+\usepackage{etoolbox}
+%\input{macros-ieee}
+% Add more packages as needed
+
+% Theorem-like environments
+\usepackage{amsthm} % For theorem-like environments
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{rem}{Remark}[section]
+
+%\newtheorem{prop}{Proposition}
+%newtheorem{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+%\newtheorem{eg}{Example}[section]
+
+\newtheorem{exg}{Example}
+\newtheorem{case}{Case}
+\newtheorem{casecase}{Scenario}
+\newtheorem{claims}{Claim}
+\renewcommand{\theclaims}{\arabic{claims}}
+\setcounter{claims}{0}
+\newtheorem{step}{Step}
+\newtheorem{subcase}{Subcase}
+\newtheorem{subcases}{Subcase}
+\newtheorem*{notn}{Notation}
+\newtheorem*{locnotn}{Local Notation}
+\newtheorem{apdxproof}{Proof}[section]  % Numbered by section, e.g., Proof 3.1
+% Redefine it to add QED box
+\let\oldapdxproof\apdxproof
+\let\endoldapdxproof\endapdxproof
+\RenewEnviron{apdxproof}{
+  \begin{oldapdxproof}
+    \BODY
+  \qed  % Adds the end-of-proof box
+  \end{oldapdxproof}
+}
+
+\AtBeginEnvironment{apdxproof}{\setcounter{case}{0}}
+
+% \makeatletter
+% \pretocmd{\proof}{\setcounter{case}{0}}{}{}
+% \makeatother
+
+% Define more theorem environments as needed
+
+
+% Abbreviations
+%\newcommand{\etal}{et al.}
+%\newcommand{\ie}{i.e.,}
+\newcommand{\wrt}{w.r.t.}
+\newcommand{\etc}{etc.}
+\newcommand{\cf}{cf.}
+\newcommand{\iid}{i.i.d.}
+% Add more abbreviation as needed
+
+
+% Math symbols and operators
+\newcommand{\vect}[1]{\mathbf{#1}} % Vector notation (bold)
+\newcommand{\mat}[1]{\mathbf{#1}}  % Matrix notation (bold)
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\N}{\mathbb{N}} % Natural numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Z}{\mathbb{Z}} % Integers
+\newcommand{\Q}{\mathbb{Q}} % Rational numbers
+\newcommand{\eps}{\epsilon} % epsilon
+\newcommand{\dlt}{\delta} % delta
+\newcommand{\argmax}{\operatornamewithlimits{argmax}} % argmax operator
+\newcommand{\argmin}{\operatornamewithlimits{argmin}} % argmin operator
+% Add more operator and symbols as needed
+
+
+% Probability theory
+\newcommand{\prob}{\mathbb{P}} % Probability notation
+\newcommand{\E}{\mathbb{E}} % Expectation operator
+\newcommand{\event}{\mathcal{E}} % Event notation
+% Add more from probability theory as needed
+
+
+% Learning theory
+\newcommand{\loss}{\mathcal{L}} % Loss function
+\newcommand{\data}{\mathcal{D}} % Data set
+\newcommand{\hypothesis}{\mathcal{F}} % Hypothesis class
+% Add more from learning theory as needed
+
+
+% Game theory
+\newcommand{\neqb}{\text{Nash Equilibrium}} % Nash Equilibrium
+\newcommand{\seqb}{\text{Stackelberg Equilibrium}} % Stackelberg Equilibrium
+% Add more from game theory as needed
+
+
+% Scripts
+\newcommand{\sr}[1]{\mathscr{#1}} % Script letters
+\newcommand{\cg}[1]{\mathcal{#1}} % Calligraphic letterss
+\newcommand{\bb}[1]{\mathbb{#1}} % Blackboard bold letters
+\newcommand{\fk}[1]{\mathfrak{#1}} % Fraktur letters
+\newcommand{\mrm}[1]{\mathrm{#1}} % Roman letters
+\newcommand{\msf}[1]{\mathsf{#1}} % Serif
+
+
+% Add more scripts as needed
+
+% Topic specific packages and shortcuts
+
+
+\newcommand{\h}{\mathbf{h}}
+\newcommand{\xm}{\mathbf{i_{\epsilon}}}
+\newcommand{\zm}{\mathbf{k_{\epsilon}}}
+\newcommand{\xp}{\mathbf{j_{\epsilon}}}
+\newcommand{\zp}{\mathbf{l_{\epsilon}}}
+\newcommand{\zb}{\mathbf{z}}
+\newcommand{\xxm}{\mathbf{i}}
+\newcommand{\xxp}{\mathbf{j}}
+\newcommand{\um}{\mathbf{u_-}}
+\newcommand{\up}{\mathbf{u_+}}
+\newcommand{\uu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\rt}{\tilde{r}}
+\newcommand{\xt}{\tilde{x}}
+\newcommand{\ph}{\hat{p}}
+\newcommand{\stt}{\tilde{s}}
+\newcommand{\srt}{s_{\tilde{r}}}
+\newcommand{\srr}{s_r}
+\newcommand{\pt}{\tilde{p}}
+\newcommand{\hht}{\tilde{h}}
+\newcommand{\hh}{\hat{h}}
+\newcommand{\bbb}{\mathbf{b}}
+\newcommand{\qt}{\tilde{q}}
+\newcommand{\minus}{\mathbf{-}}
+\newcommand{\plus}{\mathbf{+}}
+\newcommand{\rs}{r^{\star}}
+\newcommand{\srs}{s_{r^{\star}}}
+\newcommand{\ib}{\mathbf{h^{-}}}
+\newcommand{\jb}{\mathbf{h^{+}}}
+\newcommand{\kb}{\mathbf{k}}
+\newcommand{\lb}{\mathbf{g}}
+\newcommand{\ibb}{\mathbf{i}}
+\newcommand{\ab}{\mathbf{a}}
+\newcommand{\jbb}{\mathbf{j}}
+\newcommand{\kbb}{\mathbf{k}}
+\newcommand{\lbb}{\mathbf{l}}
+\newcommand{\hon}{\mathbf{h_1}^{(-)}}
+\newcommand{\hop}{\mathbf{h_1}^{(+)}}
+\newcommand{\htn}{\mathbf{h_2}^{(-)}}
+\newcommand{\htp}{\mathbf{h_2}^{(+)}}
+\newcommand{\rcst}{\tilde{r}\circ s_{\tilde{r}}}
+\newcommand{\tlbd}{\tilde{\mathbf{g}'}}
+\newcommand{\tlb}{\tilde{\mathbf{g}}}
+\newcommand{\qh}{\hat{q}}
+\newcommand{\qtt}{\tilde{\tilde{q}}}
+\newcommand{\rh}{\hat{r}}
+\newcommand{\bqo}{\bar{q}_1}
+\newcommand{\bqt}{\bar{q}_2}
+\newcommand{\ibt}{\widehat{\mathbf{h^{(-)}}}}
+\newcommand{\jbt}{\widehat{\mathbf{h^{(+)}}}}
+\newcommand{\hds}{\hat{\mathfrak{D}}(S)}
+\newcommand{\senpayoff}{\mathbb{U}}
+
+\newcommand{\ibeps}{\mathbf{h}_{\eps}^-}
+\newcommand{\jbeps}{\mathbf{h}_{\eps}^+}
+
+\title{Strategic Classification for Non-uniform Preferences using Penalty Labels and Randomisation
+}
+
+\author{
+    \IEEEauthorblockN{Manish Kumar Singh\IEEEauthorrefmark{1}, 
+                      Ankur A. Kulkarni\IEEEauthorrefmark{1}}
+    \IEEEauthorblockA{\\ \IEEEauthorrefmark{1}Center for Systems and Control Engineering, \\
+                      Indian Institute of Technology Bombay, \\
+                      Mumbai, Maharashtra 400076, India \\
+                      Email: {manish@sc.iitb.ac.in, kulkarni.ankur@iitb.ac.in}}
+}
+
+\input{macros-ieee}
+
+\begin{document}
+	\maketitle
+
+	%\tableofcontents
+
+
+	\begin{abstract}
+		Strategic classification is the problem of classifying feature vectors that can be manipulated at the testing phase of the classifier. The classifier aims for its decision rule to be robust against strategic manipulation and also be efficiently learnable. In this paper, we present two main ideas for the classifier to achieve this goal. The first idea is to enrich the classifier's decision-making capabilities in two ways: ignoring feature vectors and making randomized decisions. This approach helps the classifier classify more feature vectors correctly by limiting the sender’s options for manipulation. The second idea is to use the strategic structure of the problem during learning. This approach, in certain contexts, can simplify the learning process.  
+        Combining these ideas, we propose and compare two learning algorithms, Vanilla ERM and Strategy-aware ERM, and provide a heuristic for selecting the one that yields a classifier both robust to strategic manipulation and efficiently learnable.
+
+        
+	\end{abstract}
+
+	\begin{IEEEkeywords}
+		Strategic Classification, Penalty Labels, Non-uniform preferences,
+		Stackelberg equilibrium, Screening game
+	\end{IEEEkeywords}
+
+%	\section*{Information Sheet}
+%
+%	1. What is the main claim of the paper? Why is this an important contribution to the autonomous agents and multi-agent systems literature?
+%
+%	This paper addresses the problem of \textit{strategic classification}, where a classifier must correctly classify feature vectors that a sender may manipulate during the test phase. The paper makes two main claims. First, introducing a penalty label improves classification performance against strategic manipulation by the sender. Additionally, incorporating randomization in classification decisions further enhances accuracy. Second, leveraging the problem’s underlying structure during learning leads to more sample-efficient learning, particularly when domain knowledge is available but sample sizes are limited. To the best of our knowledge, the role of a penalty label in improving the accuracy of deterministic classifiers has not been previously explored. These insights can be applied to enhance existing classifiers across various domains. An immediate application of our work is in designing questionnaires for classification-based tasks. Since respondents may provide misleading answers, carefully integrating a penalty label can improve the accuracy of classification outcomes.
+%
+%	2. What is the evidence you provide to support your claim? Be precise.
+%
+%	We theoretically demonstrate that introducing a penalty label reduces classification errors compared to a naive classifier. Furthermore, we establish a theoretical result showing that a stochastic classifier can achieve lower classification error than any deterministic classifier, including those using a penalty label. Additionally, incorporating the strategic structure of the problem during learning can sometimes lead to a more sample-efficient learning process. We formalize these results mathematically and support them with examples to confirm their validity.
+%
+%	3. What papers by other authors make the most closely related contributions, and how is your paper related to them? Provide journal references whenever possible. Don’t rely only on a conference proceedings.
+%
+%	The paper \cite{hardt2016strategic} models strategic classification as a screening game between a classifier and a sender and provides an algorithm to learn the strategic classifier. However, it assumes uniform sender preferences for labels. Our work extends this framework by incorporating non-uniform sender preferences and introduces an algorithm designed to learn the strategic classifier in this more general setting.  Similarly, the paper \cite{sundaram2021pac} models the problem as a screening game and proposes an algorithm to learn the strategic classifier. While \cite{sundaram2021pac} accounts for non-uniform label preferences, it considers a different hypothesis space for learning the strategic classifier than ours.
+%
+%	4. Have you published parts of your paper before, for instance in a conference? If so, give details of your previous paper(s) and a precise statement detailing how your paper provides a significant contribution beyond the previous paper(s).
+%
+%	Some parts  of this work were previously published in two conference papers. A preliminary version of Section \ref{subsec:Discrete feature space}, which considers the discrete feature  space was presented in the  conference paper \cite{singh22strategic} and a preliminary version of Section \ref{subsec: Stochastic strategy}, which considers a stochastic decision rule, was presented in the conference paper \cite{singh2024optimal}.
+%	The main contribution of this paper is the analysis of the decision problem for a general feature vector space, which is given in Section \ref{sec:Decision problem}, and the learning problem in this general setting, which is given in Section \ref{sec:Learning problem}. It also refines  assumptions and proofs the above conference papers, to align it with the results of the rest of the paper.
+	
+	
+	
+%	 The first conference paper, \cite{singh22strategic}, studied the decision problem in a finite feature space and is covered in Section \ref{subsec:Discrete feature space}. This paper extends the analysis to a general feature vector space and further explores the learning problem in this broader setting.  The second conference paper, \cite{singh2024optimal}, examined the decision problem when the classifier was allowed to make stochastic predictions and is covered in Section \ref{subsec: Stochastic strategy}. The current paper refines \cite{singh2024optimal}, both in its assumptions and proofs, and aligns it with the rest of the paper’s results.
+
+
+
+%	\section*{Statements and Declarations}
+%
+%	The following statements should be included under the heading "Statements and Declarations" for inclusion in the published paper. Please note that submissions that do not include relevant declarations will be returned as incomplete.
+%
+%	Competing Interests: Authors are required to disclose financial or non-financial interests that are directly or indirectly related to the work submitted for publication. Please refer to “Competing Interests and Funding” below for more information on how to complete this section.
+	\section{Introduction}\label{sec:Introduction}
+
+	\input{Introduction}
+
+	\section{Problem Formulation}\label{sec:Problem formulation}
+
+	\input{Problem Formulation}
+
+	\section{Decision Problem}\label{sec:Decision problem}
+
+	\input{Decision Problem}
+
+	\subsection{Motivating example: discrete feature space}\label{subsec:Discrete feature space}
+
+	\input{Discrete Feature Set}
+
+	\subsection{Deterministic strategies for the receiver}\label{subsec:Deterministic strategy}
+
+	\input{Deterministic Strategy}
+
+        \subsection{Multi-dimensional decision problem}
+
+        \input{Multidimension decision problem}
+        
+	\subsection{Stochastic strategies for the receiver}\label{subsec: Stochastic strategy}
+
+	\input{Stochastic Strategy}
+
+	\subsection{Examples and comparison}\label{subsec:Examples and comparision}
+
+	\input{Examples and Comparison}
+
+	\section{Learning the Stackelberg equilibrium}\label{sec:Learning problem}
+
+	\input{Learning}
+
+	\subsection{Vanilla ERM}\label{subsec:Vanilla ERM}
+%
+	\input{Standard ERM}
+
+	\subsection{Strategy aware ERM}\label{subsec:Stragically aware ERM}
+%
+	\input{Strategically aware ERM}
+
+	\subsection{Comparison between algorithms}\label{subsec:comparision}
+
+	\input{Comparision between algorithms}
+
+	\section{Conclusions and Limitations}
+
+	\input{Conclusion}
+
+	\section{Appendix: Omitted Proofs}
+
+        \subsection{Omitted Proofs of Section III.B}
+
+        \input{Proofs Section 3B}
+
+        \subsection{Omitted Proofs of Section III.C}
+
+        \input{Proofs Section 3C}
+
+        \subsection{Omitted Proofs of Section III.D}
+
+        \input{Proofs Section 3D}
+
+        \subsection{Omitted Calculations in Section III.E}
+
+        \input{Calculation Section 3E}
+
+        \subsection{Omitted Proofs of Section IV.A}
+
+        \input{Proofs Section 4A}
+
+        \subsection{Omitted Proofs of Section IV.B}
+
+        \input{Proofs Section 4B}
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{Reference}
+
+
+\end{document}

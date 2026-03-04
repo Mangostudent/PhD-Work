@@ -1,0 +1,47 @@
+\begin{apdxproof}(Proof of Proposition \ref{prop:Deterministic Stackelberg equilibrium for multiple decision boundaries})\label{proof:Deterministic Stackelberg equilibrium for multiple decision boundaries}
+    \setcounter{claims}{0}
+	Let $r^\star$ be a Stackelberg equilibrium, and define:
+	\begin{equation*}
+		\begin{aligned}
+			\theta^{(n)} &:= \sup (E(r^\star)^c \cap O_n), \\
+			\theta_{(n)} &:= \inf (E(r^\star)^c \cap O_n), \\
+			\Theta_n &:= [\theta_{(n)}, \theta^{(n)}].
+		\end{aligned}
+	\end{equation*}
+	This implies $E(r^\star)^c \subseteq \cup_{n=1}^{d-1} \Theta_n$. We demonstrate that with this choice of $\Theta_n$, the receiver strategy $r(x;\Theta_1,\cdots, \Theta_{d-1})$ given in \eqref{eqn:stack multiple} is a Stackelberg equilibrium. Consider the following cases for $\Theta_n$'s. \\
+
+	\begin{case}{All $\Theta_n$'s are empty.}\\
+    This case will not happen because if all $\Theta_n$'s are empty, then $r^\star$ misclassifies all feature vectors. However, a majority-label (described in Section \ref{sec:Problem formulation}) receiver strategy will correctly classify at least half of them, contradicting that $r^\star$ is a Stackelberg equilibrium. Thus, at least one $\Theta_n$ is non-empty.
+	\end{case}
+
+\begin{case}{For all odd (or even) $n$, $\Theta_n$ is empty.}\\
+Suppose $\Theta_n = \emptyset$ for all odd $n$. For even $n$, denote the corresponding $\Theta_n$ as $\Theta_{2k}$, where $k \in \left\{1, \dots, \left\lfloor \frac{d-1}{2} \right\rfloor \right\}$.
+Since $r(x) = \Delta$ for all $x \in \cg{X} \setminus \bigcup_k \Theta_{2k}$, it follows that for $x \in 
+ \cg{X}$, $s_r(x) \in \bigcup_k \Theta_{2k}$. Thus, $r(s_r(x)) \equiv h(s_r(x))$ from \eqref{eqn:stack multiple}.
+From \eqref{eqn:multiple boundary true function}, we have $ h(t) = \minus$ for $t \in \cup_kO_{2k}$. Therefore, $r(s_r(x)) \equiv \minus$ and
+$r(s_r(x)) = h(x)$ for $x \in \cup_kO_{2k}.$ Hence 
+\[
+E(r)^c \supseteq \bigcup_{2k} O_k \supseteq \bigcup_{2k} \Theta_k.
+\]
+Since $r^\star$ is a Stackelberg equilibrium, it follows that $E(r^\star) \subseteq \bigcup_k \Theta_{2k}$ by construction. Consequently, $E(r)^c = E(r^\star) = \bigcup_k O_{2k}$, and $r$ is a Stackelberg equilibrium.
+A similar argument applies to show that $r$ is a Stackelberg equilibrium when $n$ for which $\Theta_n = \emptyset$ are all even.
+\end{case}
+
+\begin{case}{Their exist an odd $k$ and even $l$ such that $\Theta_k, \Theta_l \neq \emptyset$.}\\
+We will first show that $\theta_{(\max\{l,k\})} - \theta^{(\min\{l,k\})} \geq \uu$. Suppose $k < l$ (similar reasoning holds when $k>l$).
+Suppose $\theta_{(l)} - \theta^{(k)} < \uu$. Let $\eps >0$ be such that it satisfies $0 < 2\eps < \uu - (\theta_{(l)} - \theta^{(k)})$. Let $\theta^{(k')}, \theta_{(l')} \in \cg{X}$ be feature vectors such that $\theta^{(k')}, \theta_{(l')} \in E(r^\star)^c$,  $0 \leq \theta_{(l')} - \theta_{(l)} < \eps$, and $0 \leq \theta^{(k)} - \theta^{(k')} < \eps$.  Such feature vectors exist by the definition of $\theta^{(k)}$ and $\theta_{(l)}$. It follows that 
+$$\theta_{(l')} - \theta^{(k')} < 2\eps + \theta_{(l)} - \theta^{(k)} < \uu.$$ Note that $h(\theta_{(l')}) = \minus$ and $h(\theta^{(k')}) = \plus$. Suppose $\mathbb{U}(\theta^{(k')};r^\star,s_{r^\star}) \leq \mathbb{U}(\theta_{(l')};r^\star,s_{r^\star})$ (similar arguments applies when $\mathbb{U}(\theta^{(k')};r^\star,s_{r^\star}) > \mathbb{U}(\theta_{(l')};r^\star,s_{r^\star})$).
+Let $s$ be a sender strategy defined as $s(x) := s_{r^\star}(\theta_{(l')})$ for all $x \in \cg{X}$. Then $$\mathbb{U}(\theta^{(k')}; r^\star, s) = \uu - |\theta^{(k')} -s_{r^\star}(\theta_{(l')})| \geq   \uu - |\theta_{(l')} - \theta^{(k')}|- |\theta_{(l')} - s_{r^\star}(\theta_{(l')})| > -|\theta_{(l')} - s_{r^\star}(\theta_{(l')})| = \mathbb{U}(\theta_{(l')};r^\star,s_{r^\star}).$$ This implies 
+$\mathbb{U}(\theta^{(k')};r^\star,s) > \mathbb{U}(\theta^{(k')};r^\star,s_{r^\star})$, which contradicts the fact that $s_{r^\star}$ is the worst-case best response. Therefore, $\theta_{(l)} - \theta^{(k)} \geq \uu$, proving the claim.
+
+Now consider the receiver strategy $r(x; \{\Theta_n\})$. We calculate its worst-case best response $s_r$. Let $t \in \Theta_i$. Since $r(x) = \Delta$ for $x \notin \cup_n \Theta_n$, we have $s_r(x) \in \cup_n \Theta_n$. Suppose $i$ is even (similar arguments hold for odd $i$) and $s_r(t) \geq t$ (a similar arguments hold for $s_r(t) < t$). The sender's payoff is:
+\[
+\mathbb{U}(t; r, s_r) = 
+\begin{cases}
+-s_r(t) + t & \text{if } s_r(t) \in \Theta_j, \, j \text{ even}, \\
+\uu - s_r(t) + t & \text{if } s_r(t) \in \Theta_j, \, j \text{ odd}.
+\end{cases}
+\]
+If $j$ is even, $\mathbb{U}(t; r, s_r) = -s_r(t) + t \leq 0$, with the maximum value $0$ at $s_r(t) = t$. If $j$ is odd, then using $\theta_{(l)} - \theta^{(k)} \geq \uu$, we get $s_r(t) - t \geq \uu$, and hence $\mathbb{U}(t; r, s_r) \leq 0$. Thus $s_r(t) = t$ gives the maximum payoff to the sender. Therefore, $r(s_r(t)) = h(t)$ for all $t \in \cup_n \Theta_n$. This gives $E(r)^c \supseteq \cup_n \Theta_n \supseteq E(r^\star)$, proving that $r$ is a Stackelberg equilibrium.
+\end{case}
+\end{apdxproof}

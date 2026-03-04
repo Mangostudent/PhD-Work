@@ -1,0 +1,12 @@
+\subsection{Gaussian Specialization}
+Under the assumption of joint Gaussianity for $(U, X, Y)$, the strategic gain condition simplifies considerably.
+
+\begin{theorem}[Gaussian Strategic Gain]
+The Strategic Gain (SG) compared to the Vanilla Threshold (VT) is given by:
+\begin{equation}
+  SG = 2\bigl(b_Y^\top\Sigma_{UX}-\sigma_Z^2\bigr) + \frac{8\kappa\sigma_Z}{s\sqrt{2\pi}}\, e^{-\frac{\alpha^2}{2}} \ge VT.
+\end{equation}
+where $\sigma_Z^2 = b_U^\top \Sigma_{XX} b_U$, $\kappa = \Cov(U,Y \mid X)$, and $s^2 = \Var(U \mid X)$. 
+\end{theorem}
+
+Detailed derivations of the Gaussian parameters and the threshold analysis are deferred to Postponed Proofs \ref{app:gaussian}.

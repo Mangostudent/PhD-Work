@@ -1,0 +1,19 @@
+\section{INTRODUCTION}
+
+The performance of any predictive model depends on the set of features provided for prediction. In standard settings, all relevant features are assumed to be fully observed by the model. In this paper, we study a setting in which a participant can voluntarily choose which features to disclose. It is natural to assume that the participant will disclose only those features that are beneficial to their personal objective. The central question we address is: under what conditions does voluntary feature disclosure actually improve predictive performance?
+
+For a predictive model to benefit from such disclosure, its inference procedure must account for the possibility of opportunistic reporting. This problem becomes intricate when participants do not share a uniform directional preference over outcomes, as these heterogeneous preferences make it difficult to exploit systematic patterns in feature withholding.
+
+A concrete and illustrative example arises in financial markets when estimating a firm's valuation. The market may enforce a mandatory disclosure rule for financial information. If full disclosure is required, the resulting valuation achieves a baseline accuracy dependent on the complexity of the underlying relationship. Alternatively, the market might allow firms to voluntarily disclose financial details, in which case the valuation is formed based only on the revealed information.
+
+Firms typically hold privately preferred valuations that differ from the market's assessment, and the preferred direction of this deviation is not uniform across firms. Some firms actively seek overvaluation because it raises stock prices and lowers the cost of equity financing. Others may prefer undervaluation, for example, when preparing for a stock buyback program or seeking to avoid triggering regulatory scrutiny.
+
+If a firm's preferred valuation is closely aligned with the market's objective, selective feature disclosure may assist by intuitively filtering out noisy or less informative signals, thereby enhancing valuation accuracy relative to mandatory disclosure. In contrast, if the firm's preferences are misaligned with the market's objective, selective disclosure distorts the available information and introduces a systematic bias, thereby degrading the valuation accuracy.
+
+In the speical case if firms shared the same directional preference---for instance, if every firm preferred overvaluation---the market could prevent exploitation simply by assigning a conservatively low default valuation in cases of partial disclosure. Such a rule would effectively discourage withholding, thereby replicating the outcome of a mandatory disclosure regime. In this work, however, we accommodate the more general and realistic setting in which participants hold heterogeneous preferences. We derive conditions to identify when the strategic disclosure of features is beneficial to the predictive model.
+
+
+\input{sections/contributions}
+
+\input{sections/related_works}
+

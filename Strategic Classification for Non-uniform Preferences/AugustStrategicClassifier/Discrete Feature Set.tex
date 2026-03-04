@@ -1,0 +1,68 @@
+To motivate the solution of the decision problem, we digress and recall a related problem from \cite{singh22strategic}. The problem formulation is almost the same as described in Section \ref{sec:Problem formulation}, and we only highlight the differences.
+Let $\cg{X} = \{1,2,\cdots,n\}$ be a finite set, and $h:\cg{X} \rightarrow \cg{Y}$ be the true function.
+Let $U: \cg{Y} \times \cg{X} \rightarrow \mathbb{R}$ be the utility function such that $U(h(x),x) = 0$ and $C: \cg{X} \times \cg{X} \rightarrow \mathbb{R}$ be the cost function such that $C(x,x) = 0$. We now characterise the Stackelberg equilibrium strategy in terms of the independence number of a sender graph.  The \textit{sender graph} is defined as follows.
+\begin{defn}\label{def:Sender's graph}
+	Let $G_h = (V,E)$ be a graph whose node set $V$ is given by $V = \cg{X}^2$. The edge set $E \subset \cg{X}^2 \times \cg{X}^2$ is described as follows: There is an edge between $(\ibb,\kbb)$ and $(\jbb,\lbb)$ if $h(\ibb) \neq h(\jbb)$ and one of the following conditions holds:
+	\begin{enumerate}[label=(\alph*)]
+		\item $\kbb = \lbb$.
+		\item \begin{equation*}
+			\begin{aligned}
+				&U(h(\jbb),\ibb) - C(\lbb,\ibb) + C(\kbb,\ibb) \geq 0 \text{ or}\\
+				&U(h(\ibb),\jbb) - C(\kbb,\jbb) + C(\lbb,\jbb) \geq 0.
+			\end{aligned}
+		\end{equation*}
+	\end{enumerate}
+\end{defn}
+Recall that a subset of nodes in a graph is called an independent set if no edge connects any two nodes in that subset. The next theorem characterises the Stackelberg equilibrium strategy in terms of the maximum independent set of the sender graph.
+\begin{thm}\label{thm:Stackelberg equilibrium for discrete feature space}
+	Let $I$ be an independent set of the graph $G_h$ and $r(\cdot;I)$ be a receiver strategy defined as
+	\begin{equation*}
+		r(\kbb;I) := \begin{cases}
+			h(\ibb) & (\ibb,\kbb) \in I\\
+			\Delta & (\ibb,\kbb) \not\in I.
+		\end{cases}
+	\end{equation*}
+	The following statements hold.
+	\begin{enumerate}[label=(\alph*)]
+		\item If $I^{\star}$ is a maximum independent set of $G_h$, then $\rs(\cdot) := r(\cdot,I^{\star})$ is a Stackelberg equilibrium.	
+		\item Conversely, if $\rs(\cdot)$ is a Stackelberg equilibrium, then $I^{\star} := \{(x,\srs(x)): \rs(\srs(x)) = h(x)\}$ is a maximum independent set in $G_h$, and furthermore, $\rs(\cdot) = r(\cdot,I^{\star})$. 
+	\end{enumerate}
+\end{thm}
+
+We require the following lemma to establish the relationship between an independent set of graph $G_h$ and the correct classification of the feature vector.
+
+\begin{lem}\label{lem:1-1 correspondance between independence set and recoverable feature vector}
+	Let $I$ be an independent set of the graph $G_h$ and $r(\cdot;I)$ be a receiver strategy defined as
+	\begin{equation*}
+		r(\kbb;I) := \begin{cases}
+			h(\ibb) & (\ibb,\kbb) \in I\\
+			\Delta & (\ibb,\kbb) \not\in I.
+		\end{cases}
+	\end{equation*}
+    By the definition of $I$, $r(\cdot,I)$ is well defined. The following statements hold:
+	\begin{enumerate}[label=(\alph*)]
+		\item If $I$ is an independent set of $G_h$, then for a receiver strategy $r(x) := r(x,I)$, the set $\{(x,s_r(x)): r(s_r(x)) = h(x)\}$ contains $I$.
+		\item If $r(x)$ is a receiver strategy, then $I := \{(x,s_r(x)): r(s_r(x)) = h(x)\}$ is an  independent set in $G_h$. 
+	\end{enumerate}
+\end{lem}
+
+Now, we proceed with our proof.
+\begin{proof}
+	\begin{enumerate}[label=(\alph*)]
+		\item Let $(\ibb,\kbb) \in I$. If $s_r(\ibb) = \lbb \neq \kbb$, then it follows that $r(\lbb) \neq \Delta$. Hence their exists a $\jbb$ such that $(\jbb,\lbb) \in I$. Since $s_r(\ibb) = \lbb$, it implies $U(h(\ibb),\ibb) - C(\kbb,\ibb) \leq U(h(\jbb),\ibb) - C(\lbb,\ibb).$ But from Definition \ref{def:Sender's graph}, this implies that there is an edge between $(\ibb,\kbb)$ and $(\jbb,\lbb)$ which contradicts the independence of the set $I$. Hence $s_r(\ibb) = \kbb$ and therefore $r(s_r(\ibb)) = h(\ibb)$. Since $\ibb$ was an arbitrary element in $I$, therefore $\{(x,s_r(x)): r(s_r(x)) = h(x)\} \supseteq I$.
+		
+		\item Let $\ibb, \jbb$ be such that $r(s_r(\ibb)) = h(\ibb)$ and $r(s_r(\jbb)) = h(\jbb)$. Let $\kbb := s_r(\ibb)$ and $\lbb := s_r(\jbb)$. We now show there is no edge between $(\ibb,\kbb)$ and $(\jbb,\lbb)$. If $h(\ibb) = h(\jbb)$, then we are trivially done with the proof. Therefore, assume $h(\ibb) \neq h(\jbb)$. Now, we check for the first edge conditions. If $\kbb = \lbb$, then $r(\kbb) = r(\lbb)$ which implies $h(\ibb) = h(\jbb)$ which is a contradiction. Therefore, the first edge condition does not hold. Next, we check for the second edge condition. If $U(h(\jbb),\ibb) - C(\lbb,\ibb) + C(\kbb,\ibb) \geq 0$ (same reasoning holds for the other equations in the second edge condition), then it implies that the sender receives greater payoff when it modifies $s_r(\ibb)$ to $\lbb$ instead of $\kbb$ which is a contradiction since we assumed $s_r(\ibb) = \kbb$. Therefore, the second edge condition does not hold.
+		Hence there is no edge between $(\ibb,\kbb) =(\jbb,\lbb)$. Since $(\ibb,\kbb)$ and $(\jbb,\lbb)$ were arbitrary elements of $G_h$, therefore the set $\{(x,s_r(x):r(s_r(x)) = h(x)\}$ is an independent set in $G_h$.
+		
+	\end{enumerate}
+\end{proof}
+We now conclude the proof of Theorem \ref{thm:Stackelberg equilibrium for discrete feature space}.
+\begin{proof}(Theorem \ref{thm:Stackelberg equilibrium for discrete feature space}).
+	\begin{enumerate}[label=(\alph*)]
+		\item If $I^{\star}$ is a maximum  independent set, then $r(x; I^{\star})$ is a Stackelberg equilibrium because if not, then there exists another strategy $r^{\star}$ such that $\{(x,\srs(x)):\rs(\srs(x)) = h(x)\}$ contains $\{(x,s_r(x)): r(s_r(x)) = h(x)\}$ which in turn contains $I^\star$. Since $\{(x,\srs(x)):\rs(\srs(x)) = h(x)\}$ and $\{(x,s_r(x)): r(s_r(x)) = h(x)\}$ are both independent set in $G_h$ from Lemma \ref{lem:1-1 correspondance between independence set and recoverable feature vector} b, therefore this contradict the maximality of $I^\star$.
+		\item If $r(x)$ is a Stackelberg equilibrium, then $I := \{(x,s_r(x))\}$ is a maximum independent set because if not, then there exists another independent set $J$ such that $|J| < |I|$. This implies the for the receiver strategy $\rt(x;J)$, $\{(x,s_{\rt}(x))\} \supseteq J \supset I$. This equation contradicts the assumption that $r(x;I)$ is a Stackelberg equilibrium. 
+	\end{enumerate}
+	
+\end{proof}
+
+We have shown that for the decision problem for a discrete feature vector set, the Stackelberg equilibrium strategy $r$ is better than the naive classifier $h$. One of the reasons for this is that $r$ can strategically choose to ignore feature vectors that are manipulation-prone. 

@@ -1,0 +1,19 @@
+1. What is the main claim of the paper? Why is this an important contribution to the autonomous agents and multi-agent systems literature?
+
+This paper addresses the problem of \textit{strategic classification}, where a classifier must correctly classify feature vectors that a sender may manipulate during the test phase. The paper makes two main claims. First, introducing a penalty label improves classification performance against strategic manipulation by the sender. Additionally, incorporating randomization in classification decisions further enhances accuracy. Second, leveraging the problem’s underlying structure during learning leads to more sample-efficient learning, particularly when domain knowledge is available but sample sizes are limited. To the best of our knowledge, the role of a penalty label in improving the accuracy of deterministic classifiers has not been previously explored. These insights can be applied to enhance existing classifiers across various domains. An immediate application of our work is in designing questionnaires for classification-based tasks. Since respondents may provide misleading answers, carefully integrating a penalty label can improve the accuracy of classification outcomes.
+
+
+2. What is the evidence you provide to support your claim? Be precise.
+
+We theoretically demonstrate that introducing a penalty label reduces classification errors compared to a naive classifier. Furthermore, we establish a theoretical result showing that a stochastic classifier can achieve lower classification error than any deterministic classifier, including those using a penalty label. Additionally, incorporating the strategic structure of the problem during learning can sometimes lead to a more sample-efficient learning process. We formalize these results mathematically and support them with examples to confirm their validity.
+
+
+3. What papers by other authors make the most closely related contributions, and how is your paper related to them? Provide journal references whenever possible. Don’t rely only on a conference proceedings.
+
+The paper \cite{hardt2016strategic} models strategic classification as a screening game between a classifier and a sender and provides an algorithm to learn the strategic classifier. However, it assumes uniform sender preferences for labels. Our work extends this framework by incorporating non-uniform sender preferences and introduces an algorithm designed to learn the strategic classifier in this more general setting.  Similarly, the paper \cite{sundaram2021pac} models the problem as a screening game and proposes an algorithm to learn the strategic classifier. While \cite{sundaram2021pac} accounts for non-uniform label preferences, it considers a different hypothesis space for learning the strategic classifier than ours.
+
+
+4. Have you published parts of your paper before, for instance in a conference? If so, give details of your previous paper(s) and a precise statement detailing how your paper provides a significant contribution beyond the previous paper(s).
+
+Some parts  of this work were previously published in two conference papers. A preliminary version of Section \ref{subsec:Discrete feature space}, which considers the discrete feature  space was presented in the  conference paper \cite{singh22strategic} and a preliminary version of Section \ref{subsec: Stochastic strategy}, which considers a stochastic decision rule, was presented in the conference paper \cite{singh2024optimal}.
+	The main contribution of this paper is the analysis of the decision problem for a general feature vector space, which is given in Section \ref{sec:Decision problem}, and the learning problem in this general setting, which is given in Section \ref{sec:Learning problem}. It also refines  assumptions and proofs the above conference papers, to align it with the results of the rest of the paper.

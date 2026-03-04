@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: StrategicLearning.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: IEEEtran.bst
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: Reference.bib
+Warning--entry type for "shalev-shwartz_ben-david_2014" isn't style-file defined
+--line 1 of file Reference.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 16 entries,
+            4087 wiz_defined-function locations,
+            911 strings with 10361 characters,
+and the built_in function-call counts, 13693 in all, are:
+= -- 1045
+> -- 327
+< -- 124
++ -- 187
+- -- 57
+* -- 656
+:= -- 1897
+add.period$ -- 38
+call.type$ -- 16
+change.case$ -- 16
+chr.to.int$ -- 321
+cite$ -- 16
+duplicate$ -- 943
+empty$ -- 1184
+format.name$ -- 67
+if$ -- 3241
+int.to.chr$ -- 0
+int.to.str$ -- 16
+missing$ -- 158
+newline$ -- 73
+num.names$ -- 16
+pop$ -- 403
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1051
+stack$ -- 0
+substring$ -- 780
+swap$ -- 769
+text.length$ -- 17
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 16
+warning$ -- 0
+while$ -- 64
+width$ -- 18
+write$ -- 169
+(There was 1 warning)

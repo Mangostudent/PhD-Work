@@ -1,0 +1,105 @@
+The learning algorithm suggested in Algorithm \ref{algo:Vanilla ERM} does not account for strategic behaviour during the testing phase. This is a potential source of inefficiency in determining the strategic learnability of a hypothesis class. An alternate algorithm which takes into account the strategic behaviour and which we show is both a necessary and sufficient condition for strategic learnability is described as follows.
+Let $\cg{F} \subseteq \{f \mid f:\cg{X} \rightarrow \cg{Y}\}$ be the hypothesis class consisting of all functions with at most $d-1$ decision boundaries. Corresponding to this hypothesis class, consider the hypothesis class $\widetilde{\cg{F}}$ defined as
+\[
+\widetilde{\cg{F}} := \{r \circ s_r \mid r := r^\star_{f,D}, D \in \fk{D}, f \in \cg{F}\}.
+\]
+We learn the Stackelberg equilibrium directly from $\widetilde{\cg{F}}$. The strategy-aware ERM algorithm expresses this idea.
+\begin{center}
+	\begin{algorithm}[H]\label{algo:Startegically aware ERM}
+		\SetAlgoLined
+		\DontPrintSemicolon
+		\KwData{Hypothesis class $\cg{F}$, Sample $\{(x_i,y_i)\}_{i=1}^m$\\
+			\text{Zero - one loss function} $l_h(r(s_r),x) := \mathbbm{1}_{r(s_r(x)) = h(x)}$}
+		\KwResult{Hypothesis $\hat{r}$}
+		\BlankLine
+		\tcp{Decision}
+		$\widetilde{\cg{F}} := \{r \circ s_r \mid r := r^\star_{f,D}, D \in \fk{D}, f \in \cg{F}\}$  \;
+		\BlankLine
+		\tcp{Estimation}
+		$\hat{r}_{\textrm{serm}}\circ s_{\hat{r}_{\textrm{serm}}}:= \arg\min_{r \circ s_r \in \widetilde{\cg{F}}} \sum_{i=1}^m \mathbbm{1}_{\{r(s_r(x_i)) \neq y_i\}}$ \\
+		
+		\BlankLine
+		
+		\caption{Strategy aware ERM algorithm}
+	\end{algorithm}
+\end{center}
+The algorithm \ref{algo:Startegically aware ERM} is initialised with a hypothesis class $\cg{F}$ and a sample $S$. In the first step, we modify the hypothesis class $\cg{F}$ to $\widetilde{\cg{F}}$. In the second step, we run the ERM subroutine on the modified hypothesis class $\widetilde{\cg{F}}$ and sample $S$ to get a hypothesis $\hat{r}_{\textrm{serm}}\circ s_{\hat{r}_{\textrm{serm}}}$. We now show that VC dim$(\widetilde{\cg{F}}) < \infty$ if and only if $\cg{F}$ is strategically learnable under Algorithm \ref{algo:Startegically aware ERM}. 
+
+\begin{thm}[The fundamental theorem of strategic learning ]\label{thm:Fundamental theorem of strategic learning}
+Let $\mathcal{F} \subseteq \{ f \mid f: \cg{X} \rightarrow \cg{Y} \}$ be a hypothesis class consisting of all functions with at most $d-1$ decision boundaries. Let $A: (\cg{X} \times \cg{Y})^n \rightarrow \widetilde{\cg{F}}$ denote the algorithm described in Algorithm \ref{algo:Startegically aware ERM}.  The $\cg{F}$ is strategically learnable under $A$ (refer Definition \ref{def:Strategically learnable class}) iff VC dim$(\widetilde{\cg{F}}) < \infty$.
+\end{thm}
+
+\begin{proof}
+Let  $D \in \fk{D}$ be the probability law on $\cg{X}$ and let $(\eps,\delta) \in (0,1)^2$. Let $h \in \cg{F}$ be the true function and let $S = \{(x_i,y_i)\}_{i=1}^m$ be the $m$-sized sample where $x_i$'s are drawn i.i.d. from $D$. Let $\cg{E}(r,f) := \cg{E}(r,s_r,f,D)$. The Strategy aware ERM algorithm is similar to the vanilla ERM algorithm but applied to a different hypothesis class $\widetilde{\cg{F}}$ under the zero-one loss function $
+		l_h(r \circ s_r, x) = \mathbbm{1}_{\{r(s_r(x)) = h(x)\}}$.
+	We first prove the if part.
+    Let $A(S)$ be the hypothesis obtained from the strategy aware ERM algorithm. Since VC dim$(\widetilde{\cg{F}}) < \infty$, we know that it is agnostic PAC learnable from Theorem \ref{thm:Fundamental theorem of statistical learning}. Furthermore, from Theorem \ref{thm:Fundamental theorem of statistical learning} we have for $m \geq \bar{m}(\eps,\delta)$,
+	\begin{equation}\label{eqn:lem:startegic learnable}
+	   \begin{aligned}
+			D^{\otimes m}(\cg{E}(A(S), h) - \min_{r \circ s_r \in \widetilde{\cg{F}}} \cg{E}(r, h) < \epsilon) > 1 - \delta.
+		\end{aligned}
+	\end{equation}
+	Note that by construction of $\widetilde{\cg{F}}$, we have
+	\[
+		\min_{f \in \cg{F}} \cg{E}(r_f, s_{r_f}, h, D) = \min_{r \circ s_r \in \widetilde{\cg{F}}} \cg{E}(r, s_r, h, D).
+	\]
+	Substituting this in \eqref{eqn:lem:startegic learnable}, we get with probability $1 - \delta$,
+    \begin{equation}\label{eqn:thm:fundamental theorem of strategic learning}
+        \begin{aligned}
+            D^{\otimes m}(\cg{E}(A(S), h) - \min_{f \in \widetilde{\cg{F}}} \cg{E}(r, h) < \epsilon) > 1 - \delta.
+        \end{aligned}
+    \end{equation}
+The choice of $D$, $(\eps,\delta)$ and $h$ were arbitrary. Hence \eqref{eqn:thm:fundamental theorem of strategic learning}
+shows that $\cg{F}$ is strategically learnable.
+
+\noindent Next, we prove the only if part. If $\cg{F}$ is strategically learnable, there exists an algorithm $A': (\cg{X} \times \cg{Y}) \rightarrow \widetilde{\cg{F}}$ such that 
+
+\begin{equation}\label{eqn:thm:fundamental strategic learning bound}
+D^{\otimes m}\Big( \cg{E}(A'(S); h, D) - \cg{E}(r^\star_{h, D}; h, D) < \eps \Big) > 1 - \delta
+\end{equation}
+holds.
+Note that from the definition of $r^\star_{h,D}$, $\cg{E}(r^\star_{h,D};h,D) \leq \cg{E}(r;h,D)$ for all $r \in \widetilde{\cg{F}}$. Furthermore, from the definition of $\cg{E}(\cdot;h)$ and $L(\cdot;h)$, we have $\cg{E}(A(S),h) = L(A(S);h)$.
+Therefore, \eqref{eqn:thm:fundamental strategic learning bound} reduces to 
+\begin{equation}\label{eqn:them:fundamanetal strategic learning bound}
+D^{\otimes m}\Big( L(A'(S);h) - \arg\min_{r \in \widetilde{\cg{F}}}L(r;h) < \eps \Big) > 1 - \delta.
+\end{equation}
+This shows that $\widetilde{\cg{F}}$ is agnostic PAC learnable under $A'(S)$. Therefores from the Theorem \ref{thm:Fundamental theorem of statistical learning} we have VC dim$(\widetilde{\cg{F}}) < \infty$.
+\end{proof}
+
+\begin{cor}\label{cor:SERM is more widely applicable than vanilla ERM}
+	Let $\cg{F}$ be a hypothesis class used in Algorithm \ref{algo:Vanilla ERM} and $\widetilde{\cg{F}}$ be the hypothesis in Algorithm \ref{algo:Startegically aware ERM} obtained from $\cg{F}$. Then
+	\[
+		\text{VC dim}(\cg{F}) < \infty \implies \text{VC dim}(\widetilde{\cg{F}}) < \infty.
+	\]
+\end{cor}
+
+
+
+We now demonstrate that certain hypothesis classes are not strategically learnable via Algorithm \ref{algo:Vanilla ERM} but become strategically learnable via Algorithm 
+\ref{algo:Startegically aware ERM}.  Specifically, we show the existence of a hypothesis class $\mathcal{F}$ such that VC dim$(\mathcal{F}) = \infty$ but VC dim$(\tilde{\mathcal{F}}) < \infty$. This establishes that the converse of Corollary \ref{cor:SERM is more widely applicable than vanilla ERM} does not hold.
+
+\begin{exg}\label{exg:counter example}
+Consider the deterministic decision problem described in Section \ref{sec:Problem formulation}. Let $h$ be the true function, $D$ be the uniform probability law on $\cg{X}$ and $\um = \up = 0.1$. Let $\mathbf{f} \in [0,1)$, and let $F \subseteq ([\mathbf{f},1] \cap \mathbb{Q})$. Define the hypothesis $f_F: \cg{X} \to \cg{Y}$ as follows:
+\[
+f_F(x) :=
+\begin{cases}
+    \minus & x \in [0, \mathbf{f}), \\
+    \plus & x \in F \setminus [0, \mathbf{f}), \\
+    \minus & x \in F^c \setminus [0, \mathbf{f}) \text{ where} F^c = X \backslash F.
+\end{cases}
+\]
+Now, consider the following hypothesis class:
+\[
+\begin{aligned}
+    \mathcal{F} &:= \{f_F : \mathbf{f} \in (0,1), \, F \subseteq ([\mathbf{f}, 1] \cap \mathbb{Q})\}
+\end{aligned}
+\]
+Then VC dim$(\mathcal{F}) = \infty$ because $\mathcal{F}$ can shatter every countable subset of $[\mathbf{f}, 1] \cap \mathbb{Q}$. We now claim that VC dim$(\widetilde{\cg{F}}) = 0$. Let $f_F \in \mathcal{F}$ be the true function. The receiver strategy $r(x) \equiv \minus$ is a Stackelberg equilibrium. This is because $\cg{E}(r) = 0$.
+Thus, we have \( \widetilde{\cg{F}} = \{r(\cdot) \equiv \minus\} \), implying that the VC dimension of \( \widetilde{\cg{F}} \) is $0$. In conclusion, while \( \mathcal{F} \) is not strategically learnable by Algorithm \ref{algo:Vanilla ERM} due to its infinite VC dimension, it becomes strategically learnable by Algorithm \ref{algo:Startegically aware ERM}, as the hypothesis space is effectively reduced to one with finite VC dimension.
+\end{exg}
+
+
+
+
+
+

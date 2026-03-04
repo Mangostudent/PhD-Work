@@ -1,0 +1,118 @@
+\begin{apdxproof}(Proof of Lemma \ref{lem:same true function})\label{proof:same true function}
+Let $r_1 := r^\star_{f,D},\; r_2 := r^\star_{f,D(S)}$. Let $\psi(x)$ be the distribution function of the probability law $D$ and $\psi_m(x)$ be the distribution function of the empirical probability law $D(S)$ for a sample $S$, i.e.,
+    \begin{equation*}
+        \psi_m(x) := \frac{1}{m} \sum_{x_i \in S} \mathbbm{1}_{[0,x]}.
+    \end{equation*}
+According to the Dvoretzky–Kiefer–Wolfowitz inequality (\cite{Dvoretzky-Kiefer-Wolfowitz-1956}), for any $(\epsilon, \delta) \in (0,1)^2$, there exists an $\bar{m}(\eps,\delta)$ such that for all $m > \bar{m}(\eps,\delta)$, we have:
+    \begin{equation}\label{eqn:DKW inequality:lem: same true function}
+        D^{\otimes m}\big(\sup_{x \in \cg{X}} |\psi(x) - \psi_m(x)| < \epsilon\big) > 1 - 2e^{-2m\epsilon^2}.
+    \end{equation}
+Let 
+\begin{equation}\label{eqn:DKW inequality:lem: same true function good set}
+    \cg{S} := \{S: \sup_{x \in \cg{X}}|\psi(x) - \psi_m(x)| < \eps\}.
+\end{equation}
+Then from \eqref{eqn:DKW inequality:lem: same true function}, we know that $D^{\otimes m}(\cg{S}) > 1-2e^{-2em\eps^2}$. Fix a $S \in \cg{S}$ and let $\psi_m$ be the corresponding empirical distribution function. 
+Consider the receiver strategies $r_1$ and $r_2$. From Proposition \ref{prop:Deterministic Stackelberg equilibrium for multiple decision boundaries}, we have $r_1(x) \equiv r_1(x; \Theta^{(1)}_1,\cdots,\Theta^{(1)}_{d-1})$ and $r_2(x) \equiv r_2(x;\Theta^{(2)}_1,\cdots,\Theta^{(2)}_{d-1})$ for some $\Theta^{(i)}_n$, where $i = 1, 2$ and $n \in \{0,1,\cdots,d-1\}$, and where $\Theta^{(i)}_n := [\theta_{(i,n)}, \theta^{(i,n)}]$ is a closed interval. Let $E_n^{(i)} := (\theta^{(i,n)}, \theta_{(i,n+1)})$. From Lemma \ref{prop:Deterministic Stackelberg equilibrium for multiple decision boundaries}, $E_n^{(i)}$ is the set of feature vectors misclassified by $r_i$ near the decision boundary $n$. From the definition of $\psi_m$ and $\psi$, we have
+    \begin{equation*}
+        D(S)(E_n^{(i)}) = \psi_m(\theta^{(i,n+1)}) - \psi_m(\theta_{(i,n)}),\quad D(E_n^{(i)}) = \psi(\theta^{(i,n+1)}) - \psi(\theta_{(i,n)}),\quad i \in \{1, 2\}, n \in \{1,\cdots,d-1\}.
+    \end{equation*}
+Since $S \in \cg{S}$, using \eqref{eqn:DKW inequality:lem: same true function good set}, we get 
+    \begin{equation}\label{lem:eqn:actual dominate emp}
+        \begin{aligned}
+            |D(S)(E_n^{(i)}) - D(E_n^{(i)})| &\leq |\psi_m(\theta^{(i,t+1)}) - \psi(\theta^{(i,n+1)})| + |\psi(\theta_{(i,n)}) - \psi_m(\theta_{(i,n)})| < 2\epsilon,\\
+            &\text{for all }i \in \{1, 2\}, n \in \{1,\cdots,d-1\}.
+        \end{aligned}
+    \end{equation}
+    Summing over all $d-1$ decision boundaries, and noting that $\mathcal{E}(r_i;f, D) = \sum_n D(E_n^{(i)})$ and $\cg{E}(r_i;f, D(S)) = \sum_n D(S)(E_n^{(i)})$, we get
+    \[
+        |\cg{E}(r_2;f, D) - \cg{E}(r_1;f, D)| < 2(d-1)\epsilon.
+    \]
+This holds true for all $S \in \cg{S}$. But we have $D^{\otimes m}(\cg{S}) > 1-2e^{-2m\eps^2}$. Therefore, we get
+\[
+       D^{\otimes m}(|\cg{E}(r_2;f, D) - \cg{E}(r_1;f, D)| < 2(d-1)\epsilon) > 1- 2e^{-2m\eps^2}.
+    \]
+as required.
+
+\end{apdxproof}
+
+
+
+
+
+\begin{apdxproof}(Proof of Lemma \ref{lem:same distribution})\label{proof:same distribution}
+Let $r_1 := r^\star_{h,D}$, $r_2 := r^\star_{A(S),D}$, and $E(r,f) := E(r,s_r,f)$.
+Since VC dim$(\cg{F}) < \infty$,  $\cg{F}$ is PAC learnable from Theorem \ref{thm:Fundamental theorem of statistical learning}. Furthermore, from Theorem  \ref{thm:Fundamental theorem of statistical learning} we have
+\begin{equation}\label{eq:concentration bound}
+    D^{\otimes m}(L_{D}(A(S);h) < \epsilon) > 1 - \delta,
+\end{equation}
+where $m \geq \underbar{m}(\eps,\delta)$ and $\underbar{m}(\eps,\delta)$ satisfies 
+\begin{equation*}
+    C_1 \frac{d + \log\left(\frac{1}{\delta}\right)}{\epsilon} \leq \underbar{m}(\eps,\delta) \leq C_2 \frac{d \log\left(\frac{1}{\epsilon}\right) + \log\left(\frac{1}{\delta}\right)}{\epsilon}.
+\end{equation*}
+Here $C_1, C_2 \geq 0$ are constants and $d$ is the VC dimension of $\mathcal{F}$.
+Let 
+\begin{equation}\label{eqn:good set}
+    \cg{S} := \{S: L_D(A(S);h) < \eps\}.
+\end{equation}
+From \eqref{eq:concentration bound}, we know that $D^{\otimes m}(\cg{S}) > 1-\delta$.
+Fix a $S \in \cg{S}$. Define $W(S) := \{x \mid h(x) \neq A(S)(x)\}$. For a receiver strategy $r$ and (an arbitrary) true function $f$ (recall from Definition \ref{defn:Best response} that $s_r$ will depends upon the true function $f$ v.i.a. utility function), the classification error set $E(r;A(S))$ (defined in \eqref{eqn:error set}) can be decomposed as
+\[
+E(r; A(S)) = (E(r; A(S)) \cap W(S)) \cup (E(r; A(S)) \cap W(S)^c).
+\]
+Since $S \in \cg{S}$, using \eqref{eqn:good set}, we get $L(A(S);h) < \eps$, and therefore it follows that $D(W(S)) < \epsilon$. Hence, we get
+\[
+\mathcal{E}(r; A(S),D) < \epsilon + D(E(r; A(S)) \cap W(S)^c).
+\]
+From the definition of $W(S)$, $h(x) = A(S)(x)$ for all $x \in W(S)^c$. Therefore,
+\begin{equation}
+    \begin{aligned}
+        E(r;A(S)) \cap W(S)^c &= \{x:r(s_r(x)) = A(S)(x)\} \cap \{x: h(x) =A(S)(x)\} = \{x:r(s_r(x)) = A(S)(x) = h(x)\}\\  &= \{x: h(x) =A(S)(x)\} \cap\{x:r(s_r(x)) =h(x) \}      
+        = E(r;h) \cap W(S)^c,\\
+    \end{aligned}
+\end{equation}
+and thus
+\begin{equation}\label{eqn:lem:change in ground truth 3}
+    \mathcal{E}(r; A(S),D) < \epsilon + D(E(r; h)) = \epsilon + \mathcal{E}(r; h,D).
+\end{equation}
+Similarly, we can decompose the classification error set $E(r;h)$ as
+\[E(r;h) := (E(r;h) \cap W(S)) \cup (E(r;h)\cap W(S)^c).\]
+Repeating the argument used for deriving \eqref{eqn:lem:change in ground truth 3}, we obtain
+\begin{equation}\label{eqn:lem:change in ground truth 6}
+    \mathcal{E}(r; h,D) < \epsilon + \mathcal{E}(r; A(S),D).
+\end{equation}
+Combining \eqref{eqn:lem:change in ground truth 3} and \eqref{eqn:lem:change in ground truth 6}, we get
+\[|\cg{E}(r;h,D) - \cg{E}(r,A(S),D)| < \eps.\] This holds true for all $S \in \cg{S}$. But we have $D^{\otimes m}(\cg{S}) > 1-\delta$, therefore we get 
+\begin{equation}\label{eqn:lem:change in ground truth 5}
+    D^{\otimes m}(|\mathcal{E}(r; h) - \mathcal{E}(r; A(S))|  < \epsilon) > 1-\delta \text{for all receiver strategy} r \text{and true function} f.
+\end{equation}
+This proves the $(a)$ part.
+Using part $(a)$, we now establish
+\begin{equation}
+    D^{\otimes m}(\cg{E}(r_2;h)) - \cg{E}(r_1;h) < 2\eps) > 1-\delta,
+\end{equation}
+where $h$ is the ground true function of $r_1$ and $A(S)$ is the estimated true function of $r_2$. This is the same as the claim (given in \eqref{eqn:lem:vanilla ERM PAC bound}) we want to prove.
+Substituting $r = r_1$ and $f=h$ (ground true function) in \eqref{eqn:lem:change in ground truth 3}, we get
+\begin{equation}\label{eqn:lem:change in ground truth 3.1}
+    \mathcal{E}(r_1; A(S),D) < \epsilon + \mathcal{E}(r_1; h,D).
+\end{equation}
+Substituting $r=r_2$ and $f = A(S)$ (estimated true function) in \eqref{eqn:lem:change in ground truth 6}, we get
+\begin{equation}\label{eqn:lem:change in ground truth 6 1}
+    \mathcal{E}(r_2; h,D) < \epsilon + \mathcal{E}(r_2; A(S),D).
+\end{equation}
+Consider the following:
+\begin{equation}\label{eqn:lem:change in ground truth 4}
+\begin{aligned}
+    \mathcal{E}(r_2; h,D) - \mathcal{E}(r_1; h,D) &= \underbrace{\big(\mathcal{E}(r_2; h,D) - \mathcal{E}(r_2; A(S),D)\big)}_a  + \underbrace{\big(\mathcal{E}(r_2; A(S),D) - \mathcal{E}(r_1; A(S),D)\big)}_b \\
+    &\quad + \underbrace{\big(\mathcal{E}(r_1; A(S),D) - \mathcal{E}(r_1; h,D)\big)}_c.
+\end{aligned}
+\end{equation}
+From the definition of $r_2$, we know $b = \mathcal{E}(r_2; A(S),D) - \mathcal{E}(r_1; A(S),D) \leq 0$ as $\cg{E}(r_2;A(S),D)$ is the Stackelberg error. From \eqref{eqn:lem:change in ground truth 6 1}, we have $a < \eps$ and using \eqref{eqn:lem:change in ground truth 3.1}, we have $c < \eps$. Therefore we get
+\[
+\mathcal{E}(r_2; h,D) - \mathcal{E}(r_1; h,D) < 2\epsilon.
+\]
+This holds true for all $S \in \cg{S}$. But we have $D^{\otimes m}\cg{S} > 1-\delta$. Therefore we get 
+\[D^{\otimes m}(\mathcal{E}(r_2; h,D) - \mathcal{E}(r_1; h,D)) < 2\epsilon
+\]
+as claimed in part $(b)$.
+    
+\end{apdxproof}

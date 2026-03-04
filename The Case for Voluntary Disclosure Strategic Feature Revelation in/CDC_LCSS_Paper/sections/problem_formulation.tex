@@ -1,0 +1,45 @@
+\section{PROBLEM FORMULATION}
+\label{sec:problem_formulation}
+
+Let $\cX = \R^d$ be the feature space and $\cY = \R$ be the outcome space. We consider a data-generating process where Nature selects $(u, x, y) \sim (U, X, Y)$ over $\cY \times \cX \times \cY$. Here, $y$ is the ground truth value, $x$ represents the available features, and $u$ is the preferred value.
+
+The problem is modeled as a game between two players: a \textbf{Sender} and a \textbf{Receiver}. The Sender observes $(u, x)$ and chooses an action $A$ from the strategy space:
+\begin{equation*}
+  \cS = \{ A : \cY \times \cX \mapsto \{\emptyset, x\} \}.
+\end{equation*}
+This action represents the Sender's decision to either disclose the full feature vector $x$ or withhold it (denoting the latter by $\emptyset$). The chosen action $A(u, x)$ is transmitted through a noisy channel, resulting in an observed message $M$. The channel noise is characterized by a parameter $q \in [0, 1]$ such that:
+\begin{equation*}
+  M = \begin{cases}
+  \emptyset & \text{if } A(u,x) = \emptyset, \\
+  \emptyset & \text{if } A(u,x) = x \text{ with probability } q, \\
+  x & \text{if } A(u,x) = x \text{ with probability } 1-q.
+  \end{cases}
+\end{equation*}
+Upon observing $M \in \{\emptyset, x\}$, the Receiver applies a strategy $\hat{y} \in \cR$:
+\begin{equation*}
+  \cR = \{ \hat{y} : \{\emptyset, \cX\} \mapsto \cY \}.
+\end{equation*}
+
+The loss of each player is defined as follows: the Sender incurs a loss $\ell(u, \yhatm)$ based on their preferred value $u$, while the Receiver incurs a loss $\ell(y, \yhatm)$ based on the ground truth value $y$. 
+
+We analyze this interaction as a \textbf{screening game}. In this game, the Receiver first commits to a strategy $\hat{y} \in \cR$. Then, the Sender observes this commitment and takes an optimal action $A \in \cS$ based on $\hat{y}$. Finally, the Receiver executes their committed strategy and the outcome is realized.
+
+For any commitment $\hat{y}$ by the Receiver, the Sender's \textbf{best response} is to choose an action $A(u, x)$ that minimizes their own expected loss. This reduces to a pointwise minimization for each observed state $(u, x)$:
+\begin{equation}
+    A(u, x) = \argmin_{a \in \{\emptyset, x\}} \E \left[ \ell(u, \yhatm) \given A(u, x)=a \right].
+\end{equation}
+
+Anticipating the Sender's best response, the Receiver must now optimize the choice of $\hat{y}$ to minimize their own total expected loss, achieving the strategic risk $R_S$:
+\begin{equation}
+    R_S := \min_{\hat{y} \in \cR} \E[\ell(Y, \yhatm)].
+\end{equation}
+Such a pair of strategies $(A, \hat{y})$ constitutes a \textbf{Stackelberg equilibrium}. 
+
+To evaluate the strategic gain, we compare this equilibrium to a mandatory disclosure regime (we also refer to this as the \textbf{vanilla} setting). Under mandatory disclosure, the Sender is forced to reveal features ($A \equiv x$), which leads to the Receiver's optimal strategy $\hat{y}_V$. The corresponding vanilla Risk is:
+\begin{equation}
+    R_V := \E[\ell(Y, \yhatvm)].
+\end{equation}
+
+\begin{definition}[Strategic Advantage]
+  A \textbf{strategic advantage} exists if permitting voluntary disclosure yields a strictly lower expected loss for the Receiver than the mandatory regime, i.e., $R_S < R_V$.
+\end{definition}

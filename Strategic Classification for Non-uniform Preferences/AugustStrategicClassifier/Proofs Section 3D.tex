@@ -1,0 +1,592 @@
+The next Corollary show that if a Stackelberg equilibrium exist under worst-case best response setup, then its error will be $\frac{\uu}{2}$.
+\begin{cor}\label{cor:Stackelberg worst case best response error}
+    Suppose there exists a Stackelberg equilibrium $(r^\star, s_{r^\star})$ under the setup where the sender plays the worst-case best response. Then, $\cg{E}(r^\star,s_{r^\star}) = \frac{\uu}{2}$.
+\end{cor}
+
+
+\begin{proof}\label{proof:Stackelberg worst case best response error}
+        Let $s'$ be the worst-case lazy best response to $r^\star$. Let $(\bar{r}^\star, s_{\bar{r}^\star})$ be the Stackelberg equilibrium under the worst-case lazy best response.
+    From Proposition \ref{prop:comparing sender strategy types}, we know that
+    \[
+    \cg{E}(r^\star, s_{r^\star}) \geq \cg{E}(r^\star, s').
+    \]
+    Additionally, by the definition of $\bar{r}^\star$, we have
+    \[
+    \cg{E}(r^\star, s') \geq \cg{E}(\bar{r}^\star, s_{\bar{r}^\star}).
+    \]
+    From Theorem \ref{thm:Stochastic Stackelberg equilibrium}, we know that
+    \[
+    \cg{E}(\bar{r}^\star, s_{\bar{r}^\star}) = \frac{\uu}{2}.
+    \]
+    Combining these results, we conclude that
+    \[
+    \cg{E}(r^\star, s_{r^\star}) \geq \frac{\uu}{2}.
+    \]
+    Furthermore, from Example \ref{ex:eps stochastic strategy} (which appears in Section \ref{subsec:Examples and comparision}), we know that for every $\eps > 0$,
+    \[
+    \cg{E}(r_\eps,s_{r_\eps}) = \frac{\uu + \eps}{2}.
+    \]
+    Thus, if a Stackelberg equilibrium $r^\star$ exists, then it follows that
+    \[
+    \cg{E}(r^\star,s_{r^\star}) = \frac{\uu}{2}.
+    \]
+\end{proof}
+
+From the definition of $\msf{R}$ in \eqref{defn:stochastic_receiver}, every receiver strategy $r \in \msf{R}$ has the structure $r(x) \equiv (p(x),q(x),1-p(x)-q(x))$. The first lemma shows that without loss of generality, we can assume the structure of $r$ at each $x$ to be either $r(x) \equiv (1-q(x),q(x),0)$ or $r(x) \equiv (0,0,1)$.
+
+
+\begin{lem}\label{lem:delta null wlog}
+    Let $r \equiv (p,q,1-p-q) \in \msf{R}$ be a receiver strategy. Let $\Theta := \{x': x' \in \cg{X}, p(x') + q(x') <1\}$. Now consider another receiver strategy $\rt \equiv (\pt,\qt,1-\pt - \qt)$ defined as
+    \[
+    \rt(x) = \begin{cases}
+        r(x) &\text{for } x \in \cg{X}\setminus \Theta,\\
+        (0,0,1) &\text{for } x \in \Theta.
+    \end{cases}
+    \]
+    Then $\cg{E}(r) = \cg{E}(\rt)$.
+\end{lem}
+
+\begin{proof}\label{proof:delta null wlog}
+Let $x \in \cg{X}$. We first show that $s_r(x),s_{\rt}(x) \not\in \Theta$. From the definition of $p,q$ and $\Theta$, we have
+    \[1-p(x')-q(x') =\prob_r(\Delta|X' = x')  > 0, \text{for all} x' \in \Theta.\]
+    \noindent If $s_r(x) \in \Theta$, then $$\prob_r(y = \Delta|X'_{s_r}=s_r(x)) > 0$$ and the sender's payoff is $\mathbb{U}(x;r,s_r) = -\infty$.
+    Similarly, if $s_{\rt}(x) \in \Theta$, then \[\prob_{\rt}(y = \Delta|X'_{s_{\rt}} = s_{\rt}(x)) = 1 \] and the sender's payoff is $\mathbb{U}(x;\rt,s_{\rt}) = -\infty$.
+    But from \eqref{eqn:receiver condition 1}, the feature vector set $\cg{X}\setminus \Theta \neq \emptyset$. Therefore, there exists $t \in \cg{X}\setminus \Theta$ such that
+        $$\prob_r(Y = \Delta|X'=t) = \prob_{\rt}(Y = \Delta|X'=t) = 0.$$
+Hence, for the sender strategy $s(x) = t$ for all $x \in \cg{X}$, we have
+    $$\prob_r(Y=\Delta|X'=t) = \prob_{\rt}(Y=\Delta|X'=t)) = 0$$ and
+    the sender's payoff at $x$ for receiver strategies $r$ and $\rt$ will be $\mathbb{U}(x,r,s) < \infty\text{and} \mathbb{U}(x,\rt,s) < -\infty$ respectively.
+    But this contradicts that $s_r$ and $s_{\rt}$ are the worst-case lazy best responses, as $\mathbb{U}(x,r,s) < \mathbb{U}(x,r,s_r)$ and $\mathbb{U}(x,\rt,s) < \mathbb{U}(x,\rt,s_{\rt})$. Hence,
+    \begin{equation}\label{lem:eqn:non-Delta best response}
+        s_r(x), s_{\rt}(x) \in \cg{X} \setminus \Theta \text{ for all } x \in \cg{X}.
+    \end{equation}
+    From the construction of $\rt$, we know that $r(x) = \rt(x)$ for $x \in \cg{X} \setminus \Theta$. Therefore, combining it with \eqref{lem:eqn:non-Delta best response}, we get
+    \begin{equation}\label{eqn:lem:non-Delta best response 2}
+        r(s_r(x)) = \rt(s_r(x)) \text{ and } r(s_{\rt}(x)) = \rt(s_{\rt}(x)) \text{ for all } x \in \cg{X}.
+    \end{equation}
+    We next show that $s_r$ and $s_{\rt}$ are best responses to both $r$ and $\rt$. Since $s_r$ and $s_{\rt}$ are worst-case lazy best responses of $r$ and $\rt$, respectively, we have
+    \begin{equation}\label{eqn:lem:non-Delta best response 3}
+        \mathbb{U}(x;r,s_r) \geq \mathbb{U}(x;r,s_{\rt}) \text{ and } \mathbb{U}(x;\rt,s_{\rt}) \geq \mathbb{U}(x;\rt,s_r) \text{ for all } x \in \cg{X}.
+    \end{equation}
+    Substituting \eqref{eqn:lem:non-Delta best response 2} in \eqref{eqn:lem:non-Delta best response 3} and expanding it, we get
+
+
+
+    \begin{equation*}
+        \begin{aligned}
+            \fk{U}(x;r,s_r) - |s_r(x)-x| &\geq \fk{U}(x;r,s_{\rt})   - |s_{\rt}(x) -x| = \fk{U}(x;\rt,s_{\rt})   - |s_{\rt}(x) -x| &\text{ and }\\
+            \fk{U}(x;\rt,s_{\rt}) - |s_{\rt}(x)-x| &\geq \fk{U}(x;\rt,s_r)   - |s_r(x)-x| = \fk{U}(x;r,s_r)   - |s_r(x)-x|.
+        \end{aligned}
+    \end{equation*}
+    which implies
+    \[
+    |s_{\rt}(x) - x| - |s_r(x) -x| \geq \fk{U}(\rt(s_{\rt}(x)),x) - \fk{U}(r(s_r(x)),x) \geq |s_{\rt}(x) - x| - |s_r(x) -x|
+    \]
+    or
+    \begin{equation}\label{eqn:lem:non-Delta best response 4}
+        \fk{U}(\rt(s_{\rt}(x)),x) - \fk{U}(r(s_r(x)),x) = |s_{\rt}(x) - x| - |s_r(x) -x|.
+    \end{equation}
+    Thus, substituting \eqref{eqn:lem:non-Delta best response 4} back in \eqref{eqn:lem:non-Delta best response 3}, we get
+    \begin{equation}\label{eqn:lem:non-Delta best response 5.1}
+        \mathbb{U}(x;r,s_r) = \mathbb{U}(x;r,s_{\rt}) \text{ and } \mathbb{U}(x;\rt,s_{\rt}) = \mathbb{U}(x;\rt,s_r).
+    \end{equation}
+    This shows that $s_{\rt}$ and $s_r$ are best responses to both $r$ and $\rt$.
+    Furthermore, since $s_r$ and $s_{\rt}$ are both worst-case lazy best responses to $r$ and $\rt$, respectively, using the laziness constraint on \eqref{eqn:lem:non-Delta best response 5.1}, we have
+    \begin{equation}\label{eqn:lem:non-delta best response 6}
+        |s_r(x)-x| \leq |s_{\rt}(x) - x| \text{ and } |s_{\rt}(x) - x| \leq |s_r(x) - x| \text{ which implies } |s_r(x)-x|= |s_{\rt}(x) -x|.
+    \end{equation}
+    As an additional consequence, \eqref{eqn:lem:non-Delta best response 4} reduces to
+    \begin{equation}\label{eqn:lem:non-delta best response 7}
+        \fk{U}(r(s_r(x)),x) = \fk{U}(\rt(s_{\rt}(x)),x).
+    \end{equation}
+    Next, we show that $s_r$ and $s_{\rt}$ are worst-case lazy best responses to both $r$ and $\rt$. Since $s_r$ and $s_{\rt}$ are worst-case lazy best responses of $r$ and $\rt$, respectively, we have (using the worst-case constraint)
+    \begin{equation}\label{eqn:lem:non-Delta best response 5}
+        \begin{aligned}
+            &\cg{E}(r,s_r) = \int_\cg{X} T(x;r,s_r) \, dx \geq \int_\cg{X} T(x;r,s_{\rt}) \, dx = \cg{E}(r,s_{\rt})\quad \text{and} \\
+            &\cg{E}(\rt,s_{\rt}) = \int_\cg{X} T(x;\rt,s_{\rt}) \, dx \geq \int_\cg{X} T(x;\rt,s_r) \, dx = \cg{E}(\rt,s_r).
+        \end{aligned}
+    \end{equation}
+    Recall from \eqref{eqn:error function} that $T$ is defined as $T(x;r,s) = \prob_r(Y \neq h(x) \mid X'=s(x))$. Furthermore, if $s(x) \in \cg{X} \setminus \Theta$, then $$\fk{U}(x;r,s) = 2\uu\prob_r(Y \neq h(x) \mid X'=s(x))  = 2\uu T(x;r,s).$$ Hence, using this in \eqref{eqn:lem:non-Delta best response 5}, we get
+    \[
+    \int_\cg{X} \fk{U}(r(s_r(x)),x) \, dx \geq \int_\cg{X} \fk{U}(r(s_{\rt}(x)),x) \, dx \quad \text{and} \quad \int_\cg{X} \fk{U}(\rt(s_{\rt}(x)),x) \, dx \geq \int_\cg{X} \fk{U}(\rt(s_r(x)),x) \, dx.
+    \]
+    But combining \eqref{eqn:lem:non-Delta best response 2} with \eqref{eqn:lem:non-delta best response 7}, we get
+    \[
+    \fk{U}(\rt(s_r(x)),x) = \fk{U}(r(s_r(x)),x) = \fk{U}(\rt(s_{\rt}(x)),x) = \fk{U}(r(s_{\rt}(x)),x).
+    \]
+    Thus,
+    \begin{equation*}\label{eqn:lem:non-Delta best response 8}
+        \int_\cg{X} T(x;r,s_r) \, dx = \int_\cg{X} T(x;r,s_{\rt}) \, dx \quad \text{and} \quad \int_\cg{X} T(x;\rt,s_{\rt}) \, dx = \int_\cg{X} T(x;\rt,s_r) \, dx.
+    \end{equation*}
+    Hence, $s_{\rt}$ and $s_r$ are also worst-case lazy best responses of $r$ and $\rt$, respectively. Therefore, $\cg{E}(r) = \cg{E}(\rt)$ as claimed.
+\end{proof}
+
+The next lemma calculates the worst-case lazy best response and classification error of a specific receiver strategy $ r $, which will later be shown to be a Stackelberg equilibrium.
+
+\begin{lem}\label{lem:error is half}
+    Let $ r \equiv (1-q,q,0) $, where
+    \begin{equation}\label{eqn:q defn}
+        q(x) = \begin{cases}
+            0 & \text{for } x \in [0,\ib], \\
+            \frac{x-\ib}{2\uu} & \text{for } x \in (\ib,\jb), \\
+            1 & \text{for } x \in [\jb,1]
+        \end{cases}
+    \end{equation}
+    and, $\ib = \h - \uu$ and $\jb = \h + \uu$.
+    Then the worst-case lazy best response of $ r $ is $ s_r(x) = x $, and the error function $ T(x;r,s_r) $ is
+    \[
+    T(x;r,s_r) = \begin{cases}
+        0 & \text{for } x \in [0,\ib] \cup [\jb,1], \\
+        q(x) & \text{for } x \in (\ib,\h], \\
+        1-q(x) & \text{for } x \in (\h,\jb).
+    \end{cases}
+    \]
+    Furthermore, $ \cg{E}(r) = \frac{\uu}{2} $.
+\end{lem}
+
+\begin{proof}\label{proof:error is half}
+    We divide the task of finding $ s_r $ over $ \cg{X} $ into various subintervals of $ \cg{X} $ and show that $s_r(x) = x$ in all of them.  Let $s_r(x) = x'$.
+
+    \begin{case} $ x \in [0,\ib] $.\\
+ We now calculate $\mathbb{U}(x;r,s_r)$ and show that in the current case, $x=x'$.
+
+\begin{equation*}
+    \mathbb{U}(x;r,s_r) = \begin{cases}
+    -|x-x'| = 0 &\text{if } x'= x,\\
+    -|x-x'| < 0 &\text{if } x'\neq x \text{and} x' \in [0,\ib],\\
+    2\uu q(x') - x' + x \leq 0 &\text{if } x' \in (\ib,\jb),\\
+    2\uu - x' + x \leq 0&\text{if } x' \in [\jb,1].
+    \end{cases}
+\end{equation*}
+Here we have used \eqref{eqn:q defn} to expand $q(x')$ and to show that  $2\uu q(x') - x' + x \leq 0$, and have used $\jb - \ib = 2\uu$ to show that $2\uu -x' + x \leq 0$.
+Thus for $x' \neq x$, we have $\mathbb{U}(x;r,s_r) \leq 0$ whereas for $x' = x$, $\mathbb{U}(x;r,s_r) = 0$. Furthermore, $x'=x$ is also the laziest option for $s_r$. Hence $s_r(x) = x$.
+\end{case}
+
+\begin{case}$ x \in (\ib,\h] $.\\
+ We now calculate $\mathbb{U}(x;r,s_r)$ and show that in the current case, $x=x'$.
+ \begin{equation*}
+    \mathbb{U}(x;r,s_r) = \begin{cases}
+    2\uu q(x') - x + x' = x - \ib &\text{if } x'= x,\\
+    -x + x' < 0. &\text{if } x' \in [0,\ib],\\
+    2\uu q(x') - x + x' \leq x- \ib &\text{if } x' \in (\ib,x] \text{and} x' \neq x,\\
+    2\uu q(x') - x' + x < x-\ib    &\text{if} x' \in (x,\jb),\\
+    2\uu - x' + x \leq x - \ib &\text{if } x' \in [\jb,1].
+    \end{cases}
+\end{equation*}
+Here we have used \eqref{eqn:q defn} to expand $q(x')$ wherever it appears and have used $2\uu = \jb - \ib$ to show that $2\uu -x' + x \leq x - \ib$. Note that $x - \ib \geq 0$.
+Thus for $x' \neq x$, we have $\mathbb{U}(x;r,s_r) \leq x-\ib$ whereas for $x' = x$, $\mathbb{U}(x;r,s_r) \leq x - \ib$. Furthermore, $x'=x$ is also the laziest option for $s_r$. Hence $s_r(x) = x$.
+\end{case}
+
+   \begin{case} $ x \in [\h, \jb) $.\\
+ We now calculate $\mathbb{U}(x;r,s_r)$ and show that in the current case, $x=x'$.
+ \begin{equation*}
+    \mathbb{U}(x;r,s_r) = \begin{cases}
+    2\uu(1-q(x')) - x' + x = \jb -x &\text{if } x'= x,\\
+    2\uu - x + x' \leq \jb - x &\text{if } x' \in [0,\ib],\\
+    2\uu(1-q(x')) - x + x' < \jb- x &\text{if } x' \in (\ib,x],\\
+    2\uu(1- q(x')) - x' + x \leq \jb - x    &\text{if} x' \in (x,\jb) \text{and} x' \neq x,\\
+    -x' + x \leq  -\jb + x &\text{if } x' \in [\jb,1].        \end{cases}
+\end{equation*}
+Here we have used \eqref{eqn:q defn} to expand $q(x')$ wherever it appears and have used $2\uu = \jb - \ib$ to show that $2\uu - x + x' \leq \jb -x$. Note that $\jb - x \geq 0$. Thus for $x' \neq x$, we have $\mathbb{U}(x;r,s_r) \leq \jb-x$ whereas for $x' = x$, $\mathbb{U}(x;r,s_r) = \jb-x$. Furthermore, $x'=x$ is also the laziest option for $s_r$. Hence $s_r(x) = x$.
+   \end{case}
+
+\begin{case} $ x \in [\jb, 1] $.\\
+We now calculate $\mathbb{U}(x;r,s_r)$ and show that in the current case, $x=x'$.
+
+ \begin{equation*}
+    \mathbb{U}(x;r,s_r) = \begin{cases}
+    -|x'-x| = 0 &\text{if } x'= x,\\
+    2\uu - x + x' \leq \jb - x \leq 0 &\text{if } x' \in [0,\ib],\\
+    2\uu(1-q(x')) - x + x' < \jb- x < 0 &\text{if } x' \in (\ib,\jb),\\
+    -|x'-x| <  0 &\text{if } x' \in [\jb,1] \text{and} x' \neq x.       \end{cases}
+\end{equation*}
+Here we have used \eqref{eqn:q defn} to expand $q(x')$ to show that $2\uu(1-q(x')) - x + x' < \jb- x < 0$. Thus for $x' \neq x$, we have $\mathbb{U}(x;r,s_r) \leq 0$ whereas for $x' = x$, $\mathbb{U}(x;r,s_r) = 0$. Furthermore, $x'=x$ is also the laziest option for $s_r$. Hence $s_r(x) = x$.
+\end{case}
+\noindent Hence, by combining all the cases, we conclude that $ s_r(x) = x $. Therefore,
+    \[
+    T(x; r, s_r) = \prob_{r}\{Y \neq h(x) \mid X' = s_r(x)\} = \begin{cases}
+        0 & \text{for } x \in [0, \ib] \cup [\jb, 1], \\
+        q(x) & \text{for } x \in (\ib, \h], \\
+        1 - q(x) & \text{for } x \in (\h, \jb).
+    \end{cases}
+    \]
+    Since $ \cg{E}(r) = \int_\cg{X} T(x) \, dx $, it follows that $ \cg{E}(r) = \frac{\uu}{2} $.
+\end{proof}
+
+We next show that if a feature vector $x'$ is the worst-case lazy best response of some other feature vector $x$ and both have the same true label, then $j$ is also the worst-case lazy best response of itself.
+
+\begin{lem}\label{lem:self bestresponse}
+    Let $r \in \msf{R}$ be a receiver strategy, and let $x,x' \in \cg{X}$ be such that $s_r(x) = x'$. Then, for all $\bar{x} \in [\min(x,x'),\max(x,x')] \setminus \{x\}$ such that $h(\bar{x}) = h(x)$, we have $s_r(\bar{x}) = x'$.
+\end{lem}
+
+\begin{proof}\label{proof:self bestresponse}
+     Let $\bar{x} \in [\min(x,x'),\max(x,x')] \setminus \{x\}$ such that $h(\bar{x}) = h(x)$. Let $s_r(\bar{x}) = z$. We will assume $x' < x$. A similar argument will hold if $x' \geq x$. Consider the sender strategies $s(t) \equiv x'$ and $\hat{s}(t) \equiv z$ for all $t \in \cg{X}$. Since $s_r$ is the worst-case lazy best response of $r$, we have
+   $$\mathbb{U}(t,r;s_r) \geq \mathbb{U}(t,r;s) \text{ and } \mathbb{U}(r;s_r) \geq \mathbb{U}(r;\hat{s}) \text{for all} t \in \cg{X}.$$
+    This implies for $t= \bar{x}$ and $t=x$, we have
+    $$
+    \mathbb{U}(\bar{x};r,s_r) \geq \mathbb{U}(\bar{x};r,s) \quad \text{and} \quad \mathbb{U}(x;r,s_r) \geq \mathbb{U}(x,r,\hat{s}) \text{ respectively}.
+    $$
+    Recall that from the definition of $U$ given in \eqref{eqn:Utility}, $U(k,\bar{x}) = U(k,x)$ for all $k \in \cg{Y} \cup \Delta$ because $h(\bar{x}) = h(x)$. As a consequence, for a fixed receiver strategy $\fk{r}$ and sender strategy $\fk{s}$, we have $\fk{U}(x;\fk{r},\fk{s}) = \fk{U}(\bar{x};\fk{r},\fk{s})$. Hence, this implies
+    \begin{equation}\label{lem:eqn:w in y x}
+    \begin{aligned}
+        \fk{U}(x;r,s_r) - |\bar{x}-z| = \fk{U}(\bar{x};r,s_r) - |\bar{x}-z| &\geq \fk{U}(\bar{x};r,s) - \bar{x} + x' = \fk{U}(x;r,s) - \bar{x} + x' \quad \text{and} \\
+        \fk{U}(x;r(x'),s) - x + x' &\geq \fk{U}(x;r,s_r) - |x-z|.
+    \end{aligned}
+    \end{equation}
+    We show that $z = x'$ by the method of contradiction. Suppose $z \neq x'$. Then, consider the following cases.
+\textbf{Case 1. }{$z \geq x$.} \\
+        We show that this case does not happen. From the case assumption, \eqref{lem:eqn:w in y x} reduces to
+        \begin{equation}
+            \fk{U}(x;r,s_r) \geq \fk{U}(x;r,s) - 2\bar{x} + x' + z \quad \text{and} \quad \fk{U}(x;r,s) \geq \fk{U}(x;r,s_r) + 2x - x' - z.
+        \end{equation}
+        Combining them gives
+        $
+        \fk{U}(x;r,s_r) \geq \fk{U}(x;r,s_r) + 2(x-\bar{x}),
+        $
+        which gives rise to a contradiction because $x - w > 0$. Hence, this case does not happen as claimed.\\
+\textbf{Case 2. }{$x \geq z > \bar{x} \geq x'$.} \\
+        We show that this case does not happen. From the case assumption, \eqref{lem:eqn:w in y x} reduces to
+        \begin{equation}
+            \fk{U}(x,r,s_r) \geq \fk{U}(x;r,s) - 2\bar{x} + z + x' \quad \text{and} \quad \fk{U}(x;r,s) > \fk{U}(x;r,s_r) + z - x'.
+        \end{equation}
+        The second part has a strict inequality because $|x-z| < |x-x'|$. The reason is that if there were equality, then $z$ would have been a low-cost (lazy) option for the sender at $x$ as compared to $x'$, which would contradict that $x'$ is the worst-case lazy best response of $r$ at $x$.
+        Combining them gives
+        $
+        \fk{U}(r(z),x) > \fk{U}(r(z),x) + 2(z-\bar{x}),
+        $
+        which is a contradiction because $z > \bar{x}$. Hence, this case does not happen as claimed.\\
+\textbf{Case 3. }{$x > \bar{x} \geq z > x'$.} \\
+        We show that this case does not happen. From the case assumption, \eqref{lem:eqn:w in y x} reduces to
+        \begin{equation}
+            \fk{U}(x;r,s_r) \geq \fk{U}(x;r,s) + x' - z \quad \text{and} \quad \fk{U}(x;r,s) > \fk{U}(x;r,s_r) + z - x'.
+        \end{equation}
+        The second part has a strict inequality because $|x-z| < |x-x'|$. The same reasons as mentioned in Case 2. Combining them gives
+        $
+        \fk{U}(x;r,s_r) > \fk{U}(x;r,s_r),
+        $
+        which is a contradiction. Hence, this case does not happen as claimed.\\
+\textbf{Case 4. }{$z < x'$.} \\
+        We show that this case does not happen. From the case assumption, \eqref{lem:eqn:w in y x} reduces to
+        \begin{equation}
+            \fk{U}(x;r,s_r) > \fk{U}(x;r,s) + x' - z \quad \text{and} \quad \fk{U}(x;r,s) \geq \fk{U}(x;r,s_r) + z - x'.
+        \end{equation}
+        The first part has a strict inequality because $|\bar{x}-x'| < |\bar{x}-z|$. The reason is the same as mentioned in Case 2. This further reduces to
+        $
+        \fk{U}(x;r,s_r) > \fk{U}(x;r,s_r),
+        $
+        which is a contradiction.
+Hence, combining all the cases, we get a contradiction. Therefore, $z = x'$.
+\end{proof}
+
+Let $r \equiv (p,q,1-p-q) \in \msf{R}$ be the receiver strategy. For feature vectors $x_1$ and $x_2 \in \cg{X}$ such that $x_1 \leq \h < x_2$, we calculate the contribution of error from the intervals $[x_1, x_1 - 2\uu q(x_1)]$ and $[x_2, x_2 + 2\uu q(x_2)]$.
+
+\begin{lem}\label{lem:conservative estimate of the error outside the delta interval}
+    Let $r \equiv (p, q,1-p-q) \in \msf{R}$ be a receiver strategy. Let $x_1, x_2 \in \cg{X}$ be such that $x_1 \leq \h < x_2$, and $p(x_i) + q(x_i) = 1$ for $i = 1, 2$. Then
+    \begin{equation*}
+    \begin{aligned}
+        \int_{x_1 - 2\uu q(x_1)}^{x_1} T(x;r,s_r) \, dx &\geq \uu q(x_1)^2, \quad \text{and}\;
+        \int_{x_2}^{x_2 + 2\uu(1-q(x_2))} T(x;r,s_r) \, dx &\geq \uu (1-q(x_2))^2.
+    \end{aligned}
+    \end{equation*}
+\end{lem}
+
+\begin{proof}  Let $q_1 := q(x_1)$ and $q_2 := q(x_2)$. Recall that from \eqref{eqn:error function}, $T$ is defined as $T(x;r,s_r) = \prob(r(s_r(x)) \neq h(x) |X'=s_r(x)  = q(s_r(x))$. We upper bound $q(s_r(x))$ (or $1-q(x)$ depending upon x) to get a upper bound on $T(x;r,s_r)$ and eventually over $\int_{x_1 - 2\uu q(x_1)}^{x_1} T(x;r,s_r)dx$ and $\int_{x_2}^{x_2 + 2\uu(1-q(x_2))} T(x;r,s_r)dx$.
+     Let $x \in [x_1 - 2\uu q_1, x_1]$. Consider a sender strategy $s(x) = x_1$. Then, from the definition of the worst-case lazy best response, we have
+    \[
+    \mathbb{U}(x;r,s_r) \geq \mathbb{U}(x;r,s)
+    \]
+    which implies
+    \begin{equation}\label{eqn:expand T}
+        2\uu q(s_r(x)) - |s_r(x) - x| \geq 2\uu q_1 - x_1 + x \quad \text{or} \quad 2\uu q(s_r(x)) \geq 2\uu q_1 - x_1 + x.
+    \end{equation}
+     Hence, from \eqref{eqn:expand T}, we get $T(x;r,s_r) \geq q_1 - \frac{x_1 - x}{2\uu}$. Therefore,
+    \begin{equation}\label{lem:eqn:q_1>q_2 left side}
+        \int_{x_1 - 2\uu q_1}^{x_1} T(x;r,s_r) \, dx \geq \int_{x_1 - 2\uu q_1}^{x_1} \left( q_1 - \frac{x_1 - x}{2\uu} \right) \, dx = \uu q_1^2.
+    \end{equation}
+    Similarly, let $x \in [x_2, x_2 + 2\uu(1-q_2)]$. Consider a sender strategy $\bar{s}(x) = x_2$. Then, from the definition of the worst-case lazy best response, we have
+    \[
+    \mathbb{U}(x;r,s_r) \geq \mathbb{U}(x;r,\bar{s})
+    \]
+    which implies
+    \[
+    2\uu (1-q(s_r(x))) - |s_r(x) - x| \geq 2\uu (1-q_2) - x + x_2 \quad \text{or} \quad 2\uu (1-q(s_r(x))) \geq 2\uu (1-q_2) - x + x_2.
+    \]
+    Hence, $T(x;r,s_r) = 1 - q(s_r(x)) \geq (1 - q_2) - \frac{x - x_2}{2\uu}$. Therefore,
+    \begin{equation}\label{lem:eqn:q_1>q_2 right side}
+        \int_{x_2}^{x_2 + 2\uu (1-q_2)} T(x;r,s_r) \, dx \geq \int_{x_2}^{x_2 + 2\uu (1-q_2)} \left( (1 - q_2) - \frac{x - x_2}{2\uu} \right) \, dx = \uu (1-q_2)^2.
+    \end{equation}
+Hence, combining \eqref{lem:eqn:q_1>q_2 left side} and \eqref{lem:eqn:q_1>q_2 right side}, we get
+    \begin{equation*}
+    \begin{aligned}
+        \int_{x_1 - 2\uu q(x_1)}^{x_1} T(x;r,s_r) \, dx \geq \uu q(x_1)^2, \quad \text{and} \\
+        \int_{x_2}^{x_2 + 2\uu(1-q(x_2))} T(x;r,s_r) \, dx \geq \uu (1-q(x_2))^2.
+    \end{aligned}
+    \end{equation*}
+\end{proof}
+
+
+We can improve upon the result of Lemma \ref{lem:conservative estimate of the error outside the delta interval} if we have an additional constraint that $x_2 - x_1 \leq 2\uu(q(x_2) - q(x_1))$.
+\begin{lem}\label{lem:more sharp estimate of the error outside the delta interval}
+    Let $r \equiv (p, q, 1 - p - q) \in \msf{R}$ be a receiver strategy. Let $x_1, x_2 \in \cg{X}$ be such that $x_1 \leq \h < x_2$, $p(x_i) + q(x_i) = 1$ for $i = 1, 2$, and $x_2 - x_1 \leq 2\uu(q(x_2) - q(x_1))$. Then
+    \begin{equation*}
+    \begin{aligned}
+        &\int_{x_2 - 2\uu q(x_2)}^{x_1} T(x; r, s_r) \, dx &\geq& \uu \Big( q(x_2) - \frac{x_2 - x_1}{2\uu} \Big)^2 \quad \text{and} \\
+        &\int_{x_2}^{x_1 + 2\uu(1 - q(x_1))} T(x; r, s_r) \, dx &\geq& \uu \Big( 1 - q(x_1) - \frac{x_2 - x_1}{2\uu} \Big)^2.
+    \end{aligned}
+    \end{equation*}
+\end{lem}
+
+\begin{proof}\label{proof:more sharp estimate of the error outside the delta}
+     Let $q_1 := q(x_1)$ and $q_2 := q(x_2)$. We upper bound $q(s_r(x))$ (or $1-q(x)$ depending upon x) to get a upper bound on $T(x;r,s_r)$ and eventually over $\int_{x_2 - 2\uu q(x_2)}^{x_1} T(x;r,s_r)dx$ and $\int_{x_2}^{x_1 + 2\uu(1-q(x_1))}T(x;r,s_r)dx$.
+    Let $x \in [x_2 - 2\uu q_2, x_1]$. Consider the sender strategy $\tilde{s}(t) = x_2$. From the definition of the worst-case lazy best response, we have $\mathbb{U}(x; r, s_r) \geq \mathbb{U}(x; r, \tilde{s})$, which implies
+    \[
+    2\uu q(s_r(x)) - |s_r(x) - x| \geq 2\uu q_2 - x_2 + x \quad \text{or} \quad 2\uu q(s_r(x)) \geq 2\uu q_2 - x_2 + x.
+    \] Therefore,
+    \begin{equation}\label{lem:eqn:lhs outside error}
+        \int_{x_2 - 2\uu q_2}^{x_1} T(x; r, s_r) \, dx \geq \int_{x_2 - 2\uu q_2}^{x_1} \left( q_2 - \frac{x_2 - x}{2\uu} \right) \, dx = \uu \Big( q_2 - \frac{x_2 - x_1}{2\uu} \Big)^2.
+    \end{equation}
+    Similarly, let $x \in [x_2, x_1 + 2\uu(1 - q_1)]$ and consider the sender strategy $\hat{s}(t) = x_1$. Then, from the definition of the worst-case lazy best response, we have $\mathbb{U}(x; r, s_r) \geq \mathbb{U}(x; r, \hat{s})$, which implies
+    \[
+    2\uu(1 - q(s_r(x))) - |s_r(x) - x| \geq 2\uu(1 - q_1) - x + x_1 \quad \text{or} \quad 2\uu(1 - q(s_r(x))) \geq 2\uu(1 - q_1) - x + x_1.
+    \]
+    Hence, $T(x; r, s_r) = 1 - q(s_r(x)) \geq (1 - q_1) - \frac{x - x_1}{2\uu}$. Therefore,
+    \begin{equation}\label{lem:eqn:rhs outside error}
+        \int_{x_2}^{x_1 + 2\uu(1 - q_1)} T(x; r, s_r) \, dx \geq \int_{x_2}^{x_1 + 2\uu(1 - q_1)} \left( (1 - q_1) - \frac{x - x_1}{2\uu} \right) \, dx = \uu \Big( (1 - q_1) - \frac{x_2 - x_1}{2\uu} \Big)^2.
+    \end{equation}
+    Hence, combining \eqref{lem:eqn:lhs outside error} and \eqref{lem:eqn:rhs outside error}, we get
+    \begin{equation*}
+    \begin{aligned}
+        &\int_{x_2 - 2\uu q(x_2)}^{x_1} T(x; r, s_r) \, dx \geq \uu \Big( q(x_2) - \frac{x_2 - x_1}{2\uu} \Big)^2 \quad \text{and} \\
+        &\int_{x_2}^{x_1 + 2\uu(1 - q(x_1))} T(x; r, s_r) \, dx \geq \uu \Big( 1 - q(x_1) - \frac{x_2 - x_1}{2\uu} \Big)^2.
+    \end{aligned}
+    \end{equation*}
+\end{proof}
+
+
+In the next lemma, we show that any arbitrary receiver strategy $r \in \msf{R}$ will make at least $\frac{\uu}{2}$ errors.
+
+\begin{lem}\label{lem:Error more than half}
+    Let $r \in \msf{R}$ be a receiver strategy. Then $\cg{E}(r) \geq \frac{\uu}{2}$.
+\end{lem}
+\begin{proof}\label{proof:Error more than half}
+    Let $r \in \msf{R}$ be a receiver strategy. Then, from Lemma \ref{lem:delta null wlog}, $r$ is of the form $r(x) \equiv (p(x), q(x), 1 - p(x) - q(x))$, where either $p(x) + q(x) = 1$ or $p(x) + q(x) = 0$. Let $k_1 := \sup\{x : p(x) + q(x) = 1, x \leq \h\}$ and $k_2 := \inf\{x : p(x) + q(x) = 1, x > \h\}$. From \eqref{eqn:receiver_condition_2}, both the infimum and supremum are attained in the set. Let $s_r(k_1) := l_1$ and $s_r(k_2) := l_2$. Let $q(k_1) := q_1$, $q(k_2) := q_2$, $q(l_1) := \bqo$, and $q(l_2) := \bqt$. We now calculate the receiver errors for various cases.\\
+    \textbf{Case 1. }{$q_1 > q_2$.} \\
+        From the definition of $\cg{E}(r)$, the following inequality holds:
+        \[
+        \cg{E}(r) = \int_\cg{X} T(x; r, s_r) \, dx \geq \int_{k_1 - 2\uu q_1}^{k_1} T(x; r, s_r) \, dx + \int_{k_2}^{k_2 + 2\uu(1 - q_2)} T(x; r, s_r) \, dx.
+        \]
+        Using Lemma \ref{lem:conservative estimate of the error outside the delta interval} by taking $x_1 = k_1$ and $x_2 = k_2$, we get
+        \[
+        \cg{E}(r) \geq \uu(q_1^2 + (1 - q_2)^2).
+        \]
+        Since from the case assumption, $q_1 > q_2$, therefore, we have
+        \[
+        \cg{E}(r) \geq \uu(q_1^2 + (1 - q_1)^2).
+        \]
+        The minimum value of $q_1^2 + (1 - q_1)^2$ is $\frac{1}{2}$ at $q_1 = \frac{1}{2}$. Hence, we have $\cg{E}(r) \geq \frac{\uu}{2}$.\\
+\textbf{Case 2. }{$q_2 > q_1$ and $k_2 - k_1 < \uu(q_2 - q_1)$.} \\
+        From the definition of $\cg{E}(r)$, the following inequality holds:
+        \begin{equation}\label{lem:eqn:lower bound on error from outside}
+            \cg{E}(r) = \int_\cg{X} T(x; r, s_r) \, dx \geq \int_{k_2 - 2\uu q_2}^{k_1} T(x; r, s_r) \, dx + \int_{k_2}^{k_1 + 2\uu (1 - q_1)} T(x; r, s_r) \, dx.
+        \end{equation}
+        Using Lemma \ref{lem:more sharp estimate of the error outside the delta interval} with $x_1 = k_1$ and $x_2 = k_2$, and using $k_2 - k_1 < \uu(q_2 - q_1)$, we get
+        \[
+        \cg{E}(r) \geq \uu((1 - q_1)^2 + q_2^2).
+        \]
+        Since $q_2 > q_1$, therefore,
+        \[
+        \cg{E}(r) \geq \uu((1 - q_2)^2 + q_2^2).
+        \]
+        The minimum value of $(1 - q_2)^2 + q_2^2$ is $\frac{1}{2}$ at $q_2 = \frac{1}{2}$. Hence, $\cg{E}(r) \geq \frac{\uu}{2}$.\\
+   \textbf{Case 3. }{$q_2 \geq q_1$, $2\uu (q_2 - q_1) \geq k_2 - k_1 \geq \uu(q_2 - q_1)$, and $l_2 \leq k_1 < k_2 \leq l_1$.} \\
+    We now estimate $T(x;r,s_r)$ for $x \in [k_1,\h]$. Let $x \in [k_1, \h]$. It follows that $h(x) = h(k_1) = \minus$. Using Lemma \ref{lem:self bestresponse} with $i = k_1$, $j = l_1$, and $w = x$, we have $s_r(x) = l_1$.
+        Consider a sender strategy $s(x) := k_2$. Since $s_r$ is the worst-case lazy best response, we have
+        \[
+        2\uu q(s_r(x)) - l_1 + k_1 \geq 2\uu q_2 - k_2 + k_1.
+        \]
+        Since $l_1 \geq k_2$, therefore we have $q(s_r(x)) \geq q_2$. This implies
+        \begin{equation}\label{lem:eqn:delta interval error lhs}
+            T(x; r, s_r) \geq q_2 \quad \text{for } x \in [k_1, \h].
+        \end{equation}
+        Similarly, we estimate $T(x;r,s_r)$ for $x \in (\h,k_2]$. Let $x \in (\h, k_2]$. It follows that $h(x) = h(k_2) = \plus$. Using Lemma \ref{lem:self bestresponse} with $i = k_2$, $j = l_2$, and $w = x$, we have $s_r(x) = l_2$.
+        Consider a sender strategy $\bar{s}(i) := k_2$. Since $s_r$ is the worst-case lazy best response, we have
+        \[
+        2\uu (1 - q(s_r(x))) - k_2 - l_2 \geq 2\uu (1 - q_1) - k_2 + k_1.
+        \]
+        Since $l_2 \geq k_1$, therefore we have $1 - q(s_r(x)) \geq 1 - q_1$. This implies
+        \begin{equation}\label{lem:eqn:delta interval error rhs}
+            T(x; r, s_r) \geq 1 - q_1 \quad \text{for } x \in (\h, k_2).
+        \end{equation}
+        From the definition of $\cg{E}(r)$, we have
+        \begin{equation}\label{lem:eqn:error in delta interval2}
+            \cg{E}(r) := \int_\cg{X} T(x; r, s_r) \, dx \geq \int_{k_2 - 2\uu q_2}^{k_1} T(x; r, s_r) \, dx + \int_{k_2}^{k_1 + 2\uu (1 - q_1)} T(x; r, s_r) \, dx + \int_{k_1}^{k_2} T(x; r, s_r) \, dx.
+        \end{equation}
+        Using Lemma \ref{lem:more sharp estimate of the error outside the delta interval} with $x_1 = k_1$, $x_2 = k_2$, and substituting \eqref{lem:eqn:delta interval error lhs} and \eqref{lem:eqn:delta interval error rhs} into \eqref{lem:eqn:error in delta interval2}, we get
+        \[
+        \cg{E}(r) \geq \uu \left(q_2 - \frac{k_2 - k_1}{2\uu}\right)^2 + \uu \left((1 - q_1) - \frac{k_2 - k_1}{2\uu}\right)^2 + (1 - q_1)(\h - k_1) + q_2(k_2 - \h).
+        \]
+        Let $k_2 - k_1 := w\uu (q_2 - q_1)$, where $1 \leq w \leq 2$.
+        Suppose $1 - q_1 > q_2$ (a similar argument will hold when $1 - q_1 \leq q_2$). Then
+        \[
+        (1 - q_1)(\h - k_1) + q_2(k_2 - \h) \geq q_2(k_2 - k_1) = \uu w (q_2 - q_1) q_2,
+        \]
+        which implies
+        \[
+        \cg{E}(r) \geq \uu \left(q_2 - w \frac{q_2 - q_1}{2}\right)^2 + \uu \left((1 - q_1) - w \frac{q_2 - q_1}{2}\right)^2 + \uu w (q_2 - q_1) q_2.
+        \]
+        The minimum value of
+        \[
+        \uu \left(q_2 - w \frac{q_2 - q_1}{2}\right)^2 + \uu \left((1 - q_1) - w \frac{q_2 - q_1}{2}\right)^2 + \uu w (q_2 - q_1) q_2
+        \]
+        is $\frac{1}{2}$ at $q_1 = \frac{1}{2}, q_2 = \frac{1}{2}$, and $w = 2$. Hence, $\cg{E}(r) = \frac{\uu}{2}$.\\
+\textbf{Case 4. }{$q_2 \geq q_1$, $k_2 - k_1 > 2\uu(q_2 - q_1)$, and $l_2 \leq k_1 < k_2 \leq l_1$.} \\
+        Using the same argument used to derive \eqref{lem:eqn:delta interval error lhs} and \eqref{lem:eqn:delta interval error rhs} in Case 3, we get
+        \begin{equation}\label{lem:eqn:delta interval error lhs2}
+            T(x; r, s_r) \geq q_2 \quad \text{for } x \in [k_1, \h]
+        \end{equation}
+        and
+        \begin{equation}\label{lem:eqn:delta interval error rhs2}
+            T(x; r, s_r) \geq (1 - q_1) \quad \text{for } x \in (\h, k_2].
+        \end{equation}
+        From the definition of $\cg{E}(r)$, we have
+        \begin{equation}\label{lem:eqn:error in delta interval}
+            \cg{E}(r) := \int_\cg{X} T(x; r, s_r) \, dx \geq \int_{k_1 - 2\uu q_1}^{k_1} T(x; r, s_r) \, dx + \int_{k_2}^{k_2 + 2\uu (1 - q_2)} T(x; r, s_r) \, dx + \int_{k_1}^{k_2} T(x; r, s_r) \, dx.
+        \end{equation}
+        Using Lemma \ref{lem:conservative estimate of the error outside the delta interval} with $x_1 = k_1$, $x_2 = k_2$, and substituting \eqref{lem:eqn:delta interval error lhs2} and \eqref{lem:eqn:delta interval error rhs2} into \eqref{lem:eqn:error in delta interval}, we get
+        \[
+        \cg{E}(r) \geq \uu q_1^2 + \uu (1 - q_2)^2 + (1 - q_1)(\h - k_1) + q_2(k_2 - \h).
+        \]
+        Suppose $q_2 > 1 - q_1$ (a similar argument will hold when $1 - q_1 \leq q_2$). Then
+        \[
+        (1 - q_1)(\h - k_1) + q_2(k_2 - \h) \geq (1 - q_1) |k_2 - k_1| > 2\uu(q_2 - q_1)(1 - q_1),
+        \]
+        which implies
+        \[
+        \cg{E}(r) > \uu \left(q_1^2 + (1 - q_2)^2 + 2(q_2 - q_1)(1 - q_1)\right).
+        \]
+        The minimum value of $q_1^2 + (1 - q_2)^2 + 2(q_2 - q_1)(1 - q_1)$ is $\frac{1}{2}$ at $q_1 = q_2 = \frac{1}{2}$. Hence, $\cg{E}(r) > \frac{\uu}{2}$.\\
+\textbf{Case 5. }{$q_2 \geq q_1$, $k_2 - k_1 > \uu(q_2 - q_1)$, and $l_1 \leq k_1 < k_2 \leq l_2$.} \\
+    Here we will bound $T(x;r,s_r)$, To do so, we first show that $\bqo > q_1$ and $\bqt < q_2$.
+        From Lemma \ref{lem:self bestresponse} with $i = k_1$, $j = l_1$, it follows that $s_r(l_1) = l_1$ and $s_r(l_2) = l_2$. Recall from the notation mentioned at the start of the proof that $q(l_1) := \bqo$ and $q(l_2) := \bqt$. We now show that $l_2 - l_1 \geq 2\uu (\bqt - \bqo)$. Let $s(i) := l_2$ be a sender strategy. Since $s_r$ is the worst-case lazy best response, we have $\mathbb{U}(l_1, r, s_r) \geq \mathbb{U}(l_1, r, s)$. This implies
+        \[
+        2\uu \bqo \geq 2\uu \bqt - l_2 + l_1 \quad \text{or} \quad 2\uu (\bqt - \bqo) \leq l_2 - l_1
+        \]
+        as claimed.
+        Now let $\bar{s}(i) := k_1$ be another sender strategy. Then it follows that $\mathbb{U}(k_1, r, s_r) \geq \mathbb{U}(k_1, r, \bar{s})$, which implies
+        \begin{equation}\label{eqn:lem:bar greater}
+            2\uu \bqo - k_1 + l_1 > 2\uu q_1 \quad \text{or} \quad \bqo > q_1.
+        \end{equation}
+        This is a strict inequality since $k_1$ is the cheaper option for $k_1$ compared to $l_1$. A similar reasoning shows that
+        \begin{equation}\label{eqn:lem:bar lesser}
+            \bqt < q_2.
+        \end{equation}
+        Next, we bound $s_r(x)$ for $x \in [m_1,m_2]$ where $m_1$ and $m_2$ are defined as:
+        \[
+        m := \frac{k_1 + k_2}{2}, \quad m_1 := m - \uu(q_2 - \bqo), \quad m_2 := m + \uu(\bqt - q_1).
+        \]\\
+        \textbf{Claim. } $m_1 \geq k_1$ and $m_2 < k_2$. \\
+        Let $m \leq \h$ (a similar argument holds when $m > \h$). We now show that $m_1 \geq k_1$. Let $x \in (m_1, \h]$. Suppose $s_r(x) \leq x$, then $s_r(x) \leq k_1$. This is because from the definition of $k_1$, we have $r(x) = \Delta$ for $x \in [k_1, \h]$. But $h(x) = h(s_r(x)) = \minus$, therefore $s_r(s_r(x)) = s_r(x)$ from Lemma \ref{lem:self bestresponse}. Furthermore, we have
+        $h(l_1) = h(k_1) = h(s_r(x)) = \minus$. Therefore, from Lemma \ref{lem:self bestresponse} with $i = k_1$, $j = l_1$, and $w = s_r(x)$, we have $s_r(s_r(x)) = s_r(x) = l_1$. Now consider the sender strategy $s(x) := k_2$. From the definition of the worst-case lazy best response, we have $\mathbb{U}(x, r, s_r) \geq \mathbb{U}(x, r, s)$, which implies
+        \[
+        2\uu \bqo - x + l_1 \geq 2\uu q_2 - k_2 + x.
+        \]
+        Since $x > m_1$, we have
+        \[
+        2\uu \bqo - x + l_1 < 2\uu \bqo - m_1 + l_1 \quad \text{and} \quad 2\uu q_2 - k_2 + x > 2\uu q_2 - k_2 + m_1.
+        \]
+        Hence, we have
+        \[
+        2\uu \bqo - m_1 + l_1 > 2\uu q_2 -         k_2 + m_1,
+        \]
+        which implies
+        \[
+        2\uu (\bqo - q_2) > 2m_1 - l_1 - k_2.
+        \]
+        Substituting for $m_1$ and simplifying, we get
+        \[
+        2\uu (\bqo - q_2) > k_1 + k_2 - 2\uu (q_2 - \bqo) - l_1 - k_2,
+        \]
+        which implies
+        \[
+        0 > k_1 - l_1.
+        \]
+        This is a contradiction since $k_1 \geq l_1$. Therefore, our assumption that $s_r(x) \leq x$ is false. Hence,
+        \begin{equation}\label{eqn:lem:not crossing boundary 1}
+            s_r(x) > x \quad \text{for} \quad x \in (m_1, \h].
+        \end{equation}
+        If $m_1 < k_1$, then by taking $x = k_1$, we get $s_r(x) = l_1 > k_1$, which is false as $l_1 \leq k_1$ by case assumption. Hence, $m_1 \geq k_1$. A similar reasoning shows
+        \begin{equation}\label{eqn:lem:not crossing boundary 2}
+            s_r(x) < x \quad \text{for} \quad x \in (\h, m_2)
+        \end{equation}
+        and that $m_2 \leq k_2$.
+
+        Next, we calculate the error in the interval $(m_1, m_2)$.
+        Let $x \in (m_1, \h]$. Consider the sender strategy $s(x) := k_2$. Since $s_r$ is the worst-case lazy best response, we have $\mathbb{U}(x, r, s_r) \geq \mathbb{U}(x, r, s)$, which implies
+        \[
+        2\uu q(s_r(x)) - s_r(x) + x \geq 2\uu q_2 - k_2 + x \quad \text{or} \quad q(s_r(x)) \geq q_2,
+        \]
+        where we have used \eqref{eqn:lem:not crossing boundary 1} and the fact that $r(x) = \Delta$ for $x \in (\h, \jb)$ (which implies $s_r(x) \geq k_2$). Thus,
+        \begin{equation}\label{eqn:lem:error function case 5 1}
+            T(x; r, s_r) \geq q_2 \quad \text{for} \quad x \in (m_1, \h].
+        \end{equation}
+        Using similar reasoning for $x \in (\h, m_2)$, we have $q(s_r(x)) \leq q_1$, and hence
+        \begin{equation}\label{eqn:lem:error function case 5 2}
+            T(x; r, s_r) \geq 1 - q_1 \quad \text{for} \quad x \in (\h, m_2].
+        \end{equation}
+        From the definition of $\cg{E}(r)$, we have
+        \begin{equation}\label{eqn:lem:total error case 5}
+            \cg{E}(r) := \int_\cg{X} T(x; r, s_r) \, dx \geq \int_{l_1 - 2\uu q_1}^{l_1} T(x; r, s_r) \, dx + \int_{l_2}^{l_2 + 2\uu (1 - q_2)} T(x; r, s_r) \, dx + \int_{m_1}^{m_2} T(x; r, s_r) \, dx.
+        \end{equation}
+        Using Lemma \ref{lem:conservative estimate of the error outside the delta interval} with $x_1 = l_1$, $x_2 = l_2$, and substituting \eqref{eqn:lem:error function case 5 1} and \eqref{eqn:lem:error function case 5 2} in \eqref{eqn:lem:total error case 5}, we get
+        \begin{equation}\label{eqn:lem:total error case 5 1}
+            \cg{E}(r) \geq \uu \bqo^2 + \uu(1 - \bqt)^2 + (\h - m_1)q_2 + (m_2 - \h)(1 - q_1).
+        \end{equation}
+        Suppose $q_2 < 1 - q_1$ (a similar argument will hold when $1 - q_1 < q_2$).
+        Then, we have
+        \begin{equation}\label{eqn:lem:bar dominates}
+            (\h - m_1)q_2 + (m_2 - \h)(1 - q_1) \geq (m_2 - m_1)q_2 = \uu(\bqt - \bqo + q_2 - q_1)q_2.
+        \end{equation}
+        Using \eqref{eqn:lem:bar greater}, \eqref{eqn:lem:bar lesser}, and \eqref{eqn:lem:bar dominates} in \eqref{eqn:lem:total error case 5 1}, and using $q_2 - q_1 \geq 0$, we obtain
+        \[
+        \cg{E}(r) \geq \uu \bqo^2 + \uu(1 - \bqt)^2 + 2\uu(\bqt - \bqo)\bqt.
+        \]
+        The minimum of the expression $\uu \bqo^2 + \uu(1 - \bqt)^2 + 2\uu(\bqt - \bqo)\bqt$ is $\frac{1}{2}$, and it occurs when $\bqo = \bqt = \frac{1}{2}$. Hence, we conclude that
+        \[
+        \cg{E}(r) = \frac{\uu}{2}.
+        \]\\
+\textbf{Case 6. }{$q_2 \geq q_1$, $k_2 - k_1 > \uu(q_2 - q_1)$, and either $k_2 \leq \min\{l_1, l_2\}$ or $k_1 \geq \max\{l_1, l_2\}$.} \\
+    We will show that this case does not arise. We will prove this for $k_1 \geq \max\{l_1, l_2\}$. The proof for $k_2 \leq \min\{l_1, l_2\}$ is similar.
+Consider the following sender strategies:
+    \[
+    \bar{s}(i) := l_1, \quad s'(i) := l_2.
+    \]
+    Since $s_r$ is the worst-case lazy best response, we have
+    \[
+    \mathbb{U}(k_1; r, s_r) \geq \mathbb{U}(k_1; r, s') \quad \text{and} \quad \mathbb{U}(k_2; r, s_r) \geq \mathbb{U}(k_2; r, \bar{s}),
+    \]
+    which implies
+    \begin{equation}\label{lem:eqn:contradiction 1}
+        2\uu \bqo - k_1 + l_1 \geq 2\uu \bqt - k_1 + l_2 \quad \text{or} \quad 2\uu (\bqo - \bqt) \geq l_2 - l_1
+    \end{equation}
+    and
+    \begin{equation}\label{lem:eqn:contradiction 2}
+        2\uu (1 - \bqt) - k_2 + l_2 \geq 2\uu (1 - \bqo) - k_2 + l_1 \quad \text{or} \quad 2\uu (\bqo - \bqt) \geq l_1 - l_2,
+    \end{equation}
+    respectively.
+Combining \eqref{lem:eqn:contradiction 1} and \eqref{lem:eqn:contradiction 2}, we get $l_1 = l_2$.
+Now, consider the strategy $s(i) = k_1$. Since $s_r$ is the worst-case lazy best response, we have
+    \[
+    \mathbb{U}(k_1; r, s_r) > \mathbb{U}(k_1; r, s) \quad \text{and} \quad \mathbb{U}(k_2; r, s_r) > \mathbb{U}(k_2; r, s).
+    \]
+    The inequality is strict for the sender, $k_1$ is the less costly (lazy) option compared to $l_1$ and $l_2$ at $k_1$ and $k_2$, respectively. This implies
+    \begin{equation}\label{eqn:lem:barq1 >= q1}
+        2\uu \bqo - k_1 + l_1 > 2\uu q_1 \quad \text{or} \quad \bqo > q_1
+    \end{equation}
+    and
+    \begin{equation}\label{eqn:lem:barq1 <= q1}
+        2\uu (1 - \bqo) - k_2 + l_2 > 2\uu (1 - q_1) - k_2 + k_1 \quad \text{or} \quad 2\uu (q_1 - \bqo) > k_1 - l_2 = k_1 - l_1 \quad \text{or} \quad q_1 > \bqo.
+    \end{equation}
+
+    Combining \eqref{eqn:lem:barq1 <= q1} and \eqref{eqn:lem:barq1 >= q1}, we get $q_1 > q_1$, which is a contradiction. Hence, this case does not arise.
+
+\end{proof}

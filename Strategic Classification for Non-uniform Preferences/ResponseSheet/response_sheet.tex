@@ -1,0 +1,104 @@
+
+\documentclass[11pt]{article}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%\usepackage{algorithmic}
+%\usepackage{algorithm}
+%\input{Figeq.sty}
+%\input{macros}
+
+
+\usepackage{framed}
+%\parskip 1.75\parskip plus 3pt minus 1pt
+\parskip+1pt
+\newenvironment{response}
+{\vspace{1ex}\begin{framed}
+\noindent\textbf{Response:}\hspace{1em}\\[1ex]} {\end{framed}}
+{\vspace{2ex}}
+\def\br{\begin{response}}
+\def\er{\end{response}}
+
+\renewcommand{\baselinestretch}{1}
+
+\usepackage{longtable}
+\usepackage{color}
+%\usepackage{afterpage}
+\def\EPSpath{.}
+\setlength{\oddsidemargin}{-.20in}
+\setlength{\evensidemargin}{-.20in} \setlength{\textwidth}{6.8in}
+\setlength{\topmargin}{-0.3in} \setlength{\textheight}{8.9in}
+\pagenumbering{arabic}
+\def\texitem#1{\par\smallskip\noindent\hangindent 25pt
+               \hbox to 25pt {\hss #1 ~}\ignorespaces}
+\def\smskip{\par\vskip 7pt}
+\def\example{{\bf Example :\ }}
+\def\st{\mbox{subject to}}
+
+
+% -- THEOREM ENVIRONMENTS --
+\usepackage{latexsym,amsmath}
+\begin{document}
+\title{Responses to comments by the reviewer (Second Revision) to ``Strategic Classification for Non-uniform Preferences using Penalty Labels and Randomisation''}
+\author{Manish Kumar Singh\thanks{Systems and Control Engineering, Indian Institute of Technology Bombay, India} \and Ankur A. Kulkarni\thanks{Systems and Control Engineering, Indian Institute of Technology Bombay, India.}}
+\date{}
+\maketitle
+
+\noindent Dear Editor and Reviewers,
+\vspace{.5cm}
+
+\indent We sincerely thank the reviewers and the editor for their valuable comments and suggestions. We are happy that reviewers are largely satisfied with our revision. In addition, the editor has asked to clearly delineate which contributions can be extended to general 
+feature spaces. To address this, we have reworded several sentences in the manuscript so that assumptions, limitations, and results are communicated accurately and without overstatement.
+
+Below, we summarize the main changes which are marked in \textcolor{red}{red} in the manuscript.
+\begin{enumerate}
+    \item On page 2, we have clarified that our main result is established for the scalar feature space setting. We also mention the assumptions under which these results can be extended to vector feature spaces.
+    \item On page 3, we have acknowledged that the focus on a scalar feature space is a limitation. However, we emphasize its practical relevance in domains such as university admissions, where decisions are often based on a single composite score.
+    \item On page 10, we have reworded a sentence to clarify the assumptions required to reduce a multi-dimensional decision problem with a linear class boundary to our scalar feature space setting.    
+    \item On page 26, we have added a “Conclusions and Limitations” section, which summarizes the results presented in the paper and discusses their limitations. This replaces our earlier “Conclusions” section.
+    \item On page 26, we have acknowledged the efforts of the reviewers and the editor in the “Acknowledgments” section.
+\end{enumerate}
+
+
+We are confident that these changes address the concerns of both the reviewers and the editor, and we hope that the revised manuscript will be deemed suitable for publication in JAAMAS.
+
+
+\vspace{.5cm}
+\noindent Best regards \\
+\noindent Manish and Ankur\\
+\newpage
+
+\section{Response to reviewer A}
+I appreciate the authors' detailed response and effort to revise the 
+manuscript. The revision -- at least to some extent -- addresses my main 
+concerns. Honestly I'd still like to see results that are even more general 
+than the ones in the current version, but I also recognize difficulties 
+mentioned by the authors, so I'm willing to forgo such requests.
+
+    \br
+    We thank you for your review.
+    \er
+
+ 
+\section{Response to reviewer B}
+I thank the author for the revision. The new version resolves most of my 
+concerns. However, as 
+I commented in the original review, I also agree with the another 
+reviewer that the one-dimensional setting is a bit too stylized. 
+You said "Essentially, under few assumptions, any decision problem where 
+the class boundary is given by a linear hyperplane can be reduced to our 
+framework." Could you elaborate more on this point, like what exactly 
+assumptions you need to reduce linear function class to 1-D threshold 
+classifier?
+
+\br
+We thank you for your review. The reduction to the scalar feature space setting relies 
+on the assumption that the vector feature space $\mathcal{X}$ is sufficiently wide along the 
+direction $w$. More specifically, for any point $z$ lying on the class boundary 
+(i.e., satisfying $w^\top z = 0$), the points $z + 2\mathbf{u} w$ and $z - 2\mathbf{u} w$ 
+also belong to $\mathcal{X}$. We have highlighted this assumption on page 10 of the revised manuscript, in red.
+\er
+
+\end{document}
+

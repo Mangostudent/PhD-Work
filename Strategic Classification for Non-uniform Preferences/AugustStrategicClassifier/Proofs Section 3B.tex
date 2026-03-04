@@ -1,0 +1,430 @@
+We analyze the worst-case best response and error of a strategy $r \in \sr{R}_2$.
+
+\begin{lem}\label{lem:constant strategy}
+	Let $c \in \cg{Y}$ be a label and $r \in \sr{R}_2$ be a constant-label  receiver strategy $r(\cdot) \equiv c$. Then $s_r(x) = x$ and $E(r)^c = \{x: h(x) =c\}$ (here $^c$ denotes the set complement).
+\end{lem}
+
+\begin{proof}
+	Since the receiver uses a constant label strategy, for a given $x \in \cg{X}$, the sender's payoff is $U(r(s_r(x)),x) - C(s_r(x),x) = U(c,x) - C(s_r(x),x)$.
+	Since, the utility term remains fixed irrespective of the sender strategy, the sender will focus on minimizing the cost term. Consequently, $s_r(x) = x$ incurs the least cost. The receiver strategy $r$ correctly classify feature vectors whose true label is $c$, hence $E(r)^c = \{x:h(x = c)\}$.
+\end{proof}
+
+
+We begin by analyzing the worst-case best response and error of a strategy $r$ in $\sr{R}_1$.
+\begin{lem}\label{lem:Best response r1}
+	Let $r(\cdot;\ib,\jb) \in \sr{R}_1$.
+	\begin{enumerate}[label=(\alph*)]
+		\item If \[\phi(\h) - \phi(\jb) \leq \um + \phi(\ib) - \phi(\h),\]
+			then $s_r(\cdot)$ is given by
+		\begin{equation*}
+			s_r(x) := \begin{cases}
+				x & \text{if} x \in [0,\ib) \cup (\jb,1], \\
+				\ib & \text{if} x \in (\h,\lb), \\
+				\jb & \text{if}x \in [\ib,\h] \cup [\lb,\jb],
+			\end{cases}
+		\end{equation*}
+		where $\lb := \phi^{-1}\Big(\frac{\phi(\ib) + \phi(\jb) + \um}{2}\Big)$. Furthermore, $E(r) = [\ib,\lb]$.
+		\item If \[\phi(\h) - \phi(\jb) > \um + \phi(\ib) - \phi(\h),\]
+		then $s_r(\cdot)$ is given by
+		\begin{equation*}
+			s_r(x) := \begin{cases}
+				x & \text{if} x \in [0,\ib) \cup (\jb,1], \\
+				\jb & \text{if}x \in [\ib,\jb],
+			\end{cases}
+		\end{equation*}
+\noindent Furthermore $E(r) = [\ib,\h]$ and $\up \geq \phi(\h) - \phi(\ib) \geq \frac{\up + \um}{2}$.
+	\end{enumerate}
+\end{lem}
+
+
+\begin{proof}\label{proof:Best response r1}
+    We divide the task of finding $s_r$ over $\cg{X}$ into various subintervals of $\cg{X}$.\\
+\textbf{Case 1: }{$x \in [0, \ib)$\\} The sender's payoff is given by $U(r(s_r(x)),x) - |\phi(s_r(x))-\phi(x)|$.
+	In the utility term, $r(s_r(x))$ can result in three labels: $\minus, \plus$ and $\Delta$. The $\Delta$ label is unpreferable because it gives a $-\infty$ utility.
+	Hence the sender will choose $s_r(x)$ such that $r(s_r(x)) = \minus$ or $ \plus$.
+	For $r(s_r(x)) = \minus$, from the definition of $r$, $s_r(x) \in [0,\ib]$. Among these options, the feature vector which incurs the least cost to the sender is $x$.
+	For $r(s_r(x)) = \plus$, from the definition of $r$, $s_r(x) \in [\jb,1]$. Among these options, the feature vector which incurs the least cost to the sender is $\jb$.
+	Accordingly, the sender's payoff at $x$ is
+		\[\senpayoff(x;r,s_r) := \begin{cases}
+			\up + \phi(x) - \phi(s_r(x)) & \text{ if } s_r(x)= \jb \\
+			0& \text{ if }s_r(x) = x.\\
+		\end{cases}\]
+	 Since $\phi$ is an increasing function and $r \in \sr{R}_1$ satisfies $\phi(\jb) - \phi(\ib) = \up > 0$, therefore for $x \in [0, \ib)$, we have $$\up + \phi(x) - \phi(s_r(x))  < \up + \phi(\ib) - \phi(\jb) = \up -\up  = 0.$$ Thus the payoff for modifying $x$ to $\jb$ is negative and hence $s_r(x) = x$.\\
+
+\textbf{Case 2:}
+		 $x \in (\h,\jb]$.\\ Arguing as in the Case $1$, the $s_r(x)$ can be equal to $\ib$ or $\jb$. Hence the sender's payoff at $x$ is
+		\[\senpayoff(x;r,s_r) := \begin{cases}
+			\phi(x) - \phi(\jb)  & \text{ if } s_r(x) = \jb \\
+		\um + \phi(\ib) - \phi(x)& \text{ if }s_r(x)=\ib.\\
+		\end{cases}\]
+	If $\phi(\h) - \phi(\jb) > \um + \phi(\ib) - \phi(x)$, then it follows that $\phi(x) - \phi(\jb) > \um + \phi(\ib) - \phi(x)$. Hence $s_r(x) = \jb$.
+	If $\phi(\h) - \phi(\jb) \leq \um + \phi(\ib) - \phi(\h)$, then their exists $\lb \in (\h,\jb]$ (same $\lb$ that is defined in the statement of this lemma) such that
+	\[\phi(\lb) - \phi(\jb) = \um + \phi(\ib) - \phi(x).\] Hence, if $\phi(x) \geq \phi(\lb),$ then $s_r(x) = \jb$, and if $\phi(x) < \phi(\lb),$ then $s_r(x) = \ib$.
+	Since $\phi$ is an increasing function, this implies that
+	 \[s_r(x) = \begin{cases}
+	 	\ib, \text{if} x \in (\h,\lb)\\
+	 	\jb, \text{if} x \in [\lb,\jb].
+	 \end{cases}\]\\
+
+
+\textbf{Case 3: }
+		$x \in [\ib,\h]$.\\ Arguing as in the Case $1$, the $s_r(x)$ can be equal to $\ib$ or $\jb$.
+		Accordingly, the sender's payoff at $x$ is
+		\[\senpayoff(x;r,s_r) := \begin{cases}
+			\up + \phi(x) - \phi(\jb)  & \text{ if } s_r(x) = \jb \\
+			\phi(\ib) - \phi(x)& \text{ if }s_r(x) = \jb.\\
+		\end{cases}\]
+ Since $$\up + \phi(x) - \phi(\jb)  \geq 0 \text{ and } \phi(\ib) - \phi(x) <0,$$ therefore $s_r(x) = \jb$. \\
+
+
+\textbf{Case 4:}
+		Let $x \in (\jb,1]$. Arguing as in the Case $1$, the $s_r(x)$ can be equal to $\ib$ or $x$. Accordingly, the sender's payoff at $x$ is
+			\[\senpayoff(x;r,s_r) := \begin{cases}
+			\um + \phi(\ib) - \phi(x) & \text{ if } s_r(x) = \ib \\
+			0& \text{ if }s_r(x) = x.\\
+		\end{cases}\]
+		Since $\phi$ is an increasing function and $r \in \sr{R}_1$ satisfies $\phi(\jb) - \phi(\ib) = \up > 0$, therefore for $x \in [\jb,1]$, we have
+		\[\um + \phi(\ib) - \phi(x) < \um + \phi(\ib) - \phi(\jb) < \um -\up \leq 0.\]
+ 		Therefore $s_r(x) = x$.
+
+\noindent Hence combining all the cases, we get that if $\phi(\h) - \phi(\jb) \leq  \um + \phi(\ib) - \phi(x)$, then
+\begin{equation*}
+   s_r(x) := \begin{cases}
+       x &\text{ for } x \in [0,\ib) \cup (\jb,1]\\
+       \ib &\text{ for } x \in [\ib,\lb)\\
+       \jb &\text{ for } x \in [\ib,\h] \cup [\lb,\jb],
+   \end{cases}
+\end{equation*}
+and $E(r) = [\ib,\lb]$, where $g := \phi^{-1}(\frac{\phi(\ib) + \phi(\jb) + \um}{2})$ which proves part (a).\\
+\noindent Similarly combining all the cases, we get if $\phi(\h) - \phi(\jb) > \um + \phi(\ib) - \phi(x)$, then
+\begin{equation*}
+   s_r(x) := \begin{cases}
+       x &\text{ for } x \in [0,\ib) \cup (\jb,1]\\
+       \jb &\text{ for } x \in [\ib,\jb],
+   \end{cases}
+\end{equation*}
+and $E(r) = [\ib,\jb]$ which proves part (b).
+\end{proof}
+
+\begin{lem}\label{lem:helping lemma}
+	Let $r$ be a receiver strategy. Let $h(x)$ be a true function, and let $x_1, x_2 \in E(r)^c$ ($^c$ denote the set complement) be feature vectors such that $x_1 \leq \h \leq x_2$. Let $s_r$ be the worst-case best response of $r$. Let $z_1,z_2 \in \cg{X}$ be such that $z_1 = s_r(x_1)$, $z_2 = s_r(x_2)$ and, $r(z_1) \neq r(z_2)$ and $r(z_1),r(z_2) \neq \Delta$. Now consider the following two sender strategies \begin{equation}\label{eqn:s hat and s bar}
+		\hat{s}(t) :=
+		\begin{cases}
+			z_2 & \text{for } t = x_1  \\
+			s_{r}(t) & \text{otherwise}
+		\end{cases},\quad
+		\bar{s}(t) :=
+		\begin{cases}
+			z_1 & \text{for } t = x_2 \\
+			s_{r}(t) & \text{otherwise}.
+		\end{cases}
+	\end{equation}
+Then
+\[\mathbb{U}(x_1;r,s_r) > \mathbb{U}(x_1;r,\hat{s}) \text{and} \mathbb{U}(x_2;r,s_r) > \mathbb{U}(x_2;r,\bar{s}).\]
+\end{lem}
+
+\begin{proof}\label{proof:helping lemma}
+    Since $s_{r}$ is a worst-case best response to $r$, we have $$\mathbb{U}(x; r, s_r) \geq \mathbb{U}(x; r, \hat{s}) \text{ and } \mathbb{U}(x; r, s_r) \geq \mathbb{U}(x; r, \bar{s}) \text{ for all } x \in \cg{X}.$$ Since $\hat{s}(t) = s_{r}(t)$ for $t \in \cg{X} \backslash  \{x_1\}$ and $\bar{s}(t) = s_{r}(t)$ for $t \in \cg{X} \backslash \{x_2\}$, we have
+	\[\mathbb{U}(t; r, s_{r}) = \mathbb{U}(t; r, \hat{s}) \text{for} t \in \cg{X} \backslash \{x_1\} \text{ and } \mathbb{U}(t; r, s_{r}) = \mathbb{U}(t; r, \bar{s}) \text{for} t \in \cg{X} \backslash \{x_2\}.\]
+	If $\mathbb{U}(x_1; r, s_r) = \mathbb{U}(x_1; r, \hat{s})$, then $\hat{s} \in B(r)$ (the best response set of $r$) and $E(r, \hat{s}) = E(r, s_{r}) \cup \{x_1\}$. This contradicts the definition of $s_{r}$. Hence, $\mathbb{U}(x_1; r, s_{r}) \neq \mathbb{U}(x_1; r, \hat{s})$. Similarly, if $\mathbb{U}(x_2; r, s_{r}) = \mathbb{U}(x_2; r, \bar{s})$, then $\bar{s} \in B(r)$ and $E(r, \hat{s}) = E(r, s_{r}) \cup \{x_2\}$. This contradicts the definition of $s_{r}$. Hence, $\mathbb{U}(x_2; r, s_{r}) \neq \mathbb{U}(x_2; r, \bar{s})$.
+	Therefore, it follows that
+	\begin{equation*}
+		\mathbb{U}(x_1; r, s_{r}) > \mathbb{U}(x_1; r, \hat{s}) \quad \text{and} \quad \mathbb{U}(x_2; \rt, s_{r}) > \mathbb{U}(x_2; r, \bar{s}).
+	\end{equation*}
+	which implies
+	\begin{equation*}
+		-|\phi(z_1) - \phi(x_1)| > \up -|\phi(z_2) - \phi(x_1)| \text{and} -|\phi(z_2) - \phi(x_2)| > \um - |\phi(z_1) - \phi(x_2)|.
+	\end{equation*}
+\end{proof}
+
+We say a strategy $r$ dominates another receiver strategy $\rt$ if $E(r,s_r,h,D) \subseteq E(\rt,s_{\rt},h,D)$. We now show that the family of receiver strategies $\sr{R}$ dominates every other receiver strategy.
+
+\begin{lem}\label{lem:Deterministic domination of a family of strategies}
+	Let $D \in \fk{D}$ be a probability law on $\cg{X}$ and let $h(x)$ be a true function. Let $\rt$ be any receiver strategy. Then there exists a strategy $r \in \sr{R}$ such that $\cg{E}(\rt) \geq \cg{E}(r)$.
+\end{lem}
+
+\begin{proof}(Proof of Lemma \ref{lem:Deterministic domination of a family of strategies})\label{proof:Deterministic domination of a family of strategies}\\
+    Let $\ib := \sup (E(\rt)^c \cap [0,\h])$ and $\tilde{\lb} := \inf(E(\rt)^c \cap (\h,1])$ (here $^c$ represents the set complement). It follows that $\ib$ represents the supremum of all the feature vectors with true label $\minus$ that get correctly classified by $\rt$. Similarly, $\tilde{\lb}$ represents the infimum of all the feature vectors with true label $\plus$ that get correctly classified by $\rt$. Hence $E(\rt) \supset (\ib,\tilde{\lb}).$ Let $\jb \in \cg{X}$ be such that $\h < \jb \leq 1$ and $\phi(\jb) - \phi(\ib) = \up$. Such a feature vector $\jb$ exists due to the continuity of $\phi$.\\
+	\textbf{Case 1: }\label{lem:Deterministic domination of a family of strategies:a}{$\ib = 0$:}\\
+		In this case, $E(\rt) \supset (0,\h)$, i.e., it misclassifies all the feature vectors with the true label $\minus$. Hence, for a receiver strategy $r \in \sr{R}_2$ which assigns the majority label, $\cg{E}(r) \leq \cg{E}(\rt)$.
+
+
+\textbf{Case 2: }\label{lem:Deterministic domination of a family of strategies:b}{$\tilde{\lb} = 1$:}\\
+		In this case, $E(\rt) \supset (\h,1)$ i.e., it misclassifies all the feature vectors with the true label $\plus$. Hence, for a receiver strategy $r \in \sr{R}_2$ which assigns the majority label, $\cg{E}(r) \leq \cg{E}(\rt)$.
+
+
+
+\textbf{Case 3: }{$\ib > 0, \tilde{\lb} < 1$ and $\phi(\tilde{\lb}) - \phi(\ib) \geq \frac{\up + \um}{2}$:}\\
+From the assumption on $\tilde{\lb}$, it follows that $\h \leq \tilde{\lb} \leq \jb$. Now consider a receiver strategy $r(x;\ib,\jb) \in \sr{R}_1$. If $\phi(\h) - \phi(\jb) \leq \um + \phi(\ib) - \phi(\h)$, then from Lemma \ref{lem:Best response r1} (a), $E(r) = [\ib,\lb]$, where
+$\lb := \phi^{-1}\Big(\frac{\phi(\ib) + \phi(\jb) + \um}{2}\Big)$.
+Since $\phi(\lb) - \phi(\ib) =\frac{\up+\um}{2}$, therefore $\lb \leq \tilde{\lb}$.
+Hence
+$$E(r) = [\ib,\lb] \text{ and } E(\rt) \supseteq (\ib,\tlb)$$ which implies $\cg{E}(r) \leq \cg{E}(\rt)$.
+If $\phi(\h) - \phi(\jb) > \um + \phi(\ib) - \phi(\h)$, then from Lemma \ref{lem:Best response r1} (b), $E(r) = [\ib,\h]$. Since $\tilde{\lb} \geq \h$, therefore we have
+\[E(r) = [\ib,\h] \text{ and } E(\rt) \supset (\ib,\tlb).\]
+Hence $\cg{E}(r) \leq \cg{E}(\rt)$.
+
+
+\textbf{Case 4: }{$\ib > 0, \tilde{\lb} < 1$ and $\phi(\tilde{\lb}) - \phi(\ib) < \frac{\up + \um}{2}$:}\\
+	We will show that this case does not occur. Let $\eps$ be such that
+	$0 < 2\eps < \frac{\up + \um}{2} -  \phi(\tlb) + \phi(\ib)$. Let
+	$\ib', \tlb' \in E(\rt)^c$ be such that $\ib' \leq \ib \leq \h < \tlb \leq \tlb'$ and
+	\begin{equation}\label{eqn:hdash}
+		\phi(\ib) - \phi(\ib') < \eps \quad \text{and} \quad \phi(\tlb') - \phi(\tlb) < \eps.
+	\end{equation}
+	Such feature vectors $\ib', \tlb'$ exist by the definition of $\ib$ and $\tlb$ and the continuity of $\phi$. Adding the inequalities in \eqref{eqn:hdash}, and using the definition of $\eps$, we get
+	\begin{equation}\label{eqn:gap between g and h}
+		\phi(\tlb') - \phi(\ib') < \frac{\up + \um }{2}.
+	\end{equation}
+	Let $y_1 := s_{\rt}(\ib')$ and $y_2 := s_{\rt}(\tlb')$. It follows that
+	\begin{equation}\label{eqn:rt at y1 y2}
+		\rt(y_1) = h(\ib') = \minus \quad \text{and} \quad \rt(y_2) = h(\tlb') = \plus.
+	\end{equation}
+	Furthermore, the sender's payoff at $\ib'$ and $\tlb'$ under the worst-case best response $s_{\rt}$ is
+	\begin{equation}\label{eqn:y_1 best response payoff}
+		\mathbb{U}(\ib'; \rt, s_{\rt}) = U(\rt(y_1), \ib') - |\phi(y_1) - \phi(\ib')| = - |\phi(y_1) - \phi(\ib')| \leq 0
+	\end{equation}
+	and
+	\begin{equation}\label{eqn:y_2 best response payoff}
+		\mathbb{U}(\tlb'; \rt, s_{\rt}) = U(\rt(y_2), \tlb') - |\phi(y_2) - \phi(\tlb')| = - |\phi(y_2) - \phi(\tlb')| \leq 0
+	\end{equation}
+	respectively.\\
+Additionally applying Lemma \ref{lem:helping lemma} by taking $r = \rt, x_1 = \ib'$, $x_2 = \tlb'$, we get $z_1 = y_1, z_2 = y_2$ and,
+	\begin{equation}\label{eqn:s hat bad}
+	-|\phi(y_1) - \phi(\ib')| > \up -|\phi(y_2) - \phi(\ib')| \text{and} -|\phi(y_2) - \phi(\tlb')| > \um - |\phi(y_1) - \phi(\tlb')|.
+\end{equation}
+
+
+
+\begin{claims}{$\rt(x) = \Delta$ for $x \in [\ib', \tlb']$.}\\
+	Let $\kb^+, \kb^- \in \cg{X}$ be such that $\kb^- < \ib' < \kb^+$, $\phi(\kb^+) - \phi(\ib') = \up$ and $\phi(\ib') - \phi(\kb^-) = \up$. Such feature vectors $\kb^-, \kb^+$ exist due to the continuity of $\phi$. We now show that
+	\begin{equation}\label{eqn:ordering g'}
+		\kb^- < \ib' < \tlb' < \kb^+.
+	\end{equation}
+	To show this, we only need to prove that $\tlb' < \kb^+$. Recall from the assumption of \textbf{IV} that $\up \geq |\um|$. From this, we have
+	\begin{equation}\label{eqn:gap}
+		\phi(\kb^+) - \phi(\tlb') = \phi(\kb^+) - \phi(\ib') + \phi(\ib') - \phi(\tlb') > \up - \frac{\up + \um}{2} = \frac{\up - \um}{2} \geq 0,
+	\end{equation}
+	where we have used the definition of $\kb^+$ and \eqref{eqn:gap between g and h} to lower bound the middle term. Hence, $\phi(\kb^+) > \phi(\tlb')$. Since $\phi$ is strictly increasing, we have $\kb^+ > \tlb'$ as required. \\
+	Now to prove the claim, we first show that $\rt(x) \neq \plus$ for $x \in [\kb^-, \kb^+]$. Suppose there exists $\ab \in [\kb^-, \kb^+]$ such that $\rt(\ab) = \plus$.
+	Consider a sender strategy $s$ defined as
+	\[
+	s(t) = \begin{cases}
+		\ab & \text{for } t = \ib' \\
+		s_r(t) & \text{otherwise.}
+	\end{cases}
+	\]
+	Then, at the feature vector $\ib'$, the sender can map $\ib'$ to $s(\ib') = \ab$ and obtain a payoff
+	\[
+	\mathbb{U}(\ib'; \rt, s) = U(\rt(s(\ib')), \ib') - |\phi(s(\ib')) - \phi(\ib')| =
+	U(\plus, \ib') - |\phi(\ab) - \phi(\ib')| \geq \up - \up = 0.
+	\]
+	Using \eqref{eqn:y_1 best response payoff}, it follows that the sender obtains a better payoff at $\ib'$ by playing $s$ instead of $s_{\rt}$. But this contradicts the fact that $s_{\rt}$ is the worst-case best response to $\rt$. Hence, such a sender strategy $s$ cannot exist, which implies that
+	\begin{equation}\label{eqn:rtx neq plus}
+		\rt(x) \neq \plus \quad \text{for all } x \in [\kb^-, \kb^+].
+	\end{equation}
+	We next show that $\rt(x) \neq \minus$ for $x \in [\ib', \tlb']$. Suppose there exists $\bbb \in [\ib', \tlb']$ such that $\rt(\bbb) = \minus$.
+	Using \eqref{eqn:rtx neq plus} and $\rt(y_2) = \plus$, we have $y_2 \notin [\kb^-, \kb^+]$. Since $\tlb' \in [\kb^-, \kb^+]$ from \eqref{eqn:ordering g'}, we have
+	\[
+	|\phi(y_2) - \phi(\tlb')| \geq \min\{\phi(\tlb') - \phi(\kb^-), \phi(\kb^+) - \phi(\tlb')\}.
+	\]
+	We now lower bound the right-hand side. From \eqref{eqn:gap}, we have $\phi(\kb^+) - \phi(\tlb') > \frac{\up - \um}{2}$. Furthermore, from \eqref{eqn:ordering g'}
+	and the definition of $\kb^-$, we have  $\phi(\tlb') - \phi(\kb^-) > \phi(\ib') - \phi(\kb^-) = \up$. Therefore,
+	\begin{equation}\label{eqn:g' y2 gap}
+		|\phi(y_2) - \phi(\tlb')| > \frac{\up - \um}{2}.
+	\end{equation}
+	Consider a sender strategy $s'$ defined as
+	\[
+	s'(t) = \begin{cases}
+		\bbb & \text{for } t = \tlb' \\
+		s_r(t) & \text{otherwise.}
+	\end{cases}
+	\]
+	Then
+	\[
+	\mathbb{U}(\tlb'; \rt, s') = U(\rt(s'(\tlb')), \tlb') - |\phi(s'(\tlb')) - \phi(\tlb')| = \um - \phi(\tlb') + \phi(\bbb).
+	\]
+	Since $s_{\rt}$ is the worst-case best response, at the feature vector $\tlb'$, we have
+	\[
+	\mathbb{U}(\tlb'; \rt, s') \leq \mathbb{U}(\tlb'; \rt, s_{\rt}),
+	\]
+	which, using \eqref{eqn:g' y2 gap}, gives
+	\[
+	\um - \phi(\tlb') + \phi(\bbb) \leq  - |\phi(y_2) - \phi(\tlb')| < \frac{\um - \up}{2}.
+	\]
+	This implies
+	\[
+	\phi(\tlb') - \phi(\bbb) > \frac{\up + \um}{2}.
+	\]
+	Since $\bbb \in [\ib', \tlb']$, and $\phi$ is increasing, we have $\phi(\tlb') - \phi(\bbb) \leq \phi(\tlb') - \phi(\ib')$. Hence
+	\[
+	\frac{\up + \um}{2} <  \phi(\tlb') - \phi(\ib').
+	\]
+	But this contradicts \eqref{eqn:gap between g and h}. Hence,
+	\begin{equation}\label{eqn:rt neq minus}
+		\rt(x) \neq \minus \quad \text{for all } x \in [\ib', \tlb'].
+	\end{equation}
+	From \eqref{eqn:ordering g'}, we have $[\ib', \tlb'] \subset [\kb^+, \kb^-]$. Hence, combining \eqref{eqn:rtx neq plus} with \eqref{eqn:rt neq minus}, it follows that $\rt(x) \neq \plus, \minus$ for $x \in [\ib', \tlb']$. Therefore, $\rt(x) = \Delta$ for $x \in [\ib', \tlb']$. As a consequence, we have that
+	\begin{equation}\label{eqn:y1,y2 not delta}
+		y_1, y_2 \notin [\ib', \tlb']
+	\end{equation}
+	because it would result in a $-\infty$ payoff for the sender.
+\end{claims}
+
+
+\begin{claims}{$y_1 < \ib'$.}\\
+	We will prove this claim by showing that $y_1 \not> \tlb'$. Combining this with \eqref{eqn:y1,y2 not delta}, we will get $y_1 < \ib'$.\\
+	Assume that $y_1 > \tlb'$. If $y_2 > \tlb'$, then from \eqref{eqn:s hat bad}
+we get
+	\[ \quad \phi(y_1) < \phi(y_2) - \up	\text{and}
+	 \phi(y_2) < \phi(y_1) - \um
+	\]
+	respectively.
+	Combining these inequalities, we get
+	\[
+	\phi(y_2) < \phi(y_2) - \up - \um.
+	\]
+	Since $\up \geq |\um|$, this results in a contradiction. Therefore, either $y_1 \not> \tlb'$ or $y_2 \not> \tlb'$. If $y_1 \not> \tlb'$, then we have proved our claim. Hence, suppose $y_2 \not> \tlb'$ and $y_1 > \tlb'$. Since $y_2 \not\in [\ib', \tlb']$ from \eqref{eqn:y1,y2 not delta}, therefore suppose $y_2 < \ib'$.
+	From \eqref{eqn:s hat bad}, we get
+	\[
+	\phi(\ib') > \frac{\phi(y_1) + \phi(y_2) + \up}{2}
+	\text{and}
+ \phi(\tlb') < \frac{\phi(y_1) + \phi(y_2) - \um}{2}.
+	\]
+	respectively.
+	Since $\phi(\tlb') > \phi(\ib')$, combining these inequalities yields
+	\[
+	\frac{\phi(y_1) + \phi(y_2) - \um}{2} > \frac{\phi(y_1) + \phi(y_2) + \up}{2},
+	\]
+	which implies
+	\[
+	-\um > \up.
+	\]
+	But this contradicts  $\up \geq |\um|$.
+	Therefore, either $y_1 \not> \tlb'$ or $y_2 \not< \ib'$. But $y_2 \in \cg{X}$, and previously we have supposed $y_2 \not> \tlb'$ and $y_2 \in [\ib',\tlb']$, therefore $y_1 \not> \tlb'$.
+
+
+\end{claims}
+
+\begin{claims}{$y_2 > \tlb'$.}\\
+	We will prove this claim by showing that $y_1 \not< \ib'$. Combining this with \eqref{eqn:y1,y2 not delta}, we will get $y_1 > \tlb'$.\\
+	Assume that $y_2 < \ib'$.
+	If $y_1 > \tlb'$, then from \eqref{eqn:s hat bad}, we get
+	\[\phi(y_2) > \um + \phi(y_1) \text{and}
+ \phi(y_1) > \up + \phi(y_2),
+	\]
+	respectively.
+	Combining these inequalities, we get
+	\[
+	\phi(y_1) > \phi(y_1) + \up + \um.
+	\]
+	Since $\up \geq |\um|$, this results in a contradiction.
+	Therefore, either $y_1 \not> \tlb'$ or $y_2 \not< \ib'$. If $y_2 \not< \ib'$, then we have proved our claim. Hence, suppose $y_1 \not> \tlb'$ and $y_2 < \ib'$. Since $y_1 \not\in [\ib',\tlb']$ from \eqref{eqn:y1,y2 not delta}, therefore suppose $y_2 < \ib'$. Then \eqref{eqn:s hat bad} reduces to
+	\[ \phi(\tlb') < \frac{\phi(y_1) + \phi(y_2) - \um}{2} \text{and}
+ \phi(\ib') > \frac{\phi(y_1) + \phi(y_2) + \up}{2},
+	\]
+	respectively.
+	Since $\phi(\tlb') > \phi(\ib')$, combining these inequalities gives
+	\[
+	\frac{\phi(y_1) + \phi(y_2) - \um}{2} > \frac{\phi(y_1) + \phi(y_2) + \up}{2},
+	\]
+	which implies
+	\[
+	-\um > \up.
+	\]
+	But this contradicts $\up \geq |\um|$. Therefore, either $y_1 \not< \ib'$ or $y_2 \not< \ib'$. But $y_1 \in \cg{X}$, and previously we have supposed $y_1 \not> \tlb'$ and $y_1 \not\in [\ib',\tlb']$, therefore $y_2 \not< \ib'$.
+
+\end{claims}
+
+
+\begin{claims}{$\phi(\tlb') - \phi(\ib') > \frac{\up + \um}{2}$.}\\
+	From Claims 1-3, we have
+	\begin{equation}\label{eqn:ordering y1 y2}
+		y_1 < \ib' < \h < \tlb' < y_2.
+	\end{equation}
+	Using \eqref{eqn:ordering y1 y2} in \eqref{eqn:s hat bad}, we get
+	\[\phi(\ib') < \frac{\phi(y_1) + \phi(y_2) - \up}{2} \text{and}
+ \phi(\tlb') > \frac{\phi(y_1) + \phi(y_2) + \um}{2}.
+	\]
+	Thus,
+	\[
+	\phi(\tlb') - \phi(\ib') > \frac{\up + \um}{2}
+	\] respectively.
+	This result contradicts the assumption made in Case 4. Hence, Case 4 cannot occur.
+\end{claims}
+
+We now complete the proof of Theorem \ref{thm:Deterministic Stackelberg equilibrium strategy}.
+\begin{apdxproof}(Proof of Theorem \ref{thm:Deterministic Stackelberg equilibrium strategy}).\\
+	From Lemma \ref{lem:Deterministic domination of a family of strategies}, every receiver strategy $\rt$ is dominated by a receiver strategy $r(\cdot) \in \sr{R}$. Hence, the Stackelberg equilibrium is a strategy in $\sr{R}$ with the least error. Recall that $\sr{R} = \sr{R}_1 \cup \sr{R}_2$. Let's further partition the subset $\sr{R}_1$ into two parts, $\sr{R}_{10}$ and $\sr{R}_{11}$, i.e., $\sr{R}_1 := \sr{R}_{10} \cup \sr{R}_{11}$, where
+	\[
+	\begin{aligned}
+		\sr{R}_{10} &:= \{r(\cdot;\ib,\jb) \ |\ r(\cdot;\ib,\jb) \in \sr{R}_1, \phi(\h) - \phi(\jb) \leq \um + \phi(\ib) - \phi(\h)\}, \\
+		\sr{R}_{11} &:= \{r(\cdot;\ib,\jb) \ |\ r(\cdot;\ib,\jb) \in \sr{R}_1, \phi(\h) - \phi(\jb) > \um + \phi(\ib) - \phi(\h)\}.
+	\end{aligned}
+	\]
+Thus, $\sr{R} = \sr{R}_{10} \cup \sr{R}_{11} \cup \sr{R}_2$. We show that there exists a Stackelberg equilibrium in $\sr{R}$ by showing that each subset, $\sr{R}_{10}$, $\sr{R}_{11}$, and $\sr{R}_2$, contains a strategy that yields the least error within its respective subset. Thus, the Stackelberg equilibrium will be a strategy with the least error among the three strategies that have the least error in their subsets.\\
+	For $r(\cdot;\ib,\jb) \in \sr{R}_{10}$, using Lemma \ref{lem:Best response r1}(a), the error set is $E(r(\cdot;\ib,\h)) = [\ib,\h]$. Here, $\up \geq \phi(\h) - \phi(\ib) \geq \frac{\up + \um}{2}$. Now consider the strategy $r(\cdot;\ib^*,\h)$, where $\ib^*$ is such that $\phi(\h) - \phi(\ib^*) = \frac{\um + \up}{2}$. Such a feature vector $\ib^*$ exists due to the continuity of $\phi$. The error set of $r(\cdot;\ib^*,\h)$ is $E(r(\cdot;\ib^*,\h)) = [\ib^*,\h]$. Since $\phi(\h) - \phi(\ib) \geq \phi(\h) - \phi(\ib^*)$, and $\phi$ is increasing, we have $\ib \leq \ib^*$, and hence, $[\ib^*,\h] \subset [\ib,\h]$. Since $r(\cdot;\ib,\h)$ was an arbitrary strategy, $r(\cdot;\ib^*,\h)$ is the strategy with the least error in $\sr{R}_{10}$.\\
+	For $r(\cdot;\ib,\jb) \in \sr{R}_{11}$, using Lemma \ref{lem:Best response r1}(b), it follows that the error set of the strategy is $E(r(\cdot;\ib,\jb)) = [\ib,\tlb]$. Since we seek a strategy with the least error, we choose $\ib^*$ such that the following holds:
+	\[
+	\ib^* := \arg\inf_{\ib \in [\phi^{-1}(\phi(\h) - \up), \h]} D(\{x : x \in [\ib, \lb]\}).
+	\]
+	We now show that the infimum of the above optimization problem does indeed exist. Recall that $\lb$ is completely determined by $\ib$ and $\up$. Since the probability law $D$ has a continuous  (in fact differentiable) density function $\dot{\psi}$ except at finitely many points, the map
+	\[
+	\ib \mapsto D(\{x : x \in [\ib, \tlb]\}) = \int_{\ib}^{\tlb} \frac{d\psi(x)}{dx}\, dx
+	\]
+	is (finite) piecewise continuous for $\ib \in [\phi^{-1}(\phi(\h) - \up), \h]$. Because we are optimizing a (finite) piecewise continuous function over a compact set, the infimum is indeed attained.
+	For $\sr{R}_2$, which contains only two elements, the majority class (w.r.t. $D$) strategy is the one with the least error.
+\end{apdxproof}
+
+
+\noindent Based on all the cases, we can see that there always exists a receiver strategy $r \in \sr{R}$ which dominates $\rt$. Therefore, the family of receiver strategies $\sr{R}$ dominates all other receiver strategies.
+\end{proof}
+
+\begin{apdxproof}(Proof of Theorem \ref{thm:u_ < - u_+})\label{proof:u_ < - u_+}\\
+
+We will show that $E(r) = \emptyset$, which will prove that $r(\cdot;\h,\jb)$ is a Stackelberg equilibrium. Note that such a $\jb$ exists due to the continuity of $\phi$. We now calculate $s_r$. The calculation is similar to Lemma \ref{lem:Best response r1}.
+
+	\begin{case}{$x \in [0, \h)$.}\\
+		The sender's payoff is given by $U(r(s_r(x)),x) - |\phi(s_r(x)) - \phi(x)|$. Based on the structure of $r$, $s_r(x)$ can either be $x$ or $\jb$. Therefore, the sender's payoff is
+		\[
+		\mathbb{U}(x; r, s_r) = \begin{cases}
+			0 & \text{if } s_r(x) = x,\\
+		\up - \phi(\jb) + \phi(x) & \text{if } s_r(x) = \jb.
+		\end{cases}
+		\]
+	We have $- \up = \phi(\h) - \phi(\jb) < \phi(x) - \phi(\jb)$. Thus $\up - \phi(x) - \phi(\jb) <0$. Hence, $s_r(x) = x$.
+	\end{case}
+
+	\begin{case}{$x \in (\jb, 1]$.}\\
+		The sender's payoff is given by $U(r(s_r(x)),x) - |\phi(s_r(x)) - \phi(x)|$. Based on the structure of $r$, $s_r(x)$ can either be $x$ or $\h$. The sender's payoff is
+		\[
+		\mathbb{U}(x; r, s_r) = \begin{cases}
+			0 & \text{if } s_r(x) = x,\\
+		- \phi(\h) + \phi(x) & \text{if } s_r(x) = \h.
+		\end{cases}
+		\]
+		Since $x \geq \h$, we have $\phi(\h) - \phi(x) < 0$. Hence, $s_r(x) = x$.
+	\end{case}
+
+	\begin{case}{$x \in [\h, \jb]$.}\\
+		The sender's payoff is given by $U(r(s_r(x)),x) - |\phi(s_r(x)) - \phi(x)|$. Based on the structure of $r$, $s_r(x)$ can either be $\h$ or $\jb$. Therefore, the sender's payoff is
+		\[
+		\mathbb{U}(x; r, s_r) = \begin{cases}
+			\um - \phi(x) + \phi(\h) & \text{if } s_r(x) = \h,\\
+		 - \phi(\jb) + \phi(x) & \text{if } s_r(x) = \jb.
+		\end{cases}
+		\]
+		Since $\jb \geq x \geq \h$, we have $\phi(x) - \phi(\jb) \geq \phi(\h) - \phi(\jb) = -\up$, $\um \leq -\up \leq 0$, and $\phi(\h) - \phi(x) \leq 0$. Hence, $\um - \phi(x) + \phi(\h) \leq 0 - \phi(\jb) + \phi(x)$ for all $x \in [\h, \jb]$, and therefore we have $s_r(x) = \jb$.
+	\end{case}
+
+	\noindent	Combining all the cases, we have
+	\[
+	s_r(x) := \begin{cases}
+		x & \text{for } x \in [0, \h) \cup (\jb, 1],\\
+		\jb & \text{for } x \in [\h, \jb].
+	\end{cases}
+	\]
+	\noindent Thus, $E(r) = \{x \mid r(s_r(x)) = h(x)\} = \emptyset$.
+\end{apdxproof}
+
+
