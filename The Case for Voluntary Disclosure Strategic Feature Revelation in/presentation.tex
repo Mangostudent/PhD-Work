@@ -12,6 +12,7 @@
 \definecolor{accentGold}{HTML}{F4A261}
 \definecolor{lightBg}{HTML}{F5F7FA}
 \definecolor{successGreen}{HTML}{2A9D8F}
+\definecolor{deepPurple}{HTML}{7B2D8E}
 
 \setbeamercolor{frametitle}{bg=primaryDark, fg=white}
 \setbeamercolor{progress bar}{fg=accentCoral, bg=primaryDark!20}
@@ -30,7 +31,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tikz}
-\usetikzlibrary{shapes, arrows.meta, positioning, calc, decorations.pathmorphing, backgrounds, fit}
+\usetikzlibrary{shapes, arrows.meta, positioning, calc, decorations.pathmorphing, backgrounds, fit, shadows.blur}
 \usepackage{appendixnumberbeamer}
 
 % --- Math Shortcuts ---
@@ -54,9 +55,9 @@
 % ============================================================================
 \title{The Case for Voluntary Disclosure}
 \subtitle{Strategic Feature Revelation in Regression and Classification}
-\author{Author 1 \and Author 2}
+\author{Manish Kumar Singh}
 \date{2026}
-\institute{}
+\institute{SysCon, IIT Bombay}
 
 \begin{document}
 
@@ -67,18 +68,21 @@
   \vfill
   \begin{center}
     {\Huge\color{white}\textbf{The Case for Voluntary Disclosure}}\\[14pt]
-    {\Large\color{accentCoral}Strategic Feature Revelation in\\Regression and Classification}\\[24pt]
-    {\color{white!70}Author 1\textsuperscript{1} \quad \& \quad Author 2\textsuperscript{2}}\\[8pt]
-    {\small\color{accentGold}Strategic Learning with Heterogeneous Preferences}
+    {\Large\color{accentCoral}Strategic Feature Revelation in\\Regression and Classification}\\[20pt]
+    {\color{white!85}\large Manish Kumar Singh}\\[4pt]
+    {\small\color{white!60}PhD Student, SysCon, IIT Bombay}\\[4pt]
+    {\small\color{white!60}Advisor: Prof Ankur A. Kulkarni}\\[16pt]
+    {\small\color{accentGold}\textbf{SysCon Synergy} \quad\textbar\quad IIT Bombay}\\[6pt]
+    {\small\color{white!70}\today}
   \end{center}
   \vfill
 \end{frame}
 }
 
-% ======================= ROADMAP =======================
-\begin{frame}{Roadmap}
+% ======================= OUTLINE =======================
+\begin{frame}{OUTLINE}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.30\textwidth}
       \begin{block}{\centering \textbf{Part I: Framework}}
         \begin{enumerate}
           \item Motivation \& Core Question
@@ -86,97 +90,88 @@
           \item Game-Theoretic Model
         \end{enumerate}
       \end{block}
-      \vspace{6pt}
-      \begin{block}{\centering \textbf{Part II: Regression}}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \begin{alertblock}{\centering \textbf{Part II: Regression}}
         \begin{enumerate}\setcounter{enumi}{3}
           \item Mandatory vs.\ Voluntary Risk
-          \item Sufficiency \& Necessity Conditions
-          \item Gaussian Specialization
+          \item Sufficiency \& Necessity
+          \item Numerical Validation
         \end{enumerate}
-      \end{block}
+      \end{alertblock}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{alertblock}{\centering \textbf{Part III: Classification}}
+    \begin{column}{0.30\textwidth}
+      \begin{exampleblock}{\centering \textbf{Part III: Classification}}
         \begin{enumerate}\setcounter{enumi}{6}
           \item Classification Setup \& Risk
           \item Stackelberg Equilibrium
           \item Numerical Validation
         \end{enumerate}
-      \end{alertblock}
-      \vspace{6pt}
-      \begin{exampleblock}{\centering \textbf{Part IV: Online Learning}}
-        \begin{enumerate}\setcounter{enumi}{9}
-          \item Dynamic Setting \& Regret
-          \item Adaptive Disclosure Protocol
-          \item Conclusion \& Future Work
-        \end{enumerate}
       \end{exampleblock}
     \end{column}
   \end{columns}
+  \vspace{10pt}
+  \begin{center}
+    \tikz{
+      \node[draw=accentGold, fill=accentGold!10, rounded corners=6pt, inner sep=8pt, text width=0.85\textwidth, align=center] {
+        \textbf{Focus:} Characterizing \textit{when} voluntary disclosure outperforms mandatory disclosure\\
+        in \textbf{regression} (squared loss) and \textbf{classification} (0-1 loss) decision problems.
+      };
+    }
+  \end{center}
 \end{frame}
 
 % ======================================================================
 \section{Motivation}
 % ======================================================================
 
-\begin{frame}{The Disclosure Dilemma}
+\begin{frame}{Motivation: Firm Valuation \& Strategic Disclosure}
   \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      Consider a predictive model (e.g., firm valuation):
-      \vspace{6pt}
-      \begin{itemize}
-        \item[\textcolor{primaryTeal}{\textbullet}] \textbf{Mandatory:} All features disclosed $\Rightarrow$ baseline accuracy
-        \item[\textcolor{accentCoral}{\textbullet}] \textbf{Voluntary:} Participants \textit{choose} what to reveal
-      \end{itemize}
-      \vspace{8pt}
-      \alert{Key insight:} Participants have \textbf{private preferred outcomes} and will strategically withhold unfavorable features.
-      \vspace{8pt}
-      \begin{exampleblock}{Surprising Twist}
-        Selective disclosure can sometimes \textbf{help} the model by filtering out noisy signals!
-      \end{exampleblock}
-    \end{column}
-    \begin{column}{0.42\textwidth}
-      \centering
-      \begin{tikzpicture}[
-        scale=0.85, transform shape,
-        block/.style={rectangle, draw=primaryDark, fill=primaryDark!8, rounded corners=4pt, 
-                      minimum width=2.8cm, minimum height=0.8cm, align=center, font=\small\bfseries},
-        arrow/.style={-Stealth, thick, primaryDark}
-      ]
-        \node[block, fill=successGreen!15] (f1) at (0, 3) {Firm A\\{\scriptsize wants $\uparrow$ valuation}};
-        \node[block, fill=accentCoral!15] (f2) at (0, 1.5) {Firm B\\{\scriptsize wants $\downarrow$ valuation}};
-        \node[block, fill=accentGold!20, minimum width=3cm] (market) at (0, -0.2) {Market Model\\{\scriptsize seeks accuracy}};
-        \draw[arrow, successGreen] (f1.south) -- node[right, font=\scriptsize, text=successGreen] {reveals $x_1$} (market.north west);
-        \draw[arrow, accentCoral, dashed] (f2.south) -- node[right, font=\scriptsize, text=accentCoral] {withholds $x_2$} (market.north east);
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
 
-\begin{frame}{Why Heterogeneous Preferences Matter}
-  \begin{columns}[c]
-    \begin{column}{0.48\textwidth}
-      \begin{alertblock}{Uniform Preferences (Easy Case)}
-        If \textit{all} firms want overvaluation $\Rightarrow$ assign a conservative default.\\[4pt]
-        {\small Strategic withholding is trivially discouraged.}
-      \end{alertblock}
+    % ---- LEFT: narrative ----
+    \begin{column}{0.54\textwidth}
+      \textbf{Setting:} A market model predicts firm value $Y$ from features $X$, and sets a \textbf{disclosure regime}.
+      \vspace{8pt}
+
+      \textbf{The Dilemma:} Firms have private preferred values $U \neq Y$. They act strategically to influence the market:
+      
+      \vspace{6pt}
+      \begin{itemize}\setlength{\itemsep}{6pt}
+        \item[\textcolor{successGreen}{\textbullet}]
+          \textcolor{successGreen}{\textbf{Overvalue} ($U > Y$):} seeking investment,
+          inflating stock price before sell-off\\
+          $\Rightarrow$ \textit{reveal} strong metrics, hide liabilities.
+
+        \item[\textcolor{accentCoral}{\textbullet}]
+          \textcolor{accentCoral}{\textbf{Undervalue} ($U < Y$):} management buyout,
+          tax avoidance\\
+          $\Rightarrow$ \textit{conceal} contracts, suppress growth signals.
+      \end{itemize}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Heterogeneous Preferences (Hard Case)}
-        Firms have \textit{different} preferred directions $\Rightarrow$ no single default works.\\[4pt]
-        {\small This is the realistic \& challenging setting we study.}
-      \end{block}
+
+    % ---- RIGHT: Regime Box ----
+    \begin{column}{0.42\textwidth}
+      \vspace{8pt}
+      \begin{center}
+        \begin{tikzpicture}
+          \node[draw=accentGold, fill=accentGold!10, rounded corners=6pt,
+                inner sep=8pt, text width=0.92\linewidth, align=center]{
+            {\textbf{Two Regimes}}\\[1pt]
+            {\textbf{the Market Can Set}}\\[8pt]
+            \textcolor{primaryTeal}{\textbf{Mandatory}}\\
+            {\scriptsize \textit{all} firms must disclose}\\[4pt]
+            {\footnotesize\textbf{vs.}}\\[4pt]
+            \textcolor{accentCoral}{\textbf{Voluntary}}\\
+            {\scriptsize firms \textit{choose} what to reveal}\\[8pt]
+            \rule{0.6\linewidth}{0.4pt}\\[6pt]
+            {\scriptsize\textit{When does voluntary disclosure\,---\,\\driven by self-interest\,---\,\\
+            \textbf{outperform} mandatory?}}
+          };
+        \end{tikzpicture}
+      \end{center}
     \end{column}
+
   \end{columns}
-  \vspace{14pt}
-  \begin{center}
-    \tikz{
-      \node[draw=accentCoral, fill=accentCoral!5, rounded corners=6pt, inner sep=10pt, text width=0.88\textwidth, align=center] {
-        \textbf{Our Contribution:} Formal conditions characterizing \textit{exactly when} \\
-        voluntary disclosure benefits the predictive model\textemdash for \textbf{regression}, \textbf{classification}, and \textbf{online learning}.
-      };
-    }
-  \end{center}
 \end{frame}
 
 % ======================================================================
@@ -279,20 +274,19 @@
       \end{alertblock}
     \end{column}
   \end{columns}
-  \vspace{8pt}
+  \vspace{6pt}
   Key scalar fields governing strategic behavior:
   \begin{center}
     \tikz{
-      \node[draw=primaryTeal, fill=primaryTeal!6, rounded corners=5pt, inner sep=8pt] {
+      \node[draw=primaryTeal, fill=primaryTeal!6, rounded corners=5pt, inner sep=6pt] {
         \begin{minipage}{0.78\textwidth}
         \centering
-        $F(x,u) := (2u - b^\top x)\, b^\top x$ \hfill \textcolor{primaryTeal}{\scriptsize\textbf{Sender's decision rule}}\\[4pt]
+        $F(x,u) := (2u - b^\top x)\, b^\top x$ \hfill \textcolor{primaryTeal}{\scriptsize\textbf{Sender's decision rule}}\\[3pt]
         $G(x,y) := (2y - b^\top x)\, b^\top x$ \hfill \textcolor{accentCoral}{\scriptsize\textbf{Receiver's gain function}}
         \end{minipage}
       };
     }
   \end{center}
-  {\small \textbf{Sender reveals} $x$ iff $F(x,u) > 0$ \quad --- \quad disclosure benefits their preferred outcome}
 \end{frame}
 
 \begin{frame}{Sufficiency Condition for Regression}
@@ -300,7 +294,7 @@
     A \textbf{strategic advantage} exists if $\exists\, b \in \R^d$ such that:
     $$\|U{-}Y\|_2 \;<\; \frac{\E\big[|G(X,Y)|\big] - \Var(b_Y^\top X) - \Var((b{-}b_Y)^\top X)}{4\sqrt{\Var(b_Y^\top X)}}$$
   \end{alertblock}
-  \vspace{6pt}
+  \vspace{4pt}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{center}
@@ -323,38 +317,41 @@
       \end{center}
     \end{column}
   \end{columns}
-  \vspace{8pt}
+  \vspace{6pt}
   \begin{center}
-    {\small\textit{Strategic advantage} $\iff$ \textbf{preferences are sufficiently aligned} relative to feature informativeness}
+    {\small\textit{Strategic advantage} $\impliedby$ \textbf{preferences are sufficiently aligned} relative to feature informativeness}
   \end{center}
 \end{frame}
 
 \begin{frame}{Necessary Condition for Regression}
+  \vspace{-2pt}
   \begin{block}{Theorem (Necessity)}
-    A \textbf{necessary condition} for a strategic advantage to exist:
+    {\small A \textbf{necessary condition} for a strategic advantage to exist:}
+    \vspace{-4pt}
     $$\max_b \Big( \E\big[|G(X,Y)|\big] - \Var(b_Y^\top X) - \Var((b{-}b_Y)^\top X) \Big) > 0$$
   \end{block}
-  \vspace{8pt}
+  \vspace{2pt}
   \begin{exampleblock}{Key Remarks}
-    \begin{itemize}
-      \item The necessary condition ensures the sufficiency bound is \textbf{non-vacuous}
+    \begin{itemize}\setlength{\itemsep}{0pt}
+      \item Necessary condition ensures sufficiency bound is \textbf{non-vacuous}
       \item[\textcolor{accentCoral}{$\star$}] \textbf{Both conditions are independent of channel noise $q$!}\\
-            {\small $q$ controls the \textit{magnitude} of the advantage, not its \textit{existence}}
-      \item If conditions hold at $b = b_Y$ (vanilla OLS weights), they hold for optimal $b$
+            {\small $q$ controls the \textit{magnitude} of the advantage, not its \textit{direction}.}
+      \item If conditions hold at $b = b_Y$, they hold for optimal $b$
     \end{itemize}
   \end{exampleblock}
-  \vspace{6pt}
+  \vspace{2pt}
   \begin{center}
     \tikz{
-      \node[draw=accentGold, fill=accentGold!10, rounded corners=5pt, inner sep=8pt, text width=0.85\textwidth, align=center] {
-        \textbf{Takeaway:} Whether voluntary disclosure helps is a \textit{structural} property of the\\
-        distribution\textemdash not a consequence of the channel.
+      \node[draw=accentGold, fill=accentGold!10, rounded corners=5pt, inner sep=6pt, text width=0.88\textwidth, align=center] {
+        \textbf{Takeaway:} The noise $q$ determines the \textbf{magnitude} but \textbf{not the direction} 
+        of the strategic advantage.
       };
     }
   \end{center}
 \end{frame}
 
 \begin{frame}{Regression: Numerical Validation}
+  \vspace{0.5em}
   \begin{columns}[c]
     \begin{column}{0.50\textwidth}
       \centering
@@ -362,18 +359,18 @@
     \end{column}
     \begin{column}{0.47\textwidth}
       \textbf{Setup:}
-      \begin{itemize}
+      \begin{itemize}\setlength{\itemsep}{0pt}
         \item $(X, Y, U) \sim \mathcal{N}(0, \Sigma)$
         \item Unit marginal variances
         \item $\Cov(X,Y) = \Cov(X,U) = 0.2$
       \end{itemize}
-      \vspace{6pt}
+      \vspace{2pt}
       \textbf{Parameter sweeps:}
-      \begin{itemize}
-        \item $q \in [0, 1]$ \quad {\scriptsize (channel noise)}
-        \item $\Cov(Y,U) \in [-1, 1]$ \quad {\scriptsize (preference alignment)}
+      \begin{itemize}\setlength{\itemsep}{0pt}
+        \item $q \in [0, 1]$ {\scriptsize (channel noise)}
+        \item $\Cov(Y,U) \in [-1, 1]$  {\scriptsize (preference alignment)}
       \end{itemize}
-      \vspace{8pt}
+      \vspace{2pt}
       \begin{exampleblock}{Observation}
         The \textbf{dotted contour} (from our analytical sufficiency bound) reliably delineates the true region of strategic advantage.
       \end{exampleblock}
@@ -382,68 +379,27 @@
 \end{frame}
 
 % ======================================================================
-\section{Gaussian Specialization}
-% ======================================================================
-
-\begin{frame}{Gaussian Specialization}
-  When $(U, X, Y) \sim \mathcal{N}(0, \Sigma)$ are jointly Gaussian, the sufficiency condition admits a \textbf{closed-form} expression.
-  \vspace{6pt}
-  \begin{alertblock}{Theorem (Gaussian Sufficiency)}
-    With receiver predictor $b = 2\Sigma_{XX}^{-1}\Sigma_{XU}$, a strategic advantage exists if:
-    $$2\bigl(b_Y^\top \Sigma_{XU} - \sigma_Z^2\bigr) + \frac{8\kappa\,\sigma_Z}{s\sqrt{2\pi}}\, e^{-\alpha^2/2} \;>\; \Sigma_{XY}^\top \Sigma_{XX}^{-1} \Sigma_{XY}$$
-  \end{alertblock}
-  \vspace{6pt}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Defined Parameters}
-        \begin{itemize}
-          \item $b_Y = \Sigma_{XX}^{-1}\Sigma_{XY}$ \quad {\scriptsize (OLS for $Y$)}
-          \item $b_U = \Sigma_{XX}^{-1}\Sigma_{XU}$ \quad {\scriptsize (OLS for $U$)}
-          \item $\sigma_Z^2 = \Sigma_{XU}^\top \Sigma_{XX}^{-1}\Sigma_{XU}$
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Conditional Parameters}
-        \begin{itemize}
-          \item $\kappa = \Cov(U, Y \mid X)$
-          \item $s^2 = \Var(U \mid X)$
-          \item $\alpha = 0$ \quad {\scriptsize (zero mean)}
-        \end{itemize}
-      \end{block}
-    \end{column}
-  \end{columns}
-  \vspace{8pt}
-  \begin{center}
-    \tikz{
-      \node[draw=successGreen, fill=successGreen!8, rounded corners=5pt, inner sep=8pt, text width=0.85\textwidth, align=center] {
-        \textbf{Why it matters:} All quantities are simple functions of the covariance matrix $\Sigma$,\\
-        making the condition directly \textbf{verifiable} from data.
-      };
-    }
-  \end{center}
-\end{frame}
-
-% ======================================================================
 \section{Classification Results}
 % ======================================================================
 
 \begin{frame}{Classification Setup}
-  \begin{itemize}
-    \item Outcome space: $\cY = \{-1, +1\}$, \quad Loss: $\ell(y, \hat{y}) = \Ind{\hat{y} \neq y}$ \quad ($0$-$1$ loss)
-    \item Preference: $U \in \{-1, +1\}$ \quad (binary preferred label)
-    \item Assume WLOG: $\E[Y] > 0$ \quad (label $+1$ is the majority class)
+  {\small
+  \begin{itemize}\setlength{\itemsep}{0pt}
+    \item Outcome space: $\cY = \{ \pm 1 \}$, \quad Loss: $\ell(y, \hat{y}) = \Ind{\hat{y} \neq y}$
+    \item Preference: $U \in \{ \pm 1 \}$, \quad $\pi_i := \Prob(U = i)$
+    \item Assume $\E[Y] > 0$ (label $+1$ is the majority class)
   \end{itemize}
-  \vspace{6pt}
+  }
+  \vspace{-2pt}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{block}{Vanilla Risk}
-        \vspace{-6pt}
+        \vspace{-8pt}
         \begin{align*}
           R_V^\star(q) &= q\,\Prob(Y = -\sgn(\E[Y])) \\
           &\quad + (1{-}q)\,\E\!\left[\frac{1 - |\eta(X)|}{2}\right]
         \end{align*}
-        \vspace{-12pt}
+        \vspace{-14pt}
         
         {\small where $\eta(x) = \E[Y \mid X\!=\!x]$.}
       \end{block}
@@ -451,66 +407,67 @@
     \begin{column}{0.48\textwidth}
       \begin{alertblock}{Strategic Risk}
         For default option $i \in \{-1,+1\}$:
-        \vspace{-6pt}
+        \vspace{-8pt}
         \begin{align*}
           R_{\cS_i}^\star(q) &= \pi_i\, \Prob(Y\!=\!{-i} \mid U\!=\!i)\\
           &+ \pi_{-i}\Big[(1{-}q)\E\!\left[\tfrac{1-|\eta_{-i}|}{2}\right]\\
           &\quad + q\,\Prob(Y\!=\!{-i} \mid U\!=\!{-i})\Big]
         \end{align*}
-        \vspace{-10pt}
+        \vspace{-12pt}
       \end{alertblock}
     \end{column}
   \end{columns}
-  \vspace{6pt}
+  \vspace{-2pt}
   \begin{center}
     \tikz{
-      \node[draw=primaryTeal, fill=primaryTeal!6, rounded corners=5pt, inner sep=8pt, text width=0.85\textwidth, align=center] {
-        Only \textbf{two} possible strategic receiver strategies:
-        default to $+1$ ($\cS_1$) or default to $-1$ ($\cS_{-1}$).\\
-        {\small The optimal strategy depends on distribution structure and channel noise $q$.}
+      \node[draw=primaryTeal, fill=primaryTeal!6, rounded corners=5pt, inner sep=4pt, text width=0.88\textwidth, align=center] {
+        {\small Only \textbf{two} possible strategic receiver strategies:
+        default to $+1$ ($\cS_1$) or default to $-1$ ($\cS_{-1}$).}\\
+        {\scriptsize The optimal strategy depends on distribution structure and channel noise $q$.}
       };
     }
   \end{center}
 \end{frame}
 
 \begin{frame}{Classification: Stackelberg Equilibrium}
-  \begin{block}{Theorem (Stackelberg Equilibrium \& Strategic Advantage)}
-    Assume $\E[Y] > 0$. At max noise ($q=1$), strategy $\cS_1$ is always better. Two scenarios arise:
+  \begin{block}{Theorem (\textbf{Exact Characterization} of Strategic Advantage)}
+    Assume $\E[Y] > 0$. We provide an \textbf{if and only if} exact condition for strategic advantage. At max noise ($q=1$), strategy $\cS_1$ is always better. Two scenarios arise:
   \end{block}
-  \vspace{4pt}
+  \vspace{1pt}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{exampleblock}{\centering Case 1: $\cS_1$ dominates $\forall q$}
         {\small When $R_{\cS_1}^\star(0) \le R_{\cS_{-1}}^\star(0)$:}
-        \vspace{-4pt}
+        \vspace{-6pt}
         \begin{align*}
           &(1{-}q)\biggl[\E\!\left[\tfrac{1-|\eta|}{2}\right]\\
           &\quad - \pi_{-1}\E\!\left[\tfrac{1-|\eta_{-1}|}{2}\right]\\
           &\quad - \pi_1\Prob(Y\!=\!{-1} \mid U\!=\!1)\biggr] > 0
         \end{align*}
-        \vspace{-8pt}
+        \vspace{-10pt}
         
-        {\scriptsize \textcolor{successGreen}{\textbf{Independent of $q$!}} \\ Analogous to regression.}
+        {\scriptsize \textcolor{successGreen}{\textbf{Independent of $q$!}} Analogous to regression.}
       \end{exampleblock}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{alertblock}{\centering Case 2: Strategy switch at $q^\star$}
         {\small $\exists\, q^\star \in (0,1)$. For $q \ge q^\star$: use $\cS_1$. \\For $q < q^\star$: use $\cS_{-1}$ with:}
-        \vspace{-4pt}
+        \vspace{-6pt}
         \begin{align*}
           &(1{-}q)\!\left[\E\!\left[\tfrac{1-|\eta|}{2}\right] - \pi_1\E\!\left[\tfrac{1-|\eta_1|}{2}\right]\right]\\[-2pt]
           &+ q\big[\Prob(Y\!=\!{-1}) - \pi_1\Prob(Y\!=\!1 \mid U\!=\!1)\big]\\[-2pt]
           &> \pi_{-1}\Prob(Y\!=\!1 \mid U\!=\!{-1})
         \end{align*}
-        \vspace{-8pt}
+        \vspace{-10pt}
         
-        {\scriptsize \textcolor{accentCoral}{\textbf{Depends on $q$!}} \\ Noise affects existence.}
+        {\scriptsize \textcolor{accentCoral}{\textbf{Depends on $q$!}} Noise affects existence.}
       \end{alertblock}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Classification: Numerical Validation}
+  \vspace{1em}
   \begin{columns}[c]
     \begin{column}{0.50\textwidth}
       \centering
@@ -525,12 +482,12 @@
               {\scriptsize $X \mid Y, U \sim Y\mu_Y + U\mu_U + \mathcal{N}(0,1)$}
       \end{itemize}
       \vspace{4pt}
-      \textbf{Regression vs.\ Classification:}
+      \textbf{Parameter sweeps:}
       \begin{itemize}
-        \item[\textcolor{successGreen}{\textbullet}] Regression: advantage region \textbf{independent} of $q$
-        \item[\textcolor{accentCoral}{\textbullet}] Classification: advantage region \textbf{can depend} on $q$ (Case 2)
+        \item $q \in [0, 1]$ {\scriptsize (channel noise)}
+        \item $\Cov(Y,U) \in [-1, 1]$  {\scriptsize (preference alignment)}
       \end{itemize}
-      \vspace{6pt}
+      \vspace{4pt}
       \begin{exampleblock}{Validation}
         Analytical boundary matches the empirical advantage region precisely.
       \end{exampleblock}
@@ -538,72 +495,35 @@
   \end{columns}
 \end{frame}
 
-% ======================================================================
-\section{Online Learning}
-% ======================================================================
+% % ======================================================================
+% \section{Regression vs.\ Classification: A Comparison}
+% % ======================================================================
 
-\begin{frame}{Dynamic Setting: Unknown Environment}
-  \begin{alertblock}{The Challenge}
-    All previous results assumed the environment (joint distribution of $(X,Y,U)$) is \textbf{known}. What if the receiver must \textbf{learn} it?
-  \end{alertblock}
-  \vspace{6pt}
-  \textbf{Protocol:} Over $T$ rounds, at each round $t$:
-  \vspace{2pt}
-  \begin{center}
-  \begin{tikzpicture}[
-    scale=0.82, transform shape,
-    step/.style={rectangle, draw=primaryDark, fill=#1, rounded corners=4pt,
-                 minimum width=2.4cm, minimum height=0.7cm, align=center, font=\scriptsize\bfseries},
-    arr/.style={-Stealth, thick, primaryDark!70}
-  ]
-    \node[step=primaryTeal!12] (s1) at (0, 0) {Select regime\\$D_t \in \{\text{M}, \text{V}\}$};
-    \node[step=accentGold!15] (s2) at (3.5, 0) {Commit to\\predictor $\hat{y}_t$};
-    \node[step=accentCoral!12] (s3) at (7, 0) {Sender\\best-responds};
-    \node[step=successGreen!12] (s4) at (10.5, 0) {Observe $y_t$,\\update belief};
-    \draw[arr] (s1) -- (s2);
-    \draw[arr] (s2) -- (s3);
-    \draw[arr] (s3) -- (s4);
-    \draw[arr, dashed, primaryTeal] (s4.south) -- ++(0, -0.6) -| (s1.south);
-  \end{tikzpicture}
-  \end{center}
-  \vspace{4pt}
-  \textbf{Objective:} Minimize cumulative regret:
-  $$\mathcal{R}_T = \sum_{t=1}^T \ell\big(y_t, \hat{y}_t(M_t)\big) - T \cdot \min\{R_V^\star, R_S^\star\}$$
-\end{frame}
-
-\begin{frame}{Bayesian Adaptive Disclosure Protocol}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{Algorithm Overview}
-        \begin{enumerate}
-          \item \textbf{Initialize} prior $p_1(\theta)$ over parameter space $\Theta$
-          \item \textbf{Each round $t$:}
-          \begin{itemize}
-            \item[\textcolor{primaryTeal}{\scriptsize$\blacktriangleright$}] Evaluate expected risk under belief $p_t$ for both regimes
-            \item[\textcolor{accentCoral}{\scriptsize$\blacktriangleright$}] Select $(D_t, \hat{y}_t)$ minimizing expected loss
-            \item[\textcolor{successGreen}{\scriptsize$\blacktriangleright$}] Observe outcome, update posterior via Bayes' rule:
-          \end{itemize}
-          $$p_{t+1}(\theta) \propto p_t(\theta) \cdot \Prob(M_t, y_t \mid \theta, \hat{y}_t)$$
-        \end{enumerate}
-      \end{block}
-    \end{column}
-    \begin{column}{0.45\textwidth}
-      \begin{alertblock}{Regret Guarantee}
-        Under compact $\Theta$ and standard regularity:
-        $$\boxed{\E[\mathcal{R}_T] \le C\sqrt{T}}$$
-        \vspace{2pt}
-        {\small Sublinear regret $\Rightarrow$ algorithm \textbf{converges} to the optimal disclosure regime.}
-      \end{alertblock}
-      \vspace{6pt}
-      \begin{exampleblock}{Regret Decomposition}
-        \begin{itemize}
-          \item \textbf{Estimation:} $O(\sqrt{T})$ \\ {\scriptsize standard online regression}
-          \item \textbf{Regime Selection:} $O(\log T)$ \\ {\scriptsize posterior concentration}
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
+% \begin{frame}{Decision Problem Comparison}
+%   \begin{center}
+%   \renewcommand{\arraystretch}{1.3}
+%   \begin{tabular}{@{} p{3.2cm} p{5cm} p{5cm} @{}}
+%     \toprule
+%     & \textcolor{primaryTeal}{\textbf{Regression}} & \textcolor{accentCoral}{\textbf{Classification}} \\
+%     \midrule
+%     \textbf{Outcome space} & $\cY = \R$ & $\cY = \{-1, +1\}$ \\
+%     \textbf{Loss function} & Squared loss $(y - \hat{y})^2$ & 0-1 loss $\Ind{\hat{y} \neq y}$ \\
+%     \textbf{Strategies} & Continuous family & Only two: $\cS_1$ or $\cS_{-1}$ \\
+%     \textbf{Dep.\ on $q$} & \textcolor{successGreen}{\textbf{Independent}} & \textcolor{accentCoral}{\textbf{Can depend}} (Case 2) \\
+%     \textbf{Sufficiency} & Closed-form bound & Case-based equilibrium \\
+%     \bottomrule
+%   \end{tabular}
+%   \end{center}
+%   \vspace{4pt}
+%   \begin{center}
+%     \tikz{
+%       \node[draw=deepPurple, fill=deepPurple!6, rounded corners=6pt, inner sep=8pt, text width=0.88\textwidth, align=center] {
+%         \textbf{Common thread:} In both settings, the degree of \textit{preference alignment}\\
+%         between sender ($U$) and ground truth ($Y$) is the critical structural determinant.
+%       };
+%     }
+%   \end{center}
+% \end{frame}
 
 % ======================================================================
 \section{Conclusion}
@@ -612,39 +532,33 @@
 \begin{frame}{Summary of Contributions}
   \begin{center}
   \begin{tikzpicture}[
-    scale=0.88, transform shape,
-    card/.style={rectangle, draw=#1, fill=#1!6, rounded corners=6pt,
-                 minimum width=4.5cm, minimum height=2.8cm, align=center, 
-                 text width=4.2cm, font=\small, inner sep=8pt}
+    scale=0.74, transform shape,
+    card/.style={rectangle, rounded corners=6pt,
+                 minimum width=6.2cm, minimum height=2.4cm, align=center, 
+                 text width=5.8cm, font=\small, inner sep=8pt}
   ]
-    \node[card=primaryTeal] (r) at (0, 0) {
+    \node[card, draw=primaryTeal, fill=primaryTeal!6] (r) at (0, 0) {
       {\large\textbf{\textcolor{primaryTeal}{Regression}}}\\[6pt]
       Sufficiency \& necessity\\conditions for strategic\\advantage\\[4pt]
       {\scriptsize Independent of $q$}\\
-      {\scriptsize Gaussian closed-form}
+      {\scriptsize Validated numerically}
     };
-    \node[card=accentCoral] (c) at (5.5, 0) {
+    \node[card, draw=accentCoral, fill=accentCoral!6] (c) at (7.5, 0) {
       {\large\textbf{\textcolor{accentCoral}{Classification}}}\\[6pt]
       Full Stackelberg\\equilibrium characterization\\[4pt]
       {\scriptsize Two-case structure}\\
       {\scriptsize $q$-dependent threshold}
     };
-    \node[card=successGreen] (o) at (11, 0) {
-      {\large\textbf{\textcolor{successGreen}{Online Learning}}}\\[6pt]
-      Bayesian adaptive\\disclosure protocol\\[4pt]
-      {\scriptsize $O(\sqrt{T})$ regret}\\
-      {\scriptsize Converges to optimal}
-    };
-    \draw[-Stealth, thick, primaryDark!40] (r) -- (c);
-    \draw[-Stealth, thick, primaryDark!40] (c) -- (o);
   \end{tikzpicture}
   \end{center}
-  \vspace{6pt}
+  \vspace{0pt}
   \begin{center}
     \tikz{
-      \node[draw=accentGold, fill=accentGold!10, rounded corners=6pt, inner sep=10pt, text width=0.88\textwidth, align=center] {
-        \textbf{Unifying Theme:} \textit{Preference alignment} between sender and ground truth\\
-        is the key structural property that determines whether voluntary disclosure is beneficial.
+      \node[draw=accentGold, fill=accentGold!10, rounded corners=6pt, inner sep=6pt, text width=0.94\textwidth, align=center] {
+        \textbf{Key Drivers of Strategic Advantage}\\[1pt]
+        {\small \textcolor{primaryTeal}{\textbf{Regression:}} driven by \textbf{$U, Y$ alignment.}
+        (Favourable when preferences align with ground truth.)}\\[3pt]
+        {\small \textcolor{accentCoral}{\textbf{Classification:}} driven by the competition between $\mathbb{E}[Y \mid X]$ and the pair ${\mathbb{E}[Y \mid X,U], \mathbb{E}[Y]}$.}
       };
     }
   \end{center}
@@ -657,31 +571,23 @@
         \begin{itemize}
           \item Sufficiency bounds can be \textbf{conservative} for some distribution families
           \item Restricted to \textbf{linear} receiver strategies in regression
-          \item Online learning assumes \textbf{parametric} environment
+          \item Classification analysis limited to \textbf{binary} labels
+          \item Environment (joint distribution) assumed \textbf{known}
         \end{itemize}
       \end{alertblock}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{exampleblock}{\centering Future Directions}
         \begin{itemize}
+          \item \textbf{Unknown environment:} online learning when receiver must learn the distribution
           \item \textbf{Non-linear predictors:} kernels, neural networks
           \item \textbf{Multi-sender} competitive environments
-          \item \textbf{Partial disclosure:} reveal subsets of features rather than all-or-nothing
-          \item \textbf{Tighter bounds:} closing the gap between sufficiency and necessity
+          \item \textbf{Partial disclosure:} reveal subsets of features
+          \item \textbf{Tighter bounds:} closing the sufficiency--necessity gap
         \end{itemize}
       \end{exampleblock}
     \end{column}
   \end{columns}
-  \vspace{10pt}
-  \begin{center}
-    \begin{tikzpicture}
-      \node[draw=primaryTeal, fill=primaryTeal!6, rounded corners=6pt, inner sep=10pt, text width=0.85\textwidth, align=center] {
-        {\large\textcolor{primaryTeal}{\textbf{Open Question}}}\\[4pt]
-        Can we design \textit{incentive-compatible} mechanisms that encourage truthful\\
-        disclosure while maintaining the performance benefits of voluntary revelation?
-      };
-    \end{tikzpicture}
-  \end{center}
 \end{frame}
 
 % ======================= THANK YOU =======================
@@ -690,14 +596,13 @@
 \begin{frame}[plain, noframenumbering]
   \vfill
   \begin{center}
-    {\Huge\color{white}\textbf{Thank You!}}\\[16pt]
+    {\Huge\color{white}\textbf{Thank You!}}\\[20pt]
     {\Large\color{accentCoral}Questions \& Discussion}\\[24pt]
-    {\color{white!60}\large Author 1\textsuperscript{1} \quad \& \quad Author 2\textsuperscript{2}}\\[16pt]
     \tikz{
-      \node[draw=accentGold, fill=accentGold!12, rounded corners=6pt, inner sep=12pt, text width=0.75\textwidth, align=center] {
+      \node[draw=accentGold, fill=accentGold!12, rounded corners=6pt, inner sep=12pt, text width=0.85\textwidth, align=center] {
         \color{primaryDark}\textbf{Key Message}\\[4pt]
         \color{primaryDark}\textit{Voluntary disclosure can outperform mandatory disclosure}\\
-        \color{primaryDark}\textit{when participant preferences are sufficiently aligned with ground truth.}
+        \color{primaryDark}\textit{when participant preferences are \textbf{sufficiently aligned} with ground truth.}
       };
     }
   \end{center}

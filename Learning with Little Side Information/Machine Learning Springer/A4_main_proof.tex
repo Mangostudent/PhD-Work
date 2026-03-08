@@ -1,0 +1,245 @@
+\section{APPENDIX IV: PROOF OF THE MAIN THEOREM}
+
+We now present the proof of Theorem \ref{thm: main theorem}.
+
+\begin{proof}[Proof of Theorem \ref{thm: main theorem}]
+    Let $\delta \in (0,1)$.
+    The LHS of \eqref{eqn: main equation} can be decomposed as:
+    \begin{equation*}
+    \begin{aligned}
+        R(\whl) - R(w^*) &=
+        \underbrace{R(\whl) - R^\phi(\whl)}_{(A)} +
+        \underbrace{R^\phi(\whl) - R^\phi(\wsl)}_{(B)} \\
+        &+
+        \underbrace{R^\phi(\wsl) - R(\wsl)}_{(C)} +
+        \underbrace{R(\wsl) - R(w^*)}_{(D)}.
+    \end{aligned}
+    \end{equation*}
+    We will first address the sum of terms $(A)$ and $(C)$.
+    \begin{claim}
+       With probability at least $1-2\delta$,
+        \begin{equation*}
+        \begin{aligned}
+            R(\whl) - R^\phi(\whl) +
+            R^\phi(\wsl) - R(\wsl)
+            \leq \ln(4)\Bigg(\frac{C_2}{\sqrt{m}} +
+            L(\us)\Bigg) \min\Bigg\{\sqrt{\frac{\ln(2)}{\lambda_z}},
+            \mathsf{W}\Bigg\},
+        \end{aligned}
+        \end{equation*}
+        where $C_2 = \mathcal{O}\Big(\|\us\|\sqrt{\ln(1/\delta)}\Big)$.
+    \end{claim}
+
+    \begin{proof}[Proof of Claim]
+        From Lemma \ref{lem: gap in risk when z is replaced with phi hat}, we have,
+        \begin{equation*}
+            |R(\whl) - R^\phi(\whl)|
+            \leq 2|\whlz|L_{(0,1)}(\uh),\textrm{ and }
+            |R(\wsl) - R^\phi(\wsl)|
+            \leq 2|\wslz|L_{(0,1)}(\uh).
+        \end{equation*}
+        Note the following relation between zero-one risk and logistic risk. 
+\begin{equation*}
+    \frac{L_{(0,1)}(u)}{\ln(2)} \leq L(u).
+\end{equation*}
+        Thus, we get
+        \begin{equation*}
+            \begin{aligned}
+                  R(\whl) - R^\phi(\whl) + R^\phi(\wsl) - R(\wsl)\leq &\;|R(\whl) - R^\phi(\whl)| + |R(\wsl) - R^\phi(\wsl)|\\
+                  \leq &\;2L_{(0,1)}(\uh)(|\whlz| + |\wslz|) \leq \ln(4)L(\uh)(|\whlz| + |\wslz|)
+            \end{aligned}
+        \end{equation*}
+Using Lemma \ref{lem: learning theory on X,Z}, with probability at least $1-\delta$, this simplifies to
+        \begin{equation*}
+            \begin{aligned}
+                R(\whl) - R^\phi(\whl) + R^\phi(\wsl) - R(\wsl)
+                &\leq \ln(4)\Big(L(\us) + \frac{C_2}{\sqrt{m}}\Big)(|\whlz| + |\wslz|)
+            \end{aligned}
+        \end{equation*}
+        where $C_2 = \mathcal{O}\Big(\|\us\|\sqrt{\ln(1/\delta)}\Big)$ is a constant.
+        From Lemma \ref{lem: bound weights in terms of lambda}, we have
+        \begin{equation*}
+            |\wslz| \leq \sqrt{\frac{\ln(2)}{\lambda_z}}
+            \quad \text{and} \quad
+            |\whlz| \leq  \sqrt{\frac{\ln(2)}{\lambda_z}}.
+        \end{equation*}
+        From Corollary \ref{cor: uniform bound on weights}, we have with probability at least $1-\delta$,
+        \begin{equation*}
+            \mathsf{W} \geq |\whlz|, |\wslz|.
+        \end{equation*}
+        % Furthermore, from Lemma IX.4, and, Lemma VII.3 (for $\lambda = (0,0,0)$), we have $|\wslz| \leq |w^*_{0,z}|$ and $|\whlz| \leq |\hat{w}_{0,z}|$, and, $\|\hat{w}_{0}\| \leq \|\hat{w}_{\phi^*,0}\| + \mathcal{O}(\frac{1}{\sqrt{m}})$ and respectively.
+        % Thus
+        % \begin{equation*}
+        % |\whlz|
+        % \leq
+        %     \min\Bigg\{
+        %         \sqrt{\frac{\ln(2)}{\lambda_z}},
+        %         \|\hat{w}_{\phi^*,0}\| +
+        %         \mathcal{O}\Bigg(\frac{1}{\sqrt{m}}
+        %     \Bigg)\Bigg\},
+        % \end{equation*}
+        % and
+        % \begin{equation*}
+        % |\wslz|
+        % \leq
+        %     \min\Bigg\{
+        %         \sqrt{\frac{\ln(2)}{\lambda_z}},
+        %         \|w^*\| + \mathcal{O}\Bigg(\frac{1}{\sqrt{m}}\Bigg)
+        %     \Bigg\}.
+        % \end{equation*}
+Substituting these results, we obtain with probability at least $1-2\delta$,
+        \begin{equation*}
+            \begin{aligned}
+                & R(\whl) - R^\phi(\whl) + R^\phi(\wsl) - R(\wsl) \leq \ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big) \min\Bigg\{\sqrt{\frac{\ln(2)}{\lambda_z}}, \mathsf{W}\Bigg\}.
+            \end{aligned}
+        \end{equation*}
+        as claimed.
+    \end{proof}
+
+    We next address the sum of terms $(B)$ and $(D)$.
+    \begin{claim}
+        With probability at least $1-2\delta$,
+        \begin{equation*}
+            \begin{aligned}
+                R(\wsl)-R(w^*) + R^\phi(\whl) - R^\phi(\wsl)\leq &\; \min\Big\{\frac{\lamz|\ws_z|^2}{T(\vs)-R(\ws)},1+\frac{\lamz|\wslz|^2}{T(\vs)-R(\ws)}\Big\} (T(\vs)-R(\ws))\\
+                +& \frac{C_1}{\sqrt{n}},
+            \end{aligned}
+        \end{equation*}
+        where $C_1 = \mathcal{O}\left( W^2 + \kappa W \sqrt{\ln(1/\delta)} + \kappa^2 \ln(1/\delta) \right)$.
+    \end{claim}
+    \begin{proof}[Proof of Claim]
+        From the definition of $\wsl$, we have
+        \begin{equation*}
+            \begin{aligned}
+                R(\wsl) - R(w^*) &\leq
+                \lambda_c|w^*_{c}|^2 + \lambda_x\|w^*_{x}\|^2 + \lambda_z|w^*_{z}|^2 -
+                \lambda_c|\wslc|^2 -\lambda_x\|\wslx\|^2  -\lambda_z|\wslz|^2.
+            \end{aligned}
+        \end{equation*}
+        From Corollary \ref{cor: v star and w star infinity}, we have for $\lambda = \Big(\frac{1}{\sqrt{n}},\frac{1}{\sqrt{n}},\infty\Big)$
+        \begin{equation*}
+            R(\wsl) \leq T(\vs) + \mathcal{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big).
+        \end{equation*}
+        Therefore
+        \begin{equation}\label{eqn: risk of whl minus risk of ws}
+            \begin{aligned}
+            R(\wsl) - R(w^*) &\leq
+            \min\Bigg\{
+                T(\vs)-R(w^*) + \mathcal{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big),\lambda_c|w^*_{c}|^2 + \lambda_x\|w^*_{x}\|^2 + \lambda_z|w^*_{z}|^2 \\
+                &-(\lambda_c|\wslc|^2 + \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2)
+            \Bigg\}.
+            \end{aligned}
+        \end{equation}
+        We now evaluate $R^\phi(\whl) - R^\phi(\wsl)$. From Lemma \ref{lem: empirical and population risk gap}, we get with probability at least $1-\delta$,
+        \begin{equation*}
+            \begin{aligned}
+                R^\phi(\whl) \leq
+                \rh^\phi(\whl) +
+                \frac{4(1+\sqrt{\kappa^2+2}\|\whl\|)}{\sqrt{n}}\Bigg(1+\sqrt{\ln\Big(2+\log_2(1+\sqrt{\kappa^2+2}\|\whl\|)+\ln(1/\delta)\Big)}\Bigg).
+            \end{aligned}
+        \end{equation*}
+        Let
+        \begin{equation*}
+            \begin{aligned}
+                C' := 4\Bigg(1 +
+                \sqrt{\ln\Bigg(2 +
+                \log_2\Big(1 +
+                \sqrt{\kappa^2+2}\Big(\mathsf{W} +
+                \mathcal{O}\Big(\frac{1}{\sqrt{m}}\Big)\Big)\Big)\Bigg)}
+                &+ \ln(1/\delta)\Bigg).
+            \end{aligned}
+        \end{equation*}
+Hence
+        \begin{equation*}
+            R^\phi(\whl) - \rh^\phi(\whl)
+            \leq\frac{C'}{\sqrt{n}} +
+                \frac{C'\sqrt{\kappa^2+2}\|\whl\|}{\sqrt{n}}.
+        \end{equation*}
+        Using the inequality $ab \leq \alpha a^2 + \frac{b^2}{4\alpha}$ with 
+        \begin{equation*}
+        \begin{aligned}
+            &a = \|\whl\|, b = \frac{C'\sqrt{\kappa^2+2}}{\sqrt{n}}, \text{ and } \alpha = \frac{\lambda_c|\whlc|^2+\lambda_x|\whlx|^2+\lambda_z|\whlz|^2}{\|\whl\|^2} \geq \min\{\lamc,\lamx,\lamz\} = \frac{1}{\sqrt{n}},
+            \end{aligned}
+        \end{equation*}
+   we get
+        \begin{equation}\label{eqn: replacing w hat with w lambda star}
+            \begin{aligned}
+                 R^\phi(\whl) &\leq
+                 \rh^\phi(\whl) +
+                 \lambda_c|\whlc|^2 +
+                 \lambda_x\|\whlx\|^2 +
+                 \lambda_z|\whlz|^2 +  \frac{C'}{\sqrt{n}} +
+                 \frac{C'^2(\kappa^2+2)}{4\sqrt{n}}.
+            \end{aligned}
+        \end{equation}
+        Using the optimality property of $\whl$, we have
+        \begin{equation*}
+            \begin{aligned}
+                \rh^\phi(\whl) +
+                \lambda_c|\whlc|^2+
+                \lambda_x\|\whlx\|^2 +
+                \lambda_z|\whlz|^2 \leq
+                \rh^\phi(\wsl) +
+                \lambda_c|\wslc|^2 +
+                \lambda_x\|\wslx\|^2 +
+                \lambda_z|\wslz|^2,
+            \end{aligned}
+        \end{equation*}
+        which when substituted into \eqref{eqn: replacing w hat with w lambda star} gives
+        \begin{equation*}
+            \begin{aligned}
+                 R^\phi(\whl) &\leq
+                 \rh^\phi(\wsl) +
+                 \lambda_c|\wslc|^2 +
+                 \lambda_x\|\wslx\|^2 +
+                 \lambda_z|\wslz|^2 +  \frac{C'}{\sqrt{n}} +
+                 \frac{C'^2\kappa^2}{4\sqrt{n}}.
+            \end{aligned}
+        \end{equation*}
+        Thus with probability at least $1-\delta$,
+        \begin{equation}\label{eqn: R w hat lambda minus R w star lambda}
+            \begin{aligned}
+                R^\phi(\whl) - R^\phi(\wsl) &\leq |\rh^\phi(\wsl) - R^\phi(\wsl)| +
+                \lambda_c|\wslc|^2 +\lambda_x\|\wslx\|^2
+                +\lambda_z|\wslz|^2 +  \frac{C'}{\sqrt{n}} +\frac{C'^2\kappa^2}{4\sqrt{n}}.
+            \end{aligned}
+        \end{equation}
+        Using Lemma \ref{lem: McDiamird's inequality}, we have
+        \begin{equation*}
+            |\rh^\phi(\wsl) - R^\phi(\wsl)|
+            \leq (\ln(2) + K\sqrt{\kappa^2+2}\|\wsl\|)\sqrt{\frac{\ln(2/\delta)}{n}},
+        \end{equation*}
+        where $K = \max_y K_y$, and $K_y$ is the Lipschitz constant of $\ell(\cdot, y, \cdot; \cdot)$ for fixed $y$.
+        Substituting this into the \eqref{eqn: R w hat lambda minus R w star lambda}, we get with probability at least $1-2\delta$,
+        \begin{equation}\label{eqn: imputed risk of whl - imputed risk of wsl}
+            \begin{aligned}
+                R^\phi(\whl) - R^\phi(\wsl) &\leq (\ln(2) + K\sqrt{\kappa^2+2}\|\wsl\|)\sqrt{\frac{2\ln(2/\delta)}{n}} +
+                \lambda_c|\wslc|^2 \\
+                &+
+                \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2
+                +  \frac{C'}{\sqrt{n}} +
+                \frac{C'^2\kappa^2}{4\sqrt{n}}.
+            \end{aligned}
+        \end{equation}
+Combining the bounds for $R(\wsl)-R(w^*)$ and $R^\phi(\whl)-R^\phi(\wsl)$ given in \eqref{eqn: risk of whl minus risk of ws} and \eqref{eqn: imputed risk of whl - imputed risk of wsl} respectively, we get with probability at least $1-2\delta$,
+        \begin{equation*}
+            \begin{aligned}
+                R(\wsl)-R(w^*) + R^\phi(\whl) - R^\phi(\wsl) &\leq
+                \min\Bigg\{T(\vs)-R(w^*) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big), \lambda_c|w^*_{c}|^2 + \lambda_x\|w^*_{x}\|^2 + \lambda_z|w^*_{z}|^2 \\
+                    &-(\lambda_c|\wslc|^2 + \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2)\Bigg\} \\
+                    &+ (\ln(2) + \sqrt{\kappa^2+2}\|\wsl\|)\sqrt{\frac{2\ln(2/\delta)}{n}} \\
+                &+\lambda_c|\wslc|^2 +
+                \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2
+                +  \frac{C'}{\sqrt{n}} +
+                \frac{C'^2\kappa^2}{4\sqrt{n}}\\
+                &\leq  \min\{T(\vs) - R(\ws) + \lamz|\wslz|^2,\lamz|\ws_z|^2\} + \frac{C_1}{\sqrt{n}}\\
+                &=\min\Big\{\frac{\lamz|\ws_z|^2}{T(\vs)-R(\ws)},1+\frac{\lamz|\wslz|^2}{T(\vs)-R(\ws)}\Big\}(T(\vs)-R(\ws)) \\
+                &+ \frac{C_1}{\sqrt{n}}.
+                \end{aligned}
+        \end{equation*}
+        as claimed. Here $C_1 = \mathcal{O}\left( W^2 + \kappa W \sqrt{\ln(1/\delta)} + \kappa^2 \ln(1/\delta) \right)$.
+    \end{proof}
+
+    Combining the bounds from Claim 1 and Claim 2, we obtain the desired result.
+    This completes the proof of Theorem \ref{thm: main theorem}.
+\end{proof}

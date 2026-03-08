@@ -1,0 +1,61 @@
+\section{Proof of the lower bound}
+
+We now prove Theorem \ref{thm: Lower bound on excess risk}.
+
+\begin{proof}
+    We establish the lower bound by constructing two distributions that are indistinguishable given the partitioned data. Let $X$ be uniformly distributed over $\mathcal{X}=[0,1]$. Let $p = 0.2$. Define two joint distributions on $(X,Y,Z)$ as follows:
+
+    \begin{enumerate}
+        \item[(I)] \textbf{Distribution $P_1$:} Conditional on $X=x$, $(Y_1, Z_1)$ are positively correlated such that $\mathbb{P}(Y_1 = Z_1) = 1-p$.
+        \begin{equation*}
+            \begin{array}{|c|c|c|}
+                \hline
+                & Z_1=-1 & Z_1=+1 \\
+                \hline
+                Y_1=-1 & 1-p & p \\
+                \hline
+                Y_1=+1 & p & 1-p \\
+                \hline
+            \end{array}
+        \end{equation*}
+        The Bayes optimal classifier predicts the log-odds score $\hat{y} = \alpha Z$, where $\alpha = \ln \frac{1-p}{p}$. The optimal logistic risk is the binary entropy:
+        \begin{equation*}
+            R^* = H(p) = -p\ln(p) - (1-p)\ln(1-p).
+        \end{equation*}
+
+        \item[(II)] \textbf{Distribution $P_2$:} Conditional on $X=x$, $(Y_2, Z_2)$ are negatively correlated such that $\mathbb{P}(Y_2 = -Z_2) = 1-p$.
+        \begin{equation*}
+            \begin{array}{|c|c|c|}
+                \hline
+                & Z_2=-1 & Z_2=+1 \\
+                \hline
+                Y_2=-1 & p & 1-p \\
+                \hline
+                Y_2=+1 & 1-p & p \\
+                \hline
+            \end{array}
+        \end{equation*}
+        Here, the optimal classifier predicts the score $\hat{y} = -\alpha Z$. The optimal logistic risk is also $R^* = H(p)$.
+    \end{enumerate}
+    Observe that for both distributions, the marginals are identical:
+    \begin{equation*}
+        \mathbb{P}(Y=y|X) = 0.5 \quad \text{and} \quad \mathbb{P}(Z=z|X) = 0.5.
+    \end{equation*}
+    Since the training data is partitioned into $D=\{(x_i, y_i)\}$ and $S=\{(x_j, z_j)\}$, the likelihood of the training set is identical under $P_1$ and $P_2$. Thus, no learning algorithm $A$ can distinguish between the two cases based on the training data.
+
+    \noindent We now calculate the lower bound. Let the true distribution index $k$ be chosen uniformly from $\{1, 2\}$. Let $\hat{w}$ be the weights learnt by the algoirthm. The expected risk over the choice of distribution is:
+    \begin{equation*}
+        \mathbb{E}_k[R(A)] = \frac{1}{2} R_1(\hat{w}) + \frac{1}{2} R_2(\hat{w}).
+    \end{equation*}
+Note that in this mixture, for every $(x,z)$, we have $\prob(Y=1 \mid X=x, Z=z) = 0.5$. Thus the optimal $\hat{w}$ is $0$. If $\hat{w}$ is chosen to optimize performance on one specific distribution, then its risk on the other distribution will be high. Consequently, the worst-case risk of $\hat{w}$ will be poor.
+
+The risk of the $\hat{w} = 0$ predictor is
+    \begin{equation*}
+        R_{\text{avg}} = -\ln(0.5) = \ln 2 \approx 0.6931.
+    \end{equation*}
+    The expected excess risk is therefore bounded by:
+    \begin{equation*}
+        \mathbb{E}_k[R(A)] - R^* \geq \ln 2 - H(0.2) \approx 0.19.
+    \end{equation*}
+    Since the \textit{average} excess risk is at least $0.19$, the excess risk must be at least $0.19$ for at least one of the two distributions. Thus, with probability at least $0.5$ (over the choice of the true distribution), the excess risk is at least $0.19$.
+\end{proof}

@@ -1,0 +1,364 @@
+
+\section{Appendix I: Lemmas About Generalization Gap from Existing Literature}
+
+In this section, we review key results from \cite{della2021regularized} that will be used in the proof of the main theorem (Theorem \ref{thm: main theorem}). For convenience, we restate these theorems below. Before doing so, we summarize the assumptions and notation on which those results rely.
+
+Let $\cg{H}$ be the hypothesis space, $\cg{H}^\star$ (the dual space of $\cg{H}$) be the feature space, and $\cg{B}$ the label space. Let $\mathtt{l}(b, r) \in \R$ denote the loss function, where $b \in \cg{B}$ and $r$ is the score given by the inner product between the hypothesis and the feature vector. Consider the following assumptions.
+\begin{enumerate}
+    \item[(A1)] Let $\cg{H}$ be a real separable Hilbert space with inner product $\langle \cdot, \cdot \rangle$, and let $\cg{B}$ be a Polish space.
+    Let $(A, B)$ be a random variable taking values in $\cg{H} \times \cg{B}$ with distribution $P$, and suppose there exists $\alpha > 0$ such that $\|A\| \leq \alpha$ almost surely.   
+
+    \item[(A2)] The loss function $\mathtt{l}: \cg{B} \times \R \rightarrow [0,\infty)$ is Lipshitz in its second argument, namely their exists $G > 0$ such that for all $b \in \cg{B}$ and $r,r' \in \R$,
+    \begin{equation*}
+        |\mathtt{l}(b,r) - \mathtt{l}(b,r')| \leq G|r-r'|.
+    \end{equation*}
+    \item[(A3)] Let $\fk{L}(\mathtt{w}) := \int_{\mathcal{H} \times \mathcal{B}} \mathtt{l}(b, \langle \mathtt{w}, a \rangle) \, dP(a, b)$ denote the population risk. Suppose there exists $\mathtt{w}_* \in \mathcal{H}$ such that $\fk{L}(\mathtt{w}_*) = \sup_{\mathtt{w} \in \mathcal{H}} \fk{L}(\mathtt{w})$. For $\lambda > 0$, let $\widehat{\mathtt{w}}_\lambda \in \mathcal{H}$ be defined by $\widehat{\mathtt{w}}_\lambda := \arg\min_{\mathtt{w} \in \mathcal{H}} \frac{1}{n} \sum_{i=1}^n \mathtt{l}(b_i, \langle \mathtt{w}, a_i \rangle) + \lambda \|\mathtt{w}\|^2$.
+\end{enumerate}
+
+We first restate the Theorem 1 in \cite{della2021regularized}.
+\begin{lem}[Theorem 1, \cite{della2021regularized}]
+Suppose the assumptions (A1), (A2), and (A3) hold.  Then for sample size $n$ and for all $\lambda > 0$ and $0 < \delta < 1$, with probability at least $1 - \delta$, the following inequality holds.
+        \begin{equation*}
+        \fk{L}(\widehat{\mathtt{w}}_\lambda) - \fk{L}(\mathtt{w}_*) \leq \frac{G^2\alpha^2 \ln(1/\delta)}{\lambda n} + \lambda \|\mathtt{w}_*\|^2.
+    \end{equation*}
+Hence letting $\lambda = (G\alpha/\|\mathtt{w}_*\|)\sqrt{\ln(1/\delta)/n}$ leads to a rate of $\mathcal{O}\Big(\|\mathtt{w}_*\|\sqrt{\frac{\ln(1/\delta)}{n}}\Big)$.
+\end{lem}
+
+We now use this theorem to establish an upper bound on the excess risk between $\uh$ (which paramterizes $\ph$) and $\us$ (which paramterizes
+ $\ps$).
+
+\begin{lem}\label{lem: learning theory on X,Z}
+    Let $\uh$ and $\us$ be defined in \eqref{eqn: u star} and \eqref{eqn: u hat}, respectively. Let $S = \{(x_j, z_j)\}_{j=n+1}^{n+m}$ and $\delta \in (0,1)$. Let $\mu = \frac{1}{\|\us\|}\sqrt{\frac{\ln(1/\delta)}{m}}$. Then, with probability at least $1-\delta$, we have
+    \begin{equation}\label{eqn: rhs eps}
+        L(\uh) - L(\us) \leq \eps_{\fk{u}}, 
+    \end{equation}
+    where $\eps_{\fk{u}} = \mathcal{O}\Big(\|\us\|\sqrt{\frac{\ln(1/\delta)}{m}}\Big)$.
+\end{lem}
+
+\begin{proof}
+Apply Theorem 1 in \cite{della2021regularized} with $G = 1$, $\mathtt{w}_* = u_*$, $\widehat{\mathtt{w}}_\lambda = \widehat{u}$, $n = m$, $\mathcal{H} = \mathbb{R}^{d+1}$, $\mathcal{B} = \mathcal{Z}$, and $\lambda = \mu$.
+\end{proof}
+
+We next restate Lemma 2 from Appendix B of \cite{della2021regularized}.
+\begin{lem}[Lemma 2, \cite{della2021regularized}] Suppose the assumptions (A1), (A2), and (A3) hold. Then for sample size $n$ and all $\delta \in (0,1)$, with probability at least $1 - \delta$, the following ineqaulity holds.
+\begin{equation*}
+    \fk{L}(\mathtt{w}) - \hat{\fk{L}}(\mathtt{w}) \leq  \frac{4G(1+\alpha\|\mathtt{w}\|)}{\sqrt{n}}\Big(1 + \sqrt{\ln(2+\log_2(1+\alpha\|\mathtt{w}\|) +) + \ln(1/\delta)}\Big).
+\end{equation*}
+\end{lem}
+
+We use this lemma to quantify the gap between the empirical and population risk for any hypothesis $w$ when side information is imputed by a classifier $\phi : \cg{X} \to \cg{Z}$.
+
+\begin{lem}\label{lem: empirical and population risk gap}
+    Let $w := (w_c, w_x, w_z) \in \R^3$. Let $\ph$ be defined in \eqref{eqn: phi star and phi hat} and let $\kappa$ be defined in \eqref{eqn: distribution conditions}. Let $D= \{(x_i, y_i)\}_{i=1}^n$ and $\delta \in (0,1)$. Then, with probability at least $1-\delta$, we have
+    \begin{equation*}
+    \begin{aligned}
+        \rph(w) - \rhph(w) \leq
+        \frac{4(1+\sqrt{\kappa^2+2}\|w\|)}{\sqrt{n}}\Big(1+\sqrt{\ln(2+\log_2(1+\sqrt{\kappa^2+2}\|w\|)) +
+        \ln(1/\delta)}\Big).
+    \end{aligned}
+    \end{equation*}
+\end{lem}
+
+\begin{proof}
+    Identify $\fk{L}$ with $\rph$, $\hat{\fk{L}}$ with $\rhph$, $\cg{A}$ with $\R^{d+2}$, $\fk{B}$ with $\cg{Y}$, $B$ with $Y$, $\cg{A}$ with $\{1\} \times \cg{X} \times \cg{Z}$, $A$ with $(1,X,\ph(X))$, $\mathtt{w}$ with $w$, and $\alpha$ with $\sqrt{\kappa^2 + 2}$. Then apply Lemma 2 in Appendix B of \cite{della2021regularized}.
+\end{proof}
+
+ 
+
+\begin{lem}\label{lem: finite norm for optimal weights}
+    Let $(\mathsf{X}, \mathsf{Y})$ be a random variable over $\R^k \times \{-1,1\}$ such that it is linearly non-separable, i.e., for all $a \in \R^{k+1}$, $\mathbb{P}(\mathsf{Y}(a_c + a_x^\top \mathsf{X}) \le 0) > 0$. Let the logistic population risk be defined as
+    \begin{equation*}
+        L(a) := \mathbb{E}[-\ln(\sigma(\mathsf{Y}(a_c + a_x^\top \mathsf{X})))].
+    \end{equation*}
+    Then the optimal weight $a^\star := \arg\min_a L(a)$ satisfies $\|a^\star\| < \infty$.
+\end{lem}
+
+\begin{proof}
+We first show that $L(a) \to \infty$ as $\|a\| \to \infty$. This, together with the fact that $L(a^\star) \leq L(0) = \ln(2)$, implies that the minimizer must lie in a bounded set, proving $\|a^\star\| < \infty$.
+Let $a$ be an arbitrary direction such that $\|a\|=1$, and consider the sequence $a_k := k a$ where $k \in \mathbb{N}$. Then $\|a_k\| \to \infty$ as $k \to \infty$.
+From the non-separability assumption we have $\mathbb{P}(\mathsf{Y}(a_c + a_x^\top \mathsf{X}) \le 0) = \epsilon > 0$. Note that if $\mathsf{Y}(u_c + u_x^\top \mathsf{X}) < 0$, then,  $k\mathsf{Y}(u_c + u_x^\top \mathsf{X}) < 0$ for $k \in \mathbb{N}$, thus $\mathbb{P}(k\mathsf{Y}(a_c + a_x^\top \mathsf{X}) \le 0) = \epsilon > 0$.
+We lower bound the loss $L(a_k)$.
+\begin{align*}
+    L(a_k) &= \mathbb{E}[-\ln(\sigma(k \mathsf{Y}(a_c + a_x^\top \mathsf{X})))] \geq -\ln(\sigma(k \mathsf{Y}(a_c + a_x^\top \mathsf{X}))\cdot \eps, \text{ where } \mathsf{Y}(a_c + a_x^\top \mathsf{X}) \le 0.
+\end{align*}
+We use the inequality $-\ln(\sigma(z)) = \ln(1+e^{-z}) \geq -z$, which holds for all $z \in \mathbb{R}$. Applying this we get:
+\begin{equation*}
+    \begin{aligned}
+    L(a_k) \geq -\ln(\sigma(k \mathsf{Y}(a_c + a_x^\top \mathsf{X}))\cdot \eps \geq -k\mathsf{Y}(a_c + a_x^\top X)\cdot \eps \text{ where } \mathsf{Y}(a_c + a_x^\top \mathsf{X}) \le 0.
+    \end{aligned}
+\end{equation*}
+Thus as $k \to \infty$, $L(a_k) \to \infty$.
+Since $a$ was an arbitrary unit vector, we have $L(a) \to \infty$ as $\|a\| \to \infty$.
+\end{proof}
+
+\section{Appendix II: Bounding optimal weights}\label{sec: Bounding optimal weights}
+
+Algorithm \ref{alg: side information algorithm} trains on the partitioned datasets $D$ and $S$, and returns a classifier with weights $\whl \in \mathbb{R}^{d+2}$. In the forthcoming proof of Theorem \ref{thm: main theorem}, we will show that the excess risk associated with $\whl$ admits an upper bounded involving terms of order $\frac{\|\whl\|}{\sqrt{n}}$. However, since $\whl$ is a random variable, we do not know how terms like $\frac{\|\whl\|}{\sqrt{n}}$ scale with sample size $n$. Thus we seek to show that, with high probability, $\|\whl\|$ lies in a bounded subset of $\R^{d+2}$. A crucial property required for this analysis is the non-separability of the distribution (see \eqref{eqn: distribution conditions}). The lemmas in this section will conclude by providing an upper bound on $\|\whl\|$ and will also establish $\mathsf{W} < \infty$ (defined in \eqref{eqn: uniform weight bound}) as promised.
+
+
+We now give the definition of strong convexity.
+
+\begin{defn}\label{defn: strong convex series}
+    A differentiable function $f: \fk{Dom} \subseteq \R^k  \rightarrow \mathbb{R}$ is strongly convex if there exists a strong convexity parameter $\alpha > 0$ such that
+    \begin{equation*}
+        f(w) \geq f(w') + \nabla f(w)^\top (w-w') + \alpha\|w-w'\|^2
+    \end{equation*}
+    for all  $w, w' \in \fk{Dom} $.
+\end{defn}
+An equivalent definition in terms of Hessian is given as follows.
+\begin{defn}\label{defn: strong convex hessian}
+    A twice differentiable function $f: \fk{Dom} \subseteq \R^k \rightarrow \mathbb{R}$ is strongly convex if there exists a strong convexity parameter $\mu > 0$ such that
+    \[z^\top (\nabla^2 f(w)) z \geq \mu\|z\|^2,\]
+    for all $z,w \in \fk{Dom}$.
+\end{defn}
+
+To show that $\|\whl\|$ is  upper-bounded with high probability, we establish that $\ph(x)$ is close to $\ps(x)$ on average over the distribution of $X$. For this, we prove an intermediate result that shows that logistic population risk $L(u)$ is strongly convex in 
+the sublevel set
+    \begin{equation}\label{eqn: domain}
+        \fk{Dom} := \Big\{u: L(u) - L(\us) \leq \eps_{\fk{u}} \Big\},
+    \end{equation}
+where $\eps_{\fk{u}}$ is given in \eqref{eqn: rhs eps}.
+Note that $\us \in \fk{Dom}$ by definition.
+We first show that $\fk{Dom}$ is a bounded subset of $\R^{d+1}$ and $\uh \in \fk{Dom}$ with high probability in the following lemma.
+
+\begin{lem}\label{lem: norm bound on u hat}
+    Let $S$ be given by \eqref{eqn: partioned dataset}, $\fk{Dom}$ given in \eqref{eqn: domain}, and $\uh$ be defined in \eqref{eqn: u hat}. Let $\delta \in (0,1)$. Then there exists $C > 0$, such that $\fk{Dom} \subseteq \{u: \|u\| \leq C\}$, and with probability at least $1-\delta$, we have
+    $\uh \in \fk{Dom}$.
+\end{lem}
+
+\begin{proof}
+    Let $\us$ be given by \eqref{eqn: u star}. From the non-separability assumption on $(X,Z)$ given in \eqref{eqn: distribution conditions}, $\|\us\| < \infty$. From Lemma \ref{lem: learning theory on X,Z}, we have with probability at least $1-\delta$,
+    \begin{equation}\label{eqn: uh us gap in risk}
+        L(\uh) - L(\us) \leq \eps_{\fk{u}}.
+    \end{equation}
+    From the non-separability assumption on $(X,Z)$, we have $L(u) \to \infty$ as $\|u\| \to \infty$. Therefore $\fk{Dom}$ is bounded. Hence there exists $C > 0$ such that $\fk{Dom}\subseteq \{u: \|u\| \leq C\}$. This implies that with probability at least $1-\delta$, $\uh \in \fk{Dom}$.
+\end{proof}
+
+Next, we show that $L(u)$ is strongly convex on $\fk{Dom}$ in the following lemma.
+\begin{lem}\label{lem: Strongly convex} Let $\fk{Dom}$ be given in \eqref{eqn: domain}. Then the logistic risk $L(u)$ is strongly convex on $\fk{Dom}$
+\end{lem}
+
+\begin{proof}
+The Hessian of the logistic risk $L(u)$ is
+\begin{equation*}
+    \nabla^2 L(u) = \mathbb{E}_{(X,Z)}\left[ \sigma(Zs)\big(1 - \sigma(Zs)\big) (1, X)(1, X)^\top \right],
+\end{equation*}
+where  $s = u_c + u_x^\top X$.
+From \eqref{eqn: distribution conditions}, $\mathbb{E}[(1, X)(1, X)^\top] \succ 0$ (positive definite), and $\|(1,X)\|$ is bounded. Furthermore, by assumption, for all $u \in \fk{Dom}$, $\|u\|$ is bounded. Therefore $0 < \sigma(Zs)(1 - \sigma(Zs)) < \infty$. Thus, the Hessian is positive definite for all $u \in \fk{Dom}$, and $L(u)$ is strongly convex.
+\end{proof}
+
+Using this, we now show in the following lemma that $\ph(x)$ is close to $\ps(x)$ on average over the distribution of $X$. Specifically, we quantify the expected disagreement between the learned classifier $\ph: \cg{X} \rightarrow \cg{Z}$ and the optimal classifier $\ps: \cg{X} \rightarrow \cg{Z}$ under the joint distribution of $(X, Z)$.
+
+\begin{lem}\label{lem: difference between classifier from cg{X} to cg{Z}}
+    Let $\ph$ and $\ps$ be defined as in equation \eqref{eqn: phi star and phi hat} and let $S$ be defined in \eqref{eqn: partioned dataset}. Let $\delta \in (0,1)$. Then, with probability at least $1-\delta$, we have
+    \[
+        \mathbb{E}_X \Big[| \ph(X) - \ps(X) |\Big] \leq \cg{O}\Big(\Big(\frac{1}{\sqrt{\|\us\|^3}}\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big).
+    \]
+\end{lem}
+
+
+\begin{proof}
+    From \eqref{eqn: phi star and phi hat}, $\us$ and $\uh$ are the weights corresponding to $\ps(x)$ and $\ph(x)$. We first upper bound $\|\uh - \us\|$ and then use the Lipschitz property to upper bound $\mathbb{E}_{X,Z}[|\ph - \ps|]$.
+
+    \begin{klaim}
+    With probability at least $1-\delta$, we have
+\begin{equation*}
+    \|\uh - \us\| \leq \cg{O}\Big(\sqrt{\|\us\|}\Big(\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big).
+\end{equation*}
+\end{klaim}
+
+\begin{proof}[Proof of the claim]
+From Lemma \ref{lem: Strongly convex}, we have $L(u)$ is strongly convex on $\fk{Dom}$ given in \eqref{eqn: domain}. From Let $\alpha$ be the strong convexity parameter of $L$. Then from Definition \ref{defn: strong convex series}, we have with probability at least $1-\delta$,
+    \begin{equation}\label{eqn: strong convex for x z}
+        L(\uh) \geq L(\us) + \alpha\|\uh-\us\|^2.
+    \end{equation}
+From Lemma \ref{lem: learning theory on X,Z}, we have with probability at least $1-\delta$,
+\begin{equation}\label{eqn: bounded learning for uh}
+    L(\uh) - L(\us) \leq \eps_{\fk{u}} = \cg{O}\Big(\|\us\|\sqrt{\frac{\ln(1/\delta)}{m}}\Big).
+\end{equation}
+Substituting \eqref{eqn: bounded learning for uh} into \eqref{eqn: strong convex for x z}, we get
+\begin{equation*}
+    \alpha\|\uh-\us\|^2 \leq L(\uh) - L(\us) \leq \cg{O}\Big(\|\us\|\sqrt{\frac{\ln(1/\delta)}{m}}\Big).
+\end{equation*}
+Thus, with probability at least $1-\delta$,
+\begin{equation*}
+    \|\uh - \us\| \leq \cg{O}\Big(\sqrt{\|\us\|}\Big(\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big).
+\end{equation*}
+\end{proof}
+We now upper bound $\mathbb{E}_{X}\Big[|\ph(X) - \ps(X)|\Big]$. Let $\hat{s}(x) := \hat{u}_c + \hat{u}_x^\top x$ and $s^\star(x) := u^\star_c + {u^\star_x}^\top x$. Using the Lipschitz property of the sigmoid function, where both $x$ and $u$'s are treated as variables, with Lipschitz constant $K$, we have
+    \begin{equation*}
+    \begin{aligned}
+        |\sigma(\hat{s}(x)) - \sigma(s^\star(x))| &
+        \leq K\sqrt{1+\kappa^2}\|\uh - \us\|\leq \cg{O}\Big(\sqrt{\|\us\|}\Big(\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big),
+    \end{aligned}
+    \end{equation*}
+    where we have used the fact that $\|(1,x)\| \leq \sqrt{1+\kappa^2}$ from the assumptions that the random variable of $X$ is bounded almost surely (see \eqref{eqn: distribution conditions}).
+    This implies that if either
+    \begin{equation*}
+    \begin{aligned}
+        s^\star(x) > \cg{O}\Big(\sqrt{\|\us\|}\Big(\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big) \text{ or } s^\star(x) <  -\cg{O}\Big(\sqrt{\|\us\|}\Big(\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big),
+        \end{aligned}
+    \end{equation*}
+    holds, then $\ps(x) = \ph(x)$.
+We now show that the event $\cg{E} := \Big\{|s^\star(X)| \leq  \cg{O}\Big(\sqrt{\|\us\|}\Big(\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big)\Big\}$ has small probability.
+The set $\cg{E}$ can be rewritten as 
+\begin{equation*}
+\cg{E} = \Big\{x : -\cg{O}\Big(\sqrt{\|\us\|}\Big(\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big)  =: -\eps \leq  u^\star_c + {u^\star_x}^\top x \leq \eps := \cg{O}\Big(\sqrt{\|\us\|}\Big(\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big)\Big\}.
+\end{equation*} 
+This set lies between two hyperplanes. We can decompose $x = x_{\perp} + x_\parallel$, where $x_\parallel = \beta u^\star_x$ and $\langle x_\perp, u^\star_x \rangle = 0$. Thus, we get the simplification
+\begin{equation*}
+\cg{E}  = \Big\{x: x = x_\perp + x_\parallel, \langle x_\perp, u^\star_x \rangle = 0, \frac{-\eps - u^\star_c}{\|u^\star_x\|^2} \leq \beta \leq \frac{\eps - u^\star_c}{\|u^\star_x\|^2}\Big\},
+\end{equation*}
+Let $f(x) \equiv f(x_\perp,x_\parallel)$ be the probability density function of the random variable $X$. Then $\prob_X(\cg{E})$ is given by
+\begin{equation*}
+    \prob_X(\cg{E}) = \int_{(-\eps - u^\star_c)/\|u^\star_x\|^2}^{(\eps - u^\star_c)/\|u^\star_x\|^2} \int_{-\infty}^\infty f(x_\perp,x_\parallel) dx_\perp dx_\parallel = \int_{(-\eps - u^\star_c)/\|u^\star_x\|^2}^{(\eps - u^\star_c)/\|u^\star_x\|^2} g(x_\parallel) dx_{\parallel},
+\end{equation*}
+where $g(x_\parallel) = \int_{-\infty}^\infty f(x_\perp,x_\parallel)dx_\parallel$.
+Using the property of the probability density function from \eqref{eqn: distribution conditions}, we have
+$\int_{-\eps}^{\eps} g(x_\parallel) dx_{\parallel} \leq K\frac{\eps}{\|u^\star_x\|^2}$, for some $K > 0$.
+Therefore, with probability at least $1-2\delta$, we have
+\begin{equation*}
+\begin{aligned}
+   \prob_{X}\Big(\ph(X) \neq \ps(X)\Big) &\leq \prob_X(\cg{E}) \leq
+   \cg{O}\Big(\Big(\frac{1}{\sqrt{\|\us\|^3}}\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big),
+\end{aligned}
+\end{equation*}
+which implies
+\begin{equation*}
+\begin{aligned}
+   \mathbb{E}_X\Big[|\ph(X)-\ps(X)|\Big] &\leq
+   \cg{O}\Big(\Big(\frac{1}{\sqrt{\|\us\|^3}}\frac{\ln(1/\delta)}{m}\Big)^{\frac{1}{4}}\Big).
+\end{aligned}
+\end{equation*}
+This completes the proof.
+\end{proof}
+
+
+Finally, using the previous result, we now upper bound $\|\whl\|$ in  the following lemma.
+
+\begin{lem}\label{lem: whl bounding} Let $\|\whl\|$ be defined in \eqref{eqn: w hat lambda} and let $\delta \in (0,1)$. Then with probability at least $1-2\delta$, their exists a bounded subset of $\R^{d+2}$ such that $\|\whl\|$ lies in that subset for all $\lambda \in R^3_+$, i.e.,
+    \begin{equation*}
+        \sup_{(\lamc,\lamx\lamz)}\|\whl\| < \infty \text{ with probability } 1-2\delta.
+    \end{equation*}
+\end{lem}
+
+\begin{proof}
+    We first show that for fixed $w \in \R^{d+2}$, the values of $\rps(w)$ and $\rph(w)$ are close.
+    \begin{klaim} Let $\ps$ and $\ph$ be defined in \eqref{eqn: phi star and phi hat}. Then with probability at least $1-\delta$,
+        \begin{equation*}
+            |\rph(w) - \rps(w)| \leq \cg{O}\Big(\sqrt{\frac{\ln(1/\delta)}{m}}\Big).
+        \end{equation*}
+    \end{klaim}
+\begin{proof}[Proof of the Claim]
+From the Lipschitz property of $\ell(\cdot, \cdot, Y; w)$ with respect to its second argument (fixing $Y$), let $K_Y > 0$ denote the Lipschitz constant, which may depend on $Y$, and define $K := \max_{Y} K_Y$. Then,
+\begin{equation*}
+\begin{aligned}
+    |\rph(w) - \rps(w)| &= \Big|\mathbb{E}_{(X,Y)}\big[\ell(X, \ph(X), Y; w) - \ell(X, \ps(X), Y; w)\big]\Big| \\
+    &\leq \mathbb{E}_{(X,Y)}\big[|\ell(X, \ph(X), Y; w) - \ell(X, \ps(X), Y; w)|\big] \\
+    &\leq \mathbb{E}_Y\Big[\mathbb{E}_{X|Y}\big[K |\ph(X) - \ps(X)|\big]\Big] \leq \cg{O}\Big(\sqrt{\frac{\ln(1/\delta)}{m}}\Big),
+\end{aligned}
+\end{equation*}
+where the first inequality follows from Jensen's lemma, and the second inequality uses the Lipschitz property of $\ell(\cdot, \cdot, Y; w)$ and the last inequality follows from Lemma \ref{lem: difference between classifier from cg{X} to cg{Z}}.
+\end{proof}
+Let $D$ and $S$ be as defined in \eqref{eqn: partioned dataset} and let
+\begin{equation*}
+    H_1(D,S) := \{w: \rhph(w) \leq \ln(2)\}.
+\end{equation*}
+From Lemma \ref{lem: empirical and population risk gap}, we have with probability at least $1-\delta$,
+\begin{equation*}
+    |\rhph(w) - \rph(w)| \leq C\|w\|\sqrt{\frac{\ln(\ln(\|w\|) + \ln(1/\delta))}{n}},
+\end{equation*}
+for some $C > 0$.
+Let
+\begin{equation*}
+\begin{aligned}
+    H_2(S) &:= \Big\{w: \rph(w) + C\|w\|\sqrt{\frac{\ln(\ln(\|w\|) + \ln(1/\delta))}{n}}
+    \leq \ln(2)\Big\}.
+\end{aligned}
+\end{equation*}
+Thus with probability at least $1-\delta$ (keeping $S$ fixed), we have
+$H_1(S,D) \subseteq H_2(S).$
+Let
+\begin{equation*}
+\begin{aligned}
+    H &:= \Big\{w: \rps(w) + C\|w\|\sqrt{\frac{\ln(\ln(\|w\|) + \ln(1/\delta))}{n}}
+    &\leq \ln(2) + C'\sqrt{\frac{\ln(1/\delta)}{m}}\Big\}, \text{ where } C' > 0.
+    \end{aligned}
+\end{equation*}
+Using the Claim, with probability at least $1-\delta$, we have $H_2(S) \subseteq H$ and thus with probability at least at least $1-2\delta$, we have $H_1(D,S) \subseteq H$.
+Note that with probability at least $1-\delta$, $\whl \in H$ for all $\lambda$, as $\rhph(\whl) \leq \rhph(0) =\ln(2)$. Since $\rps(w) + C\|w\|\sqrt{\frac{\ln(\ln(\|w\|) + \ln(1/\delta))}{n}}$ is a continuous in $w$, and $H$ is a preimage of a closed set under a continuous map, it follows that $H$ is closed. Furthermore,
+$H$ is bounded because from the non-separability condition on $(X,Y,Z)$ given in \eqref{eqn: distribution conditions}, $\rps(w)$ is coercive, i.e., $\rps(w) \to \infty$ as $\|w\| \to \infty$. Thus
+$\sup H$ exists and therefore with probability at least $1-2\delta$, $\|\whl\|$ is uniformly bounded.
+\end{proof}
+
+To show $\msf{W} < \infty$ (defined in \eqref{eqn: uniform weight bound}), we also need to show that with high probability, $\|\wspsl\|$ and $\|\wsl\|$ lies in a bounded subset of $\R^{d+2}$. We start with $\|\wspsl\|$. The next lemma formalizes this.
+
+\begin{lem}\label{lem: wspsl bounding}
+    Let $\ps$ be defined in \eqref{eqn: phi star and phi hat} and let $W_{\ps}: (\R_{\geq 0} \cup \{\infty\})^3 \rightarrow \R_{\geq 0} \cup \{\infty\}$ be the function defined by
+    \begin{equation}
+        W_{\ps}(\lamc,\lamx,\lamz) := \|\ws_{\ps,\lambda}\|,
+    \end{equation}
+    where $\ws_{\ps,\lambda}$ is defined in \eqref{eqn: w star phi lambda} (with $\phi = \ps$).
+    Then for all $(\lamc,\lamx,\lamz) \in \R^3_+$, 
+    % $W_{\ps}(\lamc,\lamx,\lamz)$ lies in a bounded subset of $\R^{d+2}$.
+      \begin{equation*}
+        W_{\ps} := \sup_{(\lamc,\lamx,\lamz)}         W_{\ps}(\lamc,\lamx,\lamz) < \infty.
+    \end{equation*}
+
+\end{lem}
+
+\begin{proof}
+    Let $\lambda = (\lamc,\lamx,\lamz)$. From the non-separability assumption on $(X,Y,Z)$ given in \eqref{eqn: distribution conditions}, the population risk $\rps(w)$ is coercive, i.e.,
+    \begin{equation*}
+        \rps(w) \to \infty \quad \text{as } \|w\| \to \infty.
+    \end{equation*}
+    Therefore, for every $\lambda$, the regularized risk
+    \begin{equation*}
+    \rpsl(w) := \rps(w) + \lamc |w_c|^2 + \lamx |w_x|^2 + \lamz |w_z|^2
+    \end{equation*}
+    is also coercive, which ensures that the minimum is attained at $\wspsl$ with $\|\wspsl\| < \infty$.
+    Moreover, since $\wspsl$ minimizes $\rpsl$, we have
+    \begin{equation*}
+        \rpsl(\wspsl)  \leq \rpsl(0) = \ln 2 \text{ which implies } \rps(\wspsl) \leq \ln 2,
+    \end{equation*}
+    Define the set
+    \begin{equation*}
+         H := \{w \in \R^3 : \rps(w) \le \ln 2\}.
+    \end{equation*}
+    Then for all $\lambda$, we have $\wspsl \in H$.
+We now show that $H$ is compact. Since $\rps(w)$ is continuous in $w$, and $H$ is the preimage of a closed set under a continuous map, it follows that $H$ is closed. To show boundedness, suppose for contradiction that $H$ is unbounded. Then there exists a direction $w$ such that $tw \in H$ for all $t > 0$. But coercivity of $\rps$ implies that $\rps(tw) \to \infty$ as $t \to \infty$, contradicting the assumption that $tw \in H$. Hence, $H$ must be bounded. Since $\wspsl \in H$ for all $\lambda$, and $H$ is compact, we conclude  
+    \begin{equation*}
+        \sup_{\lambda} \|\wspsl\| \le \sup_{w \in H} \|w\| < \infty,
+       \end{equation*}
+which completes the proof.
+
+\end{proof}
+Arguing similarly as in Lemma \ref{lem: wspsl bounding}, we can also show that with high probability, $\|\wsl\|$ lies in a bounded subset of $\R^{d+2}$, as given in the next lemma.
+\begin{lem}\label{lem: other weights bounding}
+ Let $W: (\R_{\geq 0} \cup \{\infty\})^3 \rightarrow \R_{\geq 0} \cup \{\infty\}$ be the function defined by
+    \begin{equation}
+        W(\lamc,\lamx,\lamz) := \|\wsl\|,
+    \end{equation}
+    where $\wsl$ is defined in \eqref{eqn: w lambda star}.
+    Then for all $(\lamc,\lamx,\lamz) \in \R^3_+$,
+    % $W(\lamc,\lamx,\lamz)$ lies in a bounded subset of $\R^{d+2}$.
+    \begin{equation*}
+        W = \sup_{(\lamc,\lamx,\lamz)} W(\lamc,\lamx,\lamz) < \infty.
+    \end{equation*}
+\end{lem}
+Thus combining Lemma \ref{lem: wspsl bounding}, Lemma \ref{lem: other weights bounding}, Lemma \ref{lem: norm bound on u hat}, and Lemma \ref{lem: whl bounding}, we get $\mathsf{W} < \infty$ with high probability.
+
+\begin{prop}\label{cor: uniform bound on weights}
+Let $\mathsf{W} \in \R$ be defined as
+\begin{equation*}
+   \mathsf{W} := \max\{W, W_{\ps}, \sup_\lambda\|\whl\|,\|\ws\|,\|\us\|,\|\uh\|\}.
+\end{equation*}
+% \begin{equation*}
+%    \mathsf{W} := \sup_{\lambda \in \R^3_+}\{\|\wspsl\|,\|\whl\|,\|\wsl\|,\|\ws\|,\|\us\|,\|\uh\|\}.
+% \end{equation*} 
+
+and let $\delta \in (0,1)$. 
+Then with probability at least $1-2\delta$,
+    $\mathsf{W} < \infty$.
+\end{prop}
+

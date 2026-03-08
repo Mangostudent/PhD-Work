@@ -1,0 +1,39 @@
+\section{Algorithm}
+
+We present our learning algorithm for leveraging side information in classification problems with partitioned datasets. The procedure consists of two main stages:
+
+\begin{enumerate}
+    \item Learning the Feature to Side Information mapping:
+    Select a regularization parameter $\mu$ and learn a classifier $\uh \equiv \ph: \cg{X} \rightarrow \cg{Z}$ from the sample $S$ using logistic regression (thresholded at $0.5$). This classifier is used to impute the missing $Z$-values in the primary dataset $D$.
+
+    \item Learning the Feature and inputed Side Information to Label mapping with regularisation:
+    Choose regularization parameters $(\lamc, \lamx, \lamz)$. For each $(x_i, y_i) \in D$, impute $z_i = \ph(x_i)$. Train a regularized logistic regression model (thresholded at $0.5$) to learn a classifier $\whl: \cg{X} \times \cg{Z} \rightarrow \cg{Y}$.
+\end{enumerate}
+
+Among all regularization choices, only the selection of $\lambda_z$ is non-trivial and thus becomes the primary focus of both theoretical and empirical analysis in this work.
+
+\begin{algorithm}[htbp]
+    \caption{Learning with Side Information}
+    \label{alg: side information algorithm}
+    \SetAlgoLined
+    \DontPrintSemicolon
+    \KwData{
+        $D = \{(x_i, y_i)\}_{i=1}^n$,
+        $S = \{(x_j, z_j)\}_{j=1}^{m}$
+    }
+    \KwResult{Hypothesis $\whl$}
+    \BlankLine
+    \tcp{Step 1: Select the optimal regularization parameter $\mu = \frac{c}{\sqrt{m}}$ through validation, where $c$ is a constant chosen to minimize side information prediction error on the validation set.}
+    \tcp{Step 2: Learn $\uh$ by minimizing the regularized empirical risk over $S$:}
+    \[\uh := \arg\min_{u \in \R^{d+1}} \; \hat{L}(u) + \mu\|u\|^2\]\\
+    \tcp{Step 3: For each $(x_i, y_i) \in D$, impute $z_i = \ph(x_i)$.}
+    \tcp{Step 4: Select regularization parameters $(\lambda_c, \lambda_x, \lambda_z)$ for the primary classifier, where $\lambda_c = \lambda_x =\frac{1}{\sqrt{n}}$.}
+    \tcp{Step 5: Learn $\whl$ by minimizing the regularized empirical risk over $D$ with imputed $z_i$:}
+    \begin{equation*}
+        \begin{aligned}
+            \whl &:= \arg\min_{w \in \mathbb{R}^{d+2}} \rh^{\ph}(w) + \lambda_c |w_c|^2 + \lambda_x \|w_x\|^2 + \lambda_z |w_z|^2.
+        \end{aligned}
+    \end{equation*}\\
+    \tcp{Step 6: At test time, given $(x, z)$ (where $z$ is observed and not imputed from $x$ using the side information model), predict $\hat{y} = 1$ if $\whlc + \whlx^\top x + \whlz z \geq 0$, else $\hat{y} = -1$.}
+\end{algorithm}
+   

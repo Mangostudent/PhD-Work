@@ -1,0 +1,319 @@
+\subsection{Main Result: Upper Bound on Excess Risk}
+
+We now state our main theorem, which provides an explicit upper bound on the excess risk as a function of the sample sizes $m$ and $n$, relevant distribution-dependent quantities, and the choice of regularizer $\lamz$.
+
+Let
+\begin{equation}\label{eqn: uniform weight bound}
+    \mathsf{W} := \max\{\sup_\lambda\|\wspsl\|,\sup_\lambda\|\whl\|,\sup_\lambda\|\wsl\|,\|\ws\|,\|\us\|,\|\uh\|\}.
+\end{equation}
+We show in Proposition \ref{cor: uniform bound on weights} that with high probability, $\mathsf{W} < \infty$.
+
+
+\begin{thm}\label{thm: main theorem}
+    Let $\us$ and $\vs$ be as defined in \eqref{eqn: u star} and \eqref{eqn: v star}, respectively. Let $\ws$, $\wsn$, and $\mathsf{W}$ be as defined in \eqref{eqn: w star}, \eqref{eqn: w lambda star} and \eqref{eqn: uniform weight bound} respetively.
+Consider the partitioned training datasets $D = \{(x_i, y_i)\}_{i=1}^n$ and $S = \{(x_j, z_j)\}_{j=1}^{m}$, as defined in \eqref{eqn: partioned dataset}, and let $\delta > 0$. Take the regularizer $\lambda$ as
+\begin{equation*}
+    \lambda = \left(\frac{1}{\sqrt{n}}, \frac{1}{\sqrt{n}}, \lamz\right) \in \mathbb{R}^{3},
+\end{equation*}
+where $\lamz \geq \frac{1}{\sqrt{n}}$, controls the regularization strength for the side information component.
+Then, with probability at least $1-4\delta$, the following inequality holds.
+   \begin{equation}\label{eqn: main equation}
+        \begin{aligned}
+            R(\whl) - R(\ws) &\leq \frac{C_1}{\sqrt{n}} +
+            \min\Bigg\{\frac{\lamz|\wsz|^2}{T(\vs) - R(\ws)},
+            1+\frac{\lamz |\wslz|^2}{T(\vs) - R(\ws)}\Bigg\}\Big(T(\vs) - R(\ws)\Big) \\
+            &+
+            \min\Bigg\{\frac{\ln(2)}{\lamz},\mathsf{W}\Bigg\}\ln(4)\Bigg(\frac{C_2}{\sqrt{m}} + L(\us)\Bigg),
+        \end{aligned}  
+    \end{equation}
+  where $C_1 = \mathcal{O}\left( W^2 + \kappa W \sqrt{\ln(1/\delta)} + \kappa^2 \ln(1/\delta) \right)$ and $C_2 = \mathcal{O}\left( \|u^*\| \sqrt{\ln(1/\delta)} \right)$ are constants.\footnote{The consequence of the assmption $m < n$ is that the term $1/\sqrt{m}$ on the RHS does not get absorbed in the $1/\sqrt{n}$.}
+\end{thm}
+
+
+\begin{proof}[Proof Outline]
+To analyze the excess risk, we decompose the left-hand side of \eqref{eqn: main equation} into four terms, each capturing a distinct source of error:
+\begin{equation*}
+\begin{aligned}
+    R(\whl) - R(\ws) =\;&
+    \underbrace{R(\whl) - \rph(\whl)}_{\mathrm{(A)}} +
+    \underbrace{\rph(\whl) - \rph(\wsl)}_{\mathrm{(B)}} \\
+    &+ \underbrace{\rph(\wsl) - R(\wsl)}_{\mathrm{(C)}} +
+    \underbrace{R(\wsl) - R(\ws)}_{\mathrm{(D)}}.
+\end{aligned}
+\end{equation*}
+
+\noindent The first and third terms, (A) and (C), quantify the estimation error resulting from the use of the imputed side information $\ph$. This error depends on the complexity of the relationship between $(X, Z)$ quantified by $L(\us)$, the sample size $m$ of the side information dataset $S$, and the regularization parameter $\lamz$, which determines the extent to which the model relies on the imputed side information. These terms contribute the following to the
+upper bound:
+\begin{equation*}
+    \min\Bigg( \frac{\ln(2)}{\lamz},\ \mathsf{W} \Bigg)
+    \times
+    \ln(4)\Bigg( \frac{C_2}{\sqrt{m}} + L(\us) \Bigg).
+\end{equation*}
+
+\noindent The second term, (B), corresponds to the estimation error in the standard supervised learning setting for the primary classifier, which results in the contribution $    \frac{C_1}{\sqrt{n}}$
+to the upper bound in \eqref{eqn: main equation}.
+
+\noindent Finally, the fourth term, (D), captures the gap between the risk
+of the optimal regularized classifier and the risk of the optimal classifier. This term contributes
+\begin{equation*}
+\begin{aligned}
+    &\min\left\{\frac{\lamz |\ws_z|^2}{T(\vs) - R(\ws)},\
+    1 + \frac{\lamz |\ws_{\lamz}|^2}{T(\vs) - R(\ws)}\right\}\left(T(\vs) - R(\ws)\right)
+\end{aligned}
+\end{equation*}
+to the upper bound in \eqref{eqn: main equation}.
+Note that $\vs$ coincides with $\wsl$ when $\lamz = \infty$, so this term quantifies the proportion of the worst-case gap $T(\vs) - R(\ws)$ (with the worst at $\lamz = \infty$) that is realized, depending on the choice of the regularizer $\lamz$.
+\end{proof}
+
+\subsubsection{Interpretation of the Excess Risk Bound}
+
+To provide intuition for the upper bound in Theorem \ref{thm: main theorem}, consider the university admission scenario. Here, the feature $x \in \R^d$ represents a candidate's academic scores, the side information $z$ is the admission decision of a secondary university, and the label $y$ is the decision of the primary university. The excess risk $R(\hat{w}_{\lambda}) - R(w^*)$ represents the performance gap between our learned classifier $\hat{w}_{\lambda}$ and the benchmark optimal classifier $w^*$, which has access to the true joint distribution of $(X, Y, Z)$. This risk is controlled by the regularization parameter $\lambda_z$ and consists of three distinct components.
+
+The first term, $\mathcal{O}(1/\sqrt{n})$, is the standard estimation error associated with the sample size $n$ of the primary university's dataset. This error is unavoidable and decays as more primary data becomes available.
+
+The second term captures the potential gain from incorporating $z$. It is proportional to the gap $T(v^*) - R(w^*)$, which measures how much knowing the true side information improves prediction accuracy over using features $x$ alone. This term is controlled linearly by $\lambda_z$. If $z$ carries meaningful information (i.e., the gap is significant), the bound is lowered by reducing $\lambda_z$, which encourages the model to assign larger weight to the side information.
+
+The third term quantifies the error introduced by imputing $z$ from $x$ using the secondary university sample. It depends on the sample size $m$ of the secondary university's data and the optimal prediction error $L(u^*)$, which reflects the complexity of the relationship between features and side information. This term is inversely controlled by $\lambda_z$ (scaling as $1/\lambda_z$). If the features cannot accurately predict $z$, the imputed values are noisy, and a large $\lambda_z$ is required to ignore the unreliable imputed data.
+
+The interplay between the second and third terms creates a tension in selecting $\lambda_z$. If $z$ is highly informative for predicting $y$ (large gap $T(v^*) - R(w^*)$), a smaller $\lambda_z$ is desirable to leverage this information. However, if $x$ poorly predicts $z$ (large $L(u^*)$), a larger $\lambda_z$ is necessary to mitigate the noise from imputed side information. The regularizer $\lambda_z$ must balance these two competing terms. In this case, the optimal $\lambda_z$ must find a balance to extract the signal in $z$ while damping the noise from imperfect imputation. In most other cases, where $z$ is either useless or perfectly predictable, the terms do not conflict, and the choice of $\lambda_z$ becomes straightforward. As we will show in subsequent sections, despite this tension, the optimal $\lambda_z$ often exhibits bang-bang behavior, taking on extreme values (either very large or very small) depending on which factor is more limiting: the noise introduced by imperfectly imputed $z$, or the dependence of $y$ on $z$. This distinction is determined by the underlying distributional properties.
+
+\subsubsection{Retrospective Regularizer Selection}
+
+Theorem \ref{thm: main theorem} provides an explicit upper bound on the excess risk as a function of the regularization parameter $\lamz$. This upper bound holds for all values of $\lamz$ and all distributions. We are interested in determining the value of $\lamz$ that minimizes this upper bound. Since $\lamz$ is a hyperparameter, its optimal value depends on the underlying population distribution. Under certain assumptions, we show that the choice for $\lamz$ may be restricted to either $0$ or $\infty$.
+To facilitate this analysis, we work with a relaxed version of the upper bound \eqref{eqn: main equation} from Theorem \ref{thm: main theorem}. Specifically, by applying Lemma \ref{lem: bound weights in terms of lambda} (given in the Appendix), we have $\lamz |\wslz|^2 \leq \ln(2)$, so we obtain the following relaxed bound.
+
+
+
+
+\begin{equation}\label{eqn: weaker main equation}
+    \begin{aligned}
+        R(\whl) - R(\ws) &\leq \frac{C_1}{\sqrt{n}} +
+        \min\Big\{\frac{\lamz|\wsz|^2}{T(\vs) - R(\ws)},1+\frac{\ln(2)}{T(\vs) - R(\ws)}\Big\}\Big(T(\vs) - R(\ws)\Big) \\
+        &+
+        \min\Big\{\frac{\ln(2)}{\lamz},\mathsf{W}\Big\}\ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big),
+    \end{aligned}
+\end{equation}
+where $C_1 = \mathcal{O}\left( W^2 + \kappa W \sqrt{\ln(1/\delta)} + \kappa^2 \ln(1/\delta) \right)$ and $C_2 = \mathcal{O}\left( \|u^*\| \sqrt{\ln(1/\delta)} \right)$ are constants. This form makes the $\lamz$ dependence on excess risk explicit, enabling a more tractable analysis of its optimal value.
+
+Let
+\begin{equation*}\label{eqn: Optimal Lambda}
+    \begin{aligned}
+            \Lambda_z^\star :=& \arg\min_{\lamz}        \frac{C_1}{\sqrt{n}} +
+        \min\Big\{\frac{\lamz|\wsz|^2}{T(\vs) - R(\ws)}, 1+\frac{\ln(2)}{T(\vs) - R(\ws)}\Big\}\Big(T(\vs) - R(\ws)\Big) \\
+        &+
+        \min\Big\{\frac{\ln(2)}{\lamz},\mathsf{W}\Big\}\ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big),
+    \end{aligned}
+\end{equation*}
+be the optimal (population distribution dependent) regularizer that minimizes the upper bound on the excess risk.
+For a given value of $\Lambda_z^\star$, three disjoint and exhaustive cases arise, each corresponding to a different regime for the optimal regularizer:
+\begin{itemize}
+    \item \textbf{Case (a):}
+    \begin{equation*}
+        \frac{\Lambda_z^\star|\wsz|^2}{T(\vs) - R(\ws)} \geq 1+\frac{\ln(2)}{T(\vs) - R(\ws)}.
+    \end{equation*}
+    This is the regime considered in Corollary \ref{cor: consequence of main theorem 1}.
+    \item \textbf{Case (b):}     \begin{equation*}
+        \frac{\Lambda_z^\star|\wsz|^2}{T(\vs) - R(\ws)} < 1+\frac{\ln(2)}{T(\vs) - R(\ws)}.
+    \end{equation*} and
+    \begin{equation*}
+        \frac{\ln(2)}{\Lambda_z^\star} \geq \mathsf{W}.
+    \end{equation*} This is the regime considered in Corollary \ref{cor: consequence of main theorem 2}.
+    \item \textbf{Case (c):}
+    \begin{equation*}
+        \frac{\Lambda_z^\star|\wsz|^2}{T(\vs) - R(\ws)} < 1+\frac{\ln(2)}{T(\vs) - R(\ws)}.
+    \end{equation*} and
+    \begin{equation*}
+        \frac{\ln(2)}{\Lambda_z^\star} < \mathsf{W}.
+    \end{equation*}
+    This is the regime considered in Corollary \ref{cor: consequence of main theorem 3}.
+\end{itemize}
+
+Each case is formalized in the following corollaries, which provide guidance for selecting the regularization parameter in different regimes.
+
+The first corollary shows that if $\Lambda_z^\star$ is sufficiently large, then it is $\Lambda_z^\star = \infty$.
+
+\begin{corollary}[Regime I: Large Regularizer]\label{cor: consequence of main theorem 1}
+Suppose
+\begin{equation*}
+    \frac{\Lambda_z^\star|\ws_z|^2}{T(\vs) - R(\ws)} \geq 1+\frac{\ln(2)}{T(\vs) - R(\ws)}.
+\end{equation*}
+Then $\Lambda_z^\star = \infty$ and
+    \begin{equation*}
+        R(\whl) - R(\ws) = \frac{C_1}{\sqrt{n}} + T(\vs) - R(\ws).
+    \end{equation*}
+\end{corollary}
+
+\begin{proof}
+Consider the condition
+\begin{equation*}
+    \frac{\Lambda_z^\star |\ws_z|^2}{T(\vs) - R(\ws)} \geq 1 + \frac{\ln(2)}{T(\vs) - R(\ws)}.
+\end{equation*}
+Under this condition, the minimum in the second term of the upper bound in \eqref{eqn: weaker main equation} is achieved by the second argument.
+
+Now consider $\lamz$ such that $\lamz > \Lambda_z^\star$. This choice does not increase the contribution of the second term, as
+\begin{equation*}
+    \frac{\lamz |\ws_z|^2}{T(\vs) - R(\ws)} \geq \frac{\Lambda_z^\star |\ws_z|^2}{T(\vs) - R(\ws)} \geq 1 + \frac{\ln(2)}{T(\vs) - R(\ws)},
+\end{equation*}
+but it decreases the contribution of the third term in \eqref{eqn: weaker main equation} to $0$, as the first argument of the third term goes to zero. This decreases the value of the overall upper bound.
+
+However, since $\Lambda_z^\star$ is assumed to be optimal, increasing $\lamz$ beyond it should not reduce the upper bound. Thus, $\Lambda_z^\star = \infty$. Substituting this value back into \eqref{eqn: main equation} and noting that $\lamz |\wslz|^2 \to 0$ as $\lamz \to \infty$, we obtain
+    \begin{equation*}
+        R(\whl) - R(\ws) = \frac{C_1}{\sqrt{n}} + T(\vs) - R(\ws).
+    \end{equation*}
+\end{proof}
+
+The second corollary establishes that if $\Lambda_z^\star$ is sufficiently small, then the optimal value is $\Lambda_z^\star = \frac{1}{\sqrt{n}}$.
+
+\begin{corollary}[Regime II: Small Regularizer]\label{cor: consequence of main theorem 2}
+Suppose
+    \begin{equation*}
+        \frac{\Lambda_z^\star|\wsz|^2}{T(\vs) - R(\ws)} < 1+\frac{\ln(2)}{T(\vs) - R(\ws)}.
+    \end{equation*}
+and
+    \begin{equation*}
+        \frac{\ln(2)}{\Lambda_z^\star} \geq \mathsf{W}.
+    \end{equation*}
+Then $\Lambda_z^\star = \frac{1}{\sqrt{n}}$ and
+    \begin{equation*}
+    \begin{aligned}
+        R(\whl) - R(\ws) &\leq \frac{C_1}{\sqrt{n}} + \mathsf{W}\ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big).
+        \end{aligned}
+    \end{equation*}
+\end{corollary}
+
+\begin{proof}
+Consider the condition
+    \begin{equation*}
+        \frac{\Lambda_z^\star|\wsz|^2}{T(\vs) - R(\ws)} < 1+\frac{\ln(2)}{T(\vs) - R(\ws)}.
+    \end{equation*}
+and
+    \begin{equation*}
+        \frac{\ln(2)}{\Lambda_z^\star} \geq \mathsf{W}.
+    \end{equation*}
+Under these conditions, the minimum in the second term and the third term of the upper bound in \eqref{eqn: weaker main equation} is achieved by the first argument, and the second argument respectively.
+
+Let $\lamz$ be such that $\lamz < \Lambda_z^\star$.
+This choice does not increase the contribution of the third term, as \begin{equation*}
+        \frac{\ln(2)}{\lamz} \geq \frac{\ln(2)}{\Lambda_z^\star} \geq \mathsf{W},
+    \end{equation*}
+but it decreases the contribution of the second term as
+    \begin{equation*}
+        \frac{\lamz|\wsz|^2}{T(\vs) - R(\ws)}< \frac{\Lambda_z^\star|\wsz|^2}{T(\vs) - R(\ws)} < 1+\frac{\ln(2)}{T(\vs) - R(\ws)}.
+    \end{equation*}
+This decreases the value of the overall upper bound.
+
+However, since $\Lambda_z^\star$ is assumed to be optimal, decreasing $\lamz$ below it should not reduce the upper bound. Thus, $\Lambda_z^\star = \frac{1}{\sqrt{n}}$, the minimum allowed value of $\lamz$. Substituting this value back into \eqref{eqn: main equation}, we obtain
+    \begin{equation*}
+    \begin{aligned}
+        R(\whl) - R(\ws) &\leq \frac{C_1}{\sqrt{n}} + \mathsf{W}\ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big).
+        \end{aligned}
+    \end{equation*}
+
+\end{proof}
+
+The third corollary shows that if $\Lambda_z^\star$ is neither a big value nor a small value, then it scales with the size of side information dataset $S$  as $\Lambda_z^\star = \mathcal{O}(m^{-1/4})$.
+
+\begin{corollary}[Regime III: Intermediate Regularizer]\label{cor: consequence of main theorem 3}
+Suppose
+    \begin{equation*}
+        \begin{aligned}
+            \frac{\Lambda_z^\star|\wsz|^2}{T(\vs) - R(\ws)} &< 1+\frac{\ln(2)}{T(\vs) - R(\ws)} \quad \text{and} \\
+            \frac{\ln(2)}{\Lambda_z^\star} &< \mathsf{W}.
+        \end{aligned}
+    \end{equation*}
+Then the optimal regularizer satisfies
+ \begin{equation*}
+        \Lambda_z^\star = \frac{\sqrt{2(\ln(2))^2\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big)}}{|\wsz|},
+    \end{equation*}
+and the excess risk is bounded by
+    \begin{equation*}
+    \begin{aligned}
+        R(\whl) - R(\ws) &\leq \frac{C_1}{\sqrt{n}} + 2|\wsz|\sqrt{2(\ln(2))^2\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big)}.
+    \end{aligned}
+    \end{equation*}
+\end{corollary}
+
+\begin{proof}
+Suppose the following two conditions hold:
+\begin{equation*}
+    \begin{aligned}
+        \frac{\Lambda_z^\star |\wsz|^2}{T(\vs) - R(\ws)} &\leq 1 + \frac{\Lambda_z^\star |\wslz|^2}{T(\vs) - R(\ws)}, \\
+        \frac{\ln(2)}{\Lambda_z^\star} &\leq \mathsf{W}.
+    \end{aligned}
+\end{equation*}
+Under these conditions, the minimum in both the second and third terms of the upper bound in \eqref{eqn: weaker main equation} is achieved by the first argument. Since the upper bound is minimized at $\Lambda_z^\star$, the derivative with respect to $\lambda_z$ must vanish at this point. This gives
+\begin{equation*}
+    \frac{|\wsz|^2}{T(\vs) - R(\ws)} - \frac{\ln(2)}{\lamz^2} \ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big)\Bigg|_{\lamz = \Lambda_z^\star} = 0.
+\end{equation*}
+Solving this yields
+\begin{equation*}
+    \Lambda_z^\star = \frac{\sqrt{2(\ln(2))^2\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big)}}{|\wsz|},
+\end{equation*}
+Substituting this value back into \eqref{eqn: main equation} gives
+\begin{equation*}
+    R(\whl) - R(\ws) \leq \frac{C_1}{\sqrt{n}} + 2|\wsz| \sqrt{ 2(\ln(2))^2 \left( \frac{C_2}{\sqrt{m}} + L(\us) \right) }.
+\end{equation*}
+\end{proof}
+
+We now show that under some suitable assumption, the Regime III considered in Corollary \ref{cor: consequence of main theorem 3} does not arise.
+
+\begin{corollary}
+Let $n$ and $m$ be sufficiently large, and let $L(\us) \leq 1$. Then the optimal value of $\Lambda^\star_z$ is either $\infty$ or $0$.
+\end{corollary}
+
+\begin{proof}
+If
+\begin{equation*}
+    \frac{\Lambda_z^\star|\ws_z|^2}{T(\vs) - R(\ws)} \geq 1+\frac{\ln(2)}{T(\vs) - R(\ws)},
+\end{equation*}
+then from Corollary \ref{cor: consequence of main theorem 1}, we have $\Lambda^\star_z = \infty$.
+If
+\begin{equation*}
+    \frac{\Lambda_z^\star|\ws_z|^2}{T(\vs) - R(\ws)} < 1+\frac{\ln(2)}{T(\vs) - R(\ws)},
+\end{equation*}
+then, according to Corollaries \ref{cor: consequence of main theorem 2} and \ref{cor: consequence of main theorem 3}, there are two possible values for the optimal regularizer.
+If $\Lambda^\star_z = \frac{1}{\sqrt{n}} \to 0$ (Corollary \ref{cor: consequence of main theorem 2}), the upper bound on the excess risk is
+\begin{equation}\label{eqn: upperbound cor 2}
+\begin{aligned}
+    R(\whl) - R(\ws) &\leq \frac{C_1}{\sqrt{n}} + \mathsf{W}\ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big)
+\end{aligned}
+\end{equation}
+and if $\Lambda_z^\star = \frac{\sqrt{2(\ln(2))^2\left(\frac{C_2}{\sqrt{m}} +L(\us)\right)}}{|\ws_z|}$(Corollary \ref{cor: consequence of main theorem 3}), the upper bound on the excess risk is
+\begin{equation}\label{eqn: upperbound cor 3}
+    R(\whl) - R(\ws) \leq \frac{C_1}{\sqrt{n}} + 2|\ws_z|\sqrt{2(\ln(2))^2\Big(\frac{C_2}{\sqrt{m}} +L(\us)\Big)}.
+\end{equation}
+The bound in \eqref{eqn: upperbound cor 2} scales as $\mathcal{O}\left(\frac{1}{\sqrt{m}} + \ln(\us)\right)$, whereas the bound in \eqref{eqn: upperbound cor 3} scales as $\mathcal{O}\left(\frac{1}{m^{1/4}} + \sqrt{\ln(\us)}\right)$. Thus, for sufficiently large $n$ and $m$ and $L(\us) \leq 1$, the bound in \eqref{eqn: upperbound cor 2} is smaller, implying Regime III considered in Corollary \ref{cor: consequence of main theorem 3} will never occur, and hence $\Lambda^\star_z = 0$.
+
+
+
+\end{proof}
+
+
+% \subsubsection{Examples Where Upper Bound Is Asymptotically Tight}
+
+% We now provide an example of a distribution for which the upper bound in Theorem \ref{thm: main theorem} is asymptotically tight.
+
+% \begin{eg}
+% Let $(X,Y)$ be any distribution on $\cg{X} \times \cg{Y}$. Now consider the distribution $(X,Y,Z)$ defined by:
+% \begin{equation*}
+%     \begin{array}{|c|c|}
+%         \hline
+%         \text{Event} & \text{Probability} \\
+%         \hline
+%         \prob(Z=+1|X=x,Y=y) & 1\\
+%         \hline
+%         \prob(Z=-1|X=x,Y=y) & 0 \\
+%         \hline
+%     \end{array}
+% \end{equation*}
+% From the structure of this distribution, it follows that $\ws = \vs$ (and hence $R(\ws) = T(\vs)$). Furthermore, by setting $\lamz = \infty$ and applying Theorem \ref{thm: main theorem}, we obtain:
+% \begin{equation*}
+%     \begin{aligned}
+%         R(\whl) - R(\ws) &= L(\vh) - T(\vs)\\
+%         &\leq \cg{O}\left(\frac{1}{\sqrt{n}}\right) + T(\vs) - R(\ws)\\
+%         &= \cg{O}\left(\frac{1}{\sqrt{n}}\right).
+%     \end{aligned}
+% \end{equation*}
+
+% This demonstrates that the upper bound in Theorem \ref{thm: main theorem} is asymptotically tight for this distribution.
+% \end{eg}

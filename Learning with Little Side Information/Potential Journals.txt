@@ -1,0 +1,13 @@
+Journal Name                                  | Average Time to First Decision (Months)      | Page Limit | Reputation Metric
+ 
+Electronic Journal of Statistics              | 1-2                                          | None       | Q1 
+Machine Learning (Springer)                   | <1 (median 5 days to first)                  | None       | Q1 
+Statistica Sinica                             | 1-2 (median ~1 month)                        | 40         | Q1 
+SIAM Journal on Mathematics of Data Science   | 4-6                                          | None       | Q1 
+Mathematical Statistics and Learning          | 18-20 (full publication time; reviews ~6-12) | None       | Q1 
+Bernoulli                                     | 4-6                                          | 25         | Q1 
+IEEE Transactions on Pattern Analysis         | 6-7                                          | None       | Q1 
+and Machine Intelligence 
+Journal of the American                       | 2-3 (67 days avg.)                           | ~20-30     | Q1 
+Statistical Association
+Annals of Statistics                          | 3-6                                          | ~30        | Q1 

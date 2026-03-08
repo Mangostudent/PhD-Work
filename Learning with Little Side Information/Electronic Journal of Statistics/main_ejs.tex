@@ -1,0 +1,392 @@
+\documentclass[ejs]{imsart}
+\RequirePackage[OT1]{fontenc}
+\RequirePackage{amsthm,amsmath,amssymb}
+\RequirePackage[numbers]{natbib}
+\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{algorithm2e}
+\usepackage{listings}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{etoolbox}
+\pgfplotsset{compat=1.18}
+\usepackage{soul}
+\usepackage{todonotes}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{lineno}
+\usepackage{placeins}
+
+\startlocaldefs
+\numberwithin{equation}{section}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}[thm]
+\newtheorem{corollary}{Corollary}[thm]
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{eg}{Example}[section]
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Subcase}[case]
+\AtBeginEnvironment{proof}{\setcounter{case}{0}}
+\newtheorem{claim}{Claim}
+\newtheorem*{klaim}{Claim}
+% Abbreviations
+\newcommand{\etal}{et al.}
+\newcommand{\ie}{i.e.,}
+\newcommand{\wrt}{w.r.t.}
+\newcommand{\etc}{etc.}
+\newcommand{\cf}{cf.}
+\newcommand{\iid}{i.i.d.}
+% Add more abbreviation as needed
+
+
+% Math symbols and operators
+\newcommand{\vect}[1]{\mathbf{#1}} % Vector notation (bold)
+\newcommand{\mat}[1]{\mathbf{#1}}  % Matrix notation (bold)
+\providecommand{\R}{}\renewcommand{\R}{\mathbb{R}} % Real numbers
+\providecommand{\N}{}\renewcommand{\N}{\mathbb{N}} % Natural numbers
+\providecommand{\C}{}\renewcommand{\C}{\mathbb{C}} % Complex numbers
+\providecommand{\Z}{}\renewcommand{\Z}{\mathbb{Z}} % Integers
+\providecommand{\Q}{}\renewcommand{\Q}{\mathbb{Q}} % Rational numbers
+\newcommand{\eps}{\epsilon} % epsilon
+\newcommand{\dlt}{\delta} % delta
+\newcommand{\argmax}{\operatornamewithlimits{argmax}} % argmax operator
+\newcommand{\argmin}{\operatornamewithlimits{argmin}} % argmin operator
+% Add more operator and symbols as needed
+
+
+% Probability theory
+\newcommand{\prob}{\mathbb{P}} % Probability notation
+\providecommand{\E}{}\renewcommand{\E}{\mathbb{E}} % Expectation operator
+\newcommand{\event}{\mathcal{E}} % Event notation
+% Add more from probability theory as needed
+
+
+% Learning theory
+\newcommand{\loss}{\mathcal{L}} % Loss function
+\newcommand{\data}{\mathcal{D}} % Data set
+\newcommand{\hypothesis}{\mathcal{F}} % Hypothesis class
+% Add more from learning theory as needed
+
+
+% Game theory
+\newcommand{\neqb}{\text{Nash Equilibrium}} % Nash Equilibrium
+\newcommand{\seqb}{\text{Stackelberg Equilibrium}} % Stackelberg Equilibrium
+% Add more from game theory as needed
+
+
+% Scripts
+\newcommand{\sr}[1]{\mathscr{#1}} % Script letters
+\newcommand{\cg}[1]{\mathcal{#1}} % Calligraphic letterss
+\newcommand{\bb}[1]{\mathbb{#1}} % Blackboard bold letters
+\newcommand{\fk}[1]{\mathfrak{#1}} % Fraktur letters
+\newcommand{\mrm}[1]{\mathrm{#1}} % Roman letters
+\newcommand{\msf}[1]{\mathsf{#1}} % Serif
+
+
+
+% Add more scripts as needed
+
+% Topic specific packages and shortcuts
+
+%Risks
+\newcommand{\lamx}{\lambda_x}
+\newcommand{\lamz}{\lambda_z}
+\newcommand{\lamc}{\lambda_c}
+
+\newcommand{\blamzs}{\mathbf{\Lambda_z}^\star}
+\newcommand{\lams}{\lambda^\star}
+\newcommand{\lamsx}{\lambda^\star_x}
+\newcommand{\lamsz}{\lambda^\star_z}
+\newcommand{\lamsc}{\lambda^\star_c}
+
+% \newcommand{\nuc}{\nu_c}
+% \newcommand{\nux}{\nu_x}
+% \newcommand{\nuz}{\nu_z}
+
+\newcommand{\nuc}{\lambda_c}
+\newcommand{\nux}{\lambda_x}
+\newcommand{\nuz}{\lambda_z}
+
+\newcommand{\rh}{\hat{R}}
+\newcommand{\rl}{R_\lambda}
+\newcommand{\rhph}{\hat{R}^{\hat{\phi}}}
+\newcommand{\rhphl}{\hat{R}^{\hat{\phi}}_\lambda}
+
+
+
+\newcommand{\rn}{R_\lambda}
+
+\newcommand{\rph}{R^{\hat{\phi}}}
+\newcommand{\rphl}{R^{\hat{\phi}}_\lambda}
+\newcommand{\rpl}{R^{\phi}_\lambda}
+
+
+%
+\newcommand{\rps}{R^{\phi^\star}}
+\newcommand{\rpsl}{R^{\phi^\star}_\lambda}
+
+% \newcommand{\rpse}{R^{\phi^\star}_\eta}
+\newcommand{\rpse}{R^{\phi^\star}_\lambda}
+
+
+\newcommand{\rp}{R^{\phi}}
+\newcommand{\cgl}{\mathcal{L}}
+\newcommand{\cglh}{\hat{\mathcal{L}}}
+%Weights
+
+%%w^\star
+\newcommand{\ws}{w^\star}
+\newcommand{\wsc}{w^\star_c}
+\newcommand{\wsx}{w^\star_x}
+\newcommand{\wsz}{w^\star_z}
+
+%
+%%\hat{w}
+\newcommand{\whl}{\hat{w}_\lambda}
+\newcommand{\whlc}{\hat{w}_{c,\lambda}}
+\newcommand{\whlx}{\hat{w}_{\lambda,x}}
+\newcommand{\whlz}{\hat{w}_{\lambda,z}}
+
+%%w^\star_\nu
+% \newcommand{\wsn}{w^\star_{\nu}}
+% \newcommand{\wsnc}{w^\star_{{\nu,c}}}
+% \newcommand{\wsnx}{w^\star_{{\nu,x}}}
+% \newcommand{\wsnz}{w^\star_{{\nu,z}}}
+
+\newcommand{\wsn}{w^\star_{\lambda}}
+\newcommand{\wsnc}{w^\star_{{\lambda,c}}}
+\newcommand{\wsnx}{w^\star_{{\lambda,x}}}
+\newcommand{\wsnz}{w^\star_{{\lambda,z}}}
+
+%%w^\star_\lambda
+\newcommand{\wsl}{w^\star_{\lambda}}
+\newcommand{\wslc}{w^\star_{{\lambda,c}}}
+\newcommand{\wslx}{w^\star_{{\lambda,x}}}
+\newcommand{\wslz}{w^\star_{{\lambda,z}}}
+
+%w^\star_{\phi^\star,\eta}
+% \newcommand{\wsps}{w^\star_{\phi^{\star}}}
+% \newcommand{\wspse}{w^\star_{\phi^{\star},\eta}}
+% \newcommand{\wspsec}{w^\star_{\phi^{\star},\eta,c}}
+% \newcommand{\wspsex}{w^\star_{\phi^{\star},\eta,x}}
+% \newcommand{\wspsez}{w^\star_{\phi^{\star},\eta,z}}
+
+\newcommand{\wsps}{w^\star_{\phi^{\star}}}
+\newcommand{\wspse}{w^\star_{\phi^{\star},\lambda}}
+\newcommand{\wspsec}{w^\star_{\phi^{\star},\lambda,c}}
+\newcommand{\wspsex}{w^\star_{\phi^{\star},\lambda,x}}
+\newcommand{\wspsez}{w^\star_{\phi^{\star},\lambda,z}}
+
+%w^\star_{\phi^\star,\lambda}
+\newcommand{\wspsl}{w^\star_{\phi^{\star},\lambda}}
+\newcommand{\wspslc}{w^\star_{\phi^{\star},\lambda,c}}
+\newcommand{\wspslx}{w^\star_{\phi^{\star},\lambda,x}}
+\newcommand{\wspslz}{w^\star_{\phi^{\star},\lambda,z}}
+
+%Others
+\newcommand{\vs}{v^\star}
+\newcommand{\vh}{\hat{v}}
+
+\newcommand{\us}{u^\star}
+\newcommand{\usc}{u^\star_c}
+\newcommand{\usx}{u^\star_x}
+
+\newcommand{\uh}{\hat{u}}
+\newcommand{\uhc}{\hat{u}_c}
+\newcommand{\uhx}{\hat{u}_x}
+
+
+
+\newcommand{\ps}{\phi^\star}
+\newcommand{\ph}{\hat{\phi}}
+
+% Todo macros
+\newmdenv[leftmargin=\dimexpr-0.4em, innerleftmargin=0.5em,
+rightmargin=\dimexpr-0.4em, innerrightmargin=0.5em,
+linewidth=2pt,linecolor=red, topline=false, bottomline=false,
+innertopmargin=0pt,innerbottommargin=0pt,skipbelow=0pt,skipabove=0pt,%
+]{notex}
+
+%\input{macros-ieee.tex}
+%\input{math_commands.tex}
+\newenvironment{note}%
+{\vskip\dimexpr\dp\strutbox-\prevdepth\relax\notex\strut\ignorespaces}%
+{\xdef\notetpd{\the\prevdepth}\endnotex\vskip-\notetpd\relax}
+
+\let\oldtodo\todo
+
+\makeatletter%
+\DeclareDocumentCommand{\todo}{ O{} +g +d<> }{%
+    \setlength{\marginparwidth}{1.5cm}%
+    %
+    \IfNoValueTF{#2}{\relax}{%
+        \oldtodo[caption={#2},size=\scriptsize,#1]{\renewcommand{\baselinestretch}{0.8}\selectfont\sffamily#2\par}%
+    }%
+    \IfNoValueTF{#3}{\relax}{%
+        \IfNoValueTF{#2}{% when parmark but no todo
+            \begin{note}%
+                \begin{internallinenumbers}%
+                    \indent%
+                    #3%
+                \end{internallinenumbers}%
+            \end{note}%
+        }{% when parmark and todo
+            \vspace{-0\baselineskip}%
+            \begin{note}%
+                \begin{internallinenumbers}%
+                    \indent%
+                    #3%
+                \end{internallinenumbers}%
+            \end{note}%
+        }%
+    }%
+}%
+\makeatother
+
+\newcommand{\hlc}[2][yellow]{{%
+        \colorlet{foo}{#1}%
+        \sethlcolor{foo}\hl{#2}}%
+}
+
+\newtheorem{conjecture}{Conjecture}[section]
+
+\newcommand{\removetodo}[2]{\todo[color=pink]{\textbf{delete:} ``#1'' #2}\hlc[pink]{#1}}
+\newcommand{\inserttodo}[1]{\todo[color=green!40]{\textbf{insert:} #1}}
+
+
+\newcommand{\hltodoy}[2]{\todo[color=yellow!40]{#2}\hl{#1} }
+
+\newcommand{\hltodoc}[3]{\todo[color=#3!40]{#2}\hlc[#3]{#1} }
+
+\newcommand{\hltodo}[2]{\todo[color=orange!40]{#2}\hlc[orange!40]{#1} }
+\newcommand{\replacetodo}[2]{\todo[color=pink!40]{\textbf{replace with:}``#2'' }\hl{#1} }
+
+\usepackage{marginnote}
+\newcommand{\todol}[1]{{%
+        \let\marginpar\marginnote
+        \reversemarginpar
+        \renewcommand{\baselinestretch}{0.8}%
+        \todo{#1}}}
+
+\newcommand{\inserttodol}[1]{{%
+        \let\marginpar\marginnote
+        \reversemarginpar
+        \renewcommand{\baselinestretch}{0.8}%
+        \inserttodo{#1}}}
+
+\newcommand{\removetodol}[2]{{%
+        \let\marginpar\marginnote
+        \reversemarginpar
+        \renewcommand{\baselinestretch}{0.8}%
+        \removetodo{#1}{#2}}}
+
+\newcommand{\hltodol}[2]{{%
+        \let\marginpar\marginnote
+        \reversemarginpar
+        \renewcommand{\baselinestretch}{0.8}%
+        \hltodo{#1}{#2}}}
+
+\newcommand{\replacetodol}[2]{{%
+        \let\marginpar\marginnote
+        \reversemarginpar
+        \renewcommand{\baselinestretch}{0.8}%
+        \replacetodo{#1}{#2}}}
+
+\newcommand{\hltodoyl}[2]{{%
+        \let\marginpar\marginnote
+        \reversemarginpar
+        \renewcommand{\baselinestretch}{0.8}%
+        \hltodoy{#1}{#2}}}
+
+\newcommand{\hltodocl}[3]{{		\let\marginpar\marginnote
+        \reversemarginpar
+        \renewcommand{\baselinestretch}{0.8}%
+        \hltodoc{#1}{#2}{#3}}}
+
+\newcommand{\tododone}[1]{\todo[nolist,color=gray!20,bordercolor=gray!60]{#1}}
+
+
+
+\newcommand{\bosqrtn}{\mathcal{O}\Big(\frac{1}{\sqrt{n}}\Big)}
+
+
+\endlocaldefs
+\begin{document}
+\begin{frontmatter}
+\title{Learning with Little Side Information}
+\runtitle{Learning with Little Side Information}
+
+\begin{aug}
+\author{\fnms{Manish Kumar} \snm{Singh}\ead[label=e1]{204230004@iitb.ac.in}},
+\author{\fnms{Suhas S.} \snm{Kowshik}\ead[label=e2]{suhaskowshik1992@gmail.com}}
+\and
+\author{\fnms{Ankur A.} \snm{Kulkarni}\ead[label=e3]{kulkarni.ankur@iitb.ac.in}}
+
+\address{Centre for Systems and Control, Indian Institute of Technology Bombay\\ \printead{e1,e3}}
+\address{Microsoft\\ \printead{e2}}
+\end{aug}
+
+\begin{abstract}
+We address the problem of classification where, at test time, side information, a label from a different task, is available alongside the input features. Our objective is to design a classifier that can effectively leverage this additional side information. This side information cannot be treated as an additional feature because the training data set is assumed to be fragmented -- we do not have access to simultaneous joint observations of labels and side information, together with the features. We develop an algorithm that operates under this setting by imputing the missing side information. Its behavior is governed by a regularization hyperparameter that determines the degree of trust placed in the imputed values. We derive an upper bound on the excess risk as a function of this hyperparameter.
+In the limit of infinitely many samples, the optimal regularization strategy becomes binary: one should either fully trust or entirely ignore the side information. Additionally, we establish a non-vanishing lower bound on the excess risk achievable by any algorithm, highlighting a fundamental limitation caused by the absence of joint label--side information observations during training.
+\end{abstract}
+\begin{keyword}[class=MSC]
+\kwd[Primary ]{62H30}
+\kwd[; secondary ]{68T05}
+\kwd{side information, classification, excess risk, regularization, missing data}
+\end{keyword}
+\end{frontmatter}
+
+
+%------
+% Body of the paper
+%------
+
+\input{1_introduction}
+
+\input{2_problem_formulation}
+
+\input{3_algorithm}
+
+\section{Analysis of the Algorithm}
+
+In this section, we analyze the excess risk of Algorithm \ref{alg: side information algorithm}. Our main theoretical result, Theorem \ref{thm: main theorem}, provides an explicit upper bound on the excess risk as a function of the sample sizes, distribution-dependent quantities, and the regularization parameter. This bound characterizes how the choice of regularizer mediates the trade-off between relying on imputed side information and using only the primary features. Corollaries \ref{cor: consequence of main theorem 1}, \ref{cor: consequence of main theorem 2}, and \ref{cor: consequence of main theorem 3} further offers guidance for selecting the regularization parameter in different regimes.
+
+In addition, Theorem \ref{thm: Lower bound on excess risk} establishes a minimax lower bound on the excess risk for any algorithm, quantifying the intrinsic difficulty of learning from partitioned datasets in which features, labels, and side information are never observed jointly. Finally, we conduct simulations of the excess risk on a representative distribution to empirically investigate the choice of the optimal regularization parameter.
+
+\input{4A_upper_bound}
+
+\input{4B_lower_bound}
+
+\input{4C_simulation_result}
+
+
+\section{Conclusion}
+
+In this work, we addressed the problem of utilizing test-time side information for classification when joint observations of side information and labels were absent from the training dataset. We proposed an algorithm that imputes the missing side information during training. The algorithm's behavior is governed by a regularization hyperparameter, which quantifies the trust placed in the imputed data. We derived an upper bound on the excess risk as a function of this hyperparameter, noting that the optimal value depends on prior knowledge of the relationship between side information and labels. In the infinite-sample limit and some additional assumption, the optimal choice becomes binary: either fully integrate the imputed side information or completely ignore it. Furthermore, we established a fundamental limitation of this problem: the excess risk of any learning algorithm is lower-bounded by a non-vanishing term. This limitation arises directly from the lack of joint side information–label observations during training. A promising future direction is to explore the strategic aspect of this problem, where an agent decides whether to reveal side information to the classifier at test time.
+
+%------
+% Bibliography (using emss.bst for EMS journals)
+%------
+\bibliographystyle{imsart-number}
+\bibliography{references}
+
+\newpage
+
+
+\input{A1A2_strong_convexity_other_results}
+
+
+\input{A3_other_useful_results}
+
+\input{A4_main_proof}
+
+\input{A5_lowebound_proof}
+
+\end{document}

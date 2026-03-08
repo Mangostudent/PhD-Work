@@ -1,0 +1,258 @@
+\section{Appendix III: Other Useful Lemmas}
+
+This section contains the remaining lemmas required for proving the main theorem (Theorem \ref{thm: main theorem}).
+The following lemma calculates the gap in risk when $Z$ is substituted with $\phi: \cg{X} \rightarrow \cg{Z}$.
+
+\begin{lem}\label{lem: gap in risk when z is replaced with phi hat}
+    Let $w := (w_c,w_x,w_z) \in \R^{d+2}$ and let $\ph$ be defined in  \eqref{eqn: phi star and phi hat}. Then:
+    \begin{equation*}
+        |\rph(w) - R(w)| \leq 2|w_z|L_{(0,1)}(\uh).
+    \end{equation*}
+\end{lem}
+
+\begin{proof}
+    For a fixed $(x,y)$ and $w$, the logistic loss function $\ell(x,t,y;w) := \ln(1+\exp(-y(w_c + w_x^\top x + w_zt)))$ is Lipschitz in $t$, with a Lipschitz bound given by
+    \begin{equation*}
+        K \leq \sup_{x,t,y}(1-\sigma(y(w_c+w_x^\top x+w_zt)))(-yw_z) \leq |w_z|.
+    \end{equation*}
+    Thus, for $t_1 = z$ and $t_2 = \ph(x)$, we have:
+    \begin{equation*}
+        |\ell(x,z,y;w) - \ell(x,\ph(x),y;w)| \leq |w_z||z-\ph(x)|.
+    \end{equation*}
+From direct calculation, it follows that $\E_{(X,Z)}|z-\ph(x)| = 2L_{(0,1)}(\uh)$, where $L_{(0,1)}(\cdot)$ denotes the zero-one risk.
+
+\noindent We now bound $|\rph(w) - R(w)|$. Expanding $\rph(w)$ and $R(w)$ in terms of the logistic loss function, we get:
+    \begin{equation*}
+    \begin{aligned}
+        |\rph(w) - R(w)| &= \Big|\E_{(X,Y,Z)}[\ell(x,y,z,w)] - \E_{(X,Y,Z)}[\ell(x,y,\ph(x),w)]\Big|.
+    \end{aligned}
+    \end{equation*}
+ Using Jensen's inequality, we have
+    \begin{equation*}
+    \begin{aligned}
+        &\E_{(X,Y,Z)}\Big[|\ell(X,Y,\ph(X),w) - \ell(X,Y,Z,w)|\Big] \geq \Big|\E_{(X,Y,Z)}[\ell(x,z,y,w)] - \E_{(X,Y,Z)}[\ell(x,\ph(x),y,w)]\Big|.
+    \end{aligned}
+    \end{equation*}
+Note that
+    \begin{equation*}
+        \E_{(X,Y)}[\ell(x,\ph(x),y,w)] = \E_{(X,Y,Z)}[\ell(x,\ph(x),y,w)], \text{ and }
+        \E_{(X,Z)}\Big[|Z-\ph(X)|\Big] = \E_{(X,Y,Z)}\Big[|Z-\ph(X)|\Big].
+    \end{equation*}
+Thus, we get
+    \begin{equation*}
+    \begin{aligned}
+        |\rph(w) - R(w)|
+        &\leq
+        \E_{(X,Y,Z)}\Big[|\ell(X,Y,\ph(X),w) - \ell(X,Y,Z,w)|\Big] \leq
+        2|w_z|L_{(0,1)}(\uh).
+    \end{aligned}
+    \end{equation*}
+\end{proof}
+
+The next lemma establishes the effect of the regularizer on $w_z$.
+
+\begin{lem}\label{lem: bound weights in terms of lambda}
+    Let $\lambda := (\lamc,\lamx,\lamz) \in \R^3$ and let $\whl$ and $\wsn$ be defined in  \eqref{eqn: w hat lambda} and  \eqref{eqn: w lambda star}, respectively. Then:
+    \begin{equation*}
+        |\whlz| \leq \sqrt{\frac{\ln(2)}{\lamz}} \quad \text{and} \quad |\wsnz| \leq \sqrt{\frac{\ln(2)}{\lamz}}.
+    \end{equation*}
+\end{lem}
+
+\begin{proof}
+    From the definition of $\whl$, we have:
+    \begin{equation*}
+        \lamz|\whlz|^2 \leq \rhphl(\whl) \leq \rhphl(0) = \ln(2),
+    \end{equation*}
+    which implies:
+    \begin{equation*}
+        |\whlz| \leq \sqrt{\frac{\ln(2)}{\lamz}}.
+    \end{equation*}
+
+    \noindent Similarly, from the definition of $\wsn$, we have:
+    \begin{equation*}
+        \lamz|\wsnz|^2 \leq \rl(\wsn) \leq \rl(0) = \ln(2),
+    \end{equation*}
+    which implies:
+    \begin{equation*}
+        |\wsnz| \leq \sqrt{\frac{\ln(2)}{\lamz}}.
+    \end{equation*}
+\end{proof}
+
+The following lemma is an application of McDiarmid's inequality to $\rhph(w)$ and $\rph(w)$.
+
+\begin{lem}\label{lem: McDiamird's inequality}
+    Let $\ph$ be defined in  \eqref{eqn: phi star and phi hat} and let $w := (w_c,w_x,w_z) \in \R^3$. Let $D$ be defined in \eqref{eqn: partioned dataset} and let $\kappa$ be defined in \eqref{eqn: distribution conditions}. Let, for a fixed $y$, $K_y$ be the Lipschitz constant of $\ell(\cdot,y,\cdot;\cdot)$ and let $K := \max_y K_y$. Let $\delta \in (0,1)$. Then, with probability at least $1-\delta$, we have:
+    \begin{equation}
+        |\rhph(w) - \rph(w)|
+        \leq (\ln(2) + K\sqrt{\kappa^2 + 2}\|w\|)\sqrt{\frac{\ln(2/\delta)}{n}}.
+    \end{equation}
+\end{lem}
+
+\begin{proof}
+    For a fixed $w \in \R^{d+2}$, let $Q_i := (X_i,Y_i)$ and $f(Q_1,\cdots,Q_n) := \rhph(w)$. We will apply McDiarmid's inequality to $f(\cdots,Q_i,\cdots)$ to get the upper bound in the lemma. To apply McDiarmid's inequality, we must show that $|f(\cdots, Q_i,\cdots) - f(\cdots,Q_i',\cdots)|$ is bounded for each $1\leq i\leq n$.
+
+    \noindent We have
+    \begin{equation*}
+    \begin{aligned}
+        &f(Q_1,\cdots,Q_i,\cdots,Q_n) - f(Q_1,\cdots,Q_{i}',\cdots,Q_n) = \ell(x_i,y_i,\ph(x_i);w) - \ell(x_{i'},y_{i'},\ph(x_{i'});w).
+    \end{aligned}
+    \end{equation*}
+Furthermore
+    \begin{equation*}
+    \begin{aligned}
+        |\ell(x_i,y_i;\ph(x_i);w)|
+        &\leq  |\ell(x_i,y_i;\ph(x_i);0)| + |\ell(x_i,y_i;\ph(x_i);w) - \ell(x_i,y_i;\ph(x_i);0)|.
+    \end{aligned}
+    \end{equation*}
+    Note that $\ell(x,\ph(x),y;w)$ can be rewritten as $\ell(y,s_w)$ where $s_w : w_c + w_x x + w_z\ph(x)$. Using the Lipschitz property of $\ell$ and the definition of $K$ given in the statement of the theorem, we have 
+    \begin{equation*}
+        |\ell(y,s_w) - \ell(y,s_{w'})| \leq K\|s_w - s_{w'}\|.
+    \end{equation*}
+    Substituting this, we get
+    \begin{equation*}
+    \begin{aligned}
+        |\ell(x_i,y_i;\ph(x_i);w)|
+        &\leq \ln(2) + K|\langle (1,x_i,\ph(x_i)),w\rangle| \leq \ln(2) + K\sqrt{\kappa^2+2}\|w\|.
+    \end{aligned}
+    \end{equation*}
+Thus $|f(\cdots, Q_i,\cdots) - f(\cdots,Q_i',\cdots)| \leq \ln(2) + \sqrt{\kappa^2+2}\|w\| $, and therefore, we can now apply McDiarmid's inequality to $f(Q_1,\cdots, Q_n)$. Hence, with probability at least $1-\delta$,
+    \begin{equation*}
+        |\rhph(w) - \rph(w)|
+        \leq (\ln(2) + K\sqrt{\kappa^2 + 2}\|w\|)\sqrt{\frac{\ln(2/\delta)}{{n}}}.
+    \end{equation*}
+\end{proof}
+
+
+The next lemma shows that the third component of a regularizer is inversely proportional to the corresponding optimal weight component. Furthermore, it also shows that their corresponding risks are inversely proportional.
+
+\begin{lem}\label{lem: inverse relation between regulariser and risk}
+    Let $\lambda = (\lamc,\lamx,\lamz)$ and $\theta = (\lamc,\lamx,\theta_z)$ with $\lamz \leq \theta_z$. Then, by keeping $\lamx$ and $\lamc$ fixed, we have:
+    \begin{equation}\label{eqn: inverse relation between regulariser and risk z weight}
+        |\ws_{\theta,z}| \leq |\wsnz|.
+    \end{equation}
+    If $\lamc = \lamx = \frac{1}{\sqrt{n}}$, and keeping $\lamz, \theta_z$ fixed, then
+    \begin{equation}\label{eqn: inverse relation between regulariser and risk z}
+        R(\wsn) \leq R(w^\star_{\theta}) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big).
+    \end{equation}
+    Furthermore, we also have:
+    \begin{equation}\label{eqn: inverse relation between regulariser and risk phi star weight}
+        |\ws_{\ps,\theta,z}| \leq |\ws_{\ps,\lambda,z}|,
+    \end{equation}
+    and
+    \begin{equation}\label{eqn: inverse relation between regulariser and risk phi star}
+        \rps(\wsn) \leq \rps(w^\star_{\theta}) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big),
+    \end{equation}
+\end{lem}
+where $\mathsf{W}$ is defined in \eqref{eqn: uniform weight bound}.
+\begin{proof}
+    Let $\lambda = (\lamc,\lamx,\lamz)$ and $\theta = (\lamc, \lamx,\theta_z)$. If $\lamz < \theta_z$, then we have:
+    \begin{equation*}
+        \begin{aligned}
+            &R(\wsn) + \lamc|\wsnc|^2 + \lamx\|\wsnx\|^2 + \lamz|\wsnz|^2  \leq R(w^\star_{\theta}) + \lamc|w^\star_{\theta,c}|^2 + \lamx\|w^\star_{\theta,x}\|^2 + \lamz|w^\star_{\theta,z}|^2,
+        \end{aligned}
+    \end{equation*}
+    and:
+    \begin{equation*}
+    \begin{aligned}
+        &R(w^\star_{\theta}) +
+        \lamc|w^\star_{\theta,c}|^2 +
+        \lamx\|w^\star_{\theta,x}\|^2 +
+        \theta_z|w^\star_{\theta,z}|^2
+        \leq R(\wsn) +
+        \lamc|\wsnc|^2 +
+        \lamx\|\wsnx\|^2 +
+        \theta_z|\wsnz|^2.
+    \end{aligned}
+    \end{equation*}
+    This implies
+    \begin{equation*}
+        (\lamz -\theta_z)|\wsnz|^2
+        \leq (\lamz-\theta_z) |w^\star_{\theta,z}|^2,
+    \end{equation*}
+    or equivalently
+    \begin{equation}\label{eqn: w theta less than w lambda}
+        |w^\star_{\theta,z}| \leq |\wsnz|
+    \end{equation}
+    proving \eqref{eqn: inverse relation between regulariser and risk z weight}.
+
+    Let $\lambda = (\frac{1}{\sqrt{n}},\frac{1}{\sqrt{n}},\lamz)$ and $\nu = (0,0,\lamz)$ and $\lamz$ be fixed. Then we have
+    \begin{equation*}
+    \begin{aligned}
+    R(\ws_\nu) + \lamz|\ws_{\nu,z}|^2 &\leq R(\wsl) + \lamz|\wslz|^2
+    \end{aligned}
+    \end{equation*}
+and
+    \begin{equation*}
+\begin{aligned}
+    &R(\wsl) + \frac{1}{\sqrt{n}}(|\wslc|^2 + \|\wslx\|^2) + \lamz|\wslz|^2 \leq R(\ws_\nu) + \frac{1}{\sqrt{n}}(|\ws_{\nu,c}|^2 + \|\ws_{\nu,x}\|^2) + \lamz|\ws_{\nu,z}|^2.
+    \end{aligned}
+    \end{equation*}
+    This implies
+    \begin{equation}\label{eqn: order of 1 by root n regulariser}
+    \begin{aligned}
+        \frac{1}{\sqrt{n}}(|\wslc|^2 + \|\wslx\|^2) &\leq \frac{1}{\sqrt{n}}(|\ws_{\nu,c}|^2 + \|\ws_{\nu,x}\|^2) = \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big),
+        \end{aligned}
+    \end{equation}
+where $\mathsf{W}$ is defined in \eqref{eqn: uniform weight bound}.
+Now consider the expression for $R(\wsl)$ and $R(w_{\theta}^\star)$.
+\begin{equation*}
+\begin{aligned}
+    &R(\wsl) + \frac{1}{\sqrt{n}}(|\wslc|^2 + \|\wslx\|^2) + \lamz|\wslz|^2 \leq R(\ws_\theta) + \frac{1}{\sqrt{n}}(|\ws_{\theta,c}|^2 + \|\ws_{\theta,x}\|) + \lamz|\ws_{\theta,z}|^2.
+    \end{aligned}
+\end{equation*}
+Using \eqref{eqn: w theta less than w lambda}, we get
+\begin{equation*}
+\begin{aligned}
+    &R(\wsl) + \frac{1}{\sqrt{n}}(|\wslc|^2 + \|\wslx\|^2) \leq R(\ws_\theta) + \frac{1}{\sqrt{n}}(|\ws_{\theta,c}|^2 + \|\ws_{\theta,x}\|^2)^2.
+    \end{aligned}
+\end{equation*}
+But applying \eqref{eqn: order of 1 by root n regulariser}, we get
+\begin{equation}
+\begin{aligned}
+    R(\wsl) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big) &\leq R(\ws_\theta) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big) \text{ or } R(\wsl) &\leq R(\ws_\theta) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big).
+    \end{aligned}
+\end{equation}
+    A similar argument can be used to prove
+     \begin{equation}
+        |\ws_{\ps,\theta,z}| \leq |\ws_{\ps,\lambda,z}|,
+    \end{equation}
+    and
+    \begin{equation*}
+        \rps(\wsn) \leq \rps(w^\star_{\theta}) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big).
+    \end{equation*}
+    as claimed.
+\end{proof}
+
+\begin{cor}\label{cor: v star and w star infinity}
+    Let $\lambda = \Big(\frac{1}{\sqrt{n}},\frac{1}{\sqrt{n}},\lamz\Big)$ for some $n > 0$. Then
+    \begin{equation*}
+        R(\wsn) \leq T(\vs) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big).
+    \end{equation*}
+\end{cor}
+
+\begin{proof}
+    Let $\nu = \Big(\frac{1}{\sqrt{n}},\frac{1}{\sqrt{n}},\infty\Big)$ and
+    \begin{equation*}
+    \begin{aligned}
+        \vs_\nu &= (\vs_{\nu,c} , \vs_{\nu,x}, \vs_{\nu,z}) = (\vs_{\nu,c} , \vs_{\nu,x}, 0) := \arg\min_v T(v) + \nu_c|v_c|^2 
+        + \nu_x\|v_x\|^2 + \nu_z|v_z|^2.
+    \end{aligned}
+    \end{equation*}
+Note that $\vs$ can be written as $\vs = (\vs_c,\vs_x,0)$ and thus $\vs$ can be thought of as a solution of a regularisation problem with regularizer $(0,0,\infty)$. Thus, using Lemma \ref{lem: inverse relation between regulariser and risk} equation \eqref{eqn: order of 1 by root n regulariser}, we have
+\begin{equation*}
+    R(\vs_\nu) \leq T(\vs) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big).
+\end{equation*}
+From Lemma \ref{lem: inverse relation between regulariser and risk} equation \eqref{eqn: inverse relation between regulariser and risk z}, we have
+\begin{equation*}
+    R(\wsl) \leq R(\vs_\nu) +  \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big).
+\end{equation*}
+Thus, combining these two equations, we have
+\begin{equation*}
+     R(\wsl) \leq T(\vs) +  \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big).
+\end{equation*}
+\end{proof}
+
+
+
+
+

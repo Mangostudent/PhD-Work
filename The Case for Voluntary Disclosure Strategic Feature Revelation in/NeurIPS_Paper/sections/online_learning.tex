@@ -1,0 +1,37 @@
+\section{Online Learning for the regression problem}
+\label{sec:online_learning}
+(\textbf{In Progress})\\
+In Section~\ref{sec:regression}, we analyzed the optimal disclosure regimes under the assumption that the environment is known. We now extend the analysis to a dynamic setting in which the underlying environment parameters—specifically, the joint distribution of $(X, Y, U)$—are unknown to the Receiver. We focus on the setting where the Receiver must learn these parameters over time through repeated interaction with the Sender. Consider a sequence of $T$ interactions. At each round $t \in [1, T]$, the protocol begins with the Receiver selecting a disclosure regime $D_t \in \{\text{Mandatory}, \text{Voluntary}\}$. Immediately following the regime selection, the Receiver commits to a predictor $\hat{y}_t$ tailored to the chosen regime. Subsequently, Nature draws the realization $(x_t, u_t, y_t)$. The Sender, having observed the committed predictor $\hat{y}_t$, provides a best-response message $M_t$ according to the rules of the selected regime $D_t$. Finally, the Receiver applies the predictor $\hat{y}_t(M_t)$ to the received message, incurs the loss $\ell(y_t, \hat{y}_t(M_t))$, and observes the ground truth outcome $y_t$.
+The Receiver’s objective is to minimize the cumulative regret $\mathcal{R}_T$ over the horizon $T$, defined as
+\begin{equation}
+    \mathcal{R}_T = \sum_{t=1}^T \ell\big(y_t, \hat{y}_t(M_t)\big) - T \cdot \min \{ R_V^\star, R_S^\star \},
+\end{equation}
+where $R_V^\star$ and $R_S^\star$ denote the optimal voluntary and strategic risks that would be achieved if the environment were known.
+
+To model uncertainty, suppose the environment is parameterized by $\theta \in \Theta$, where $\Theta$ denotes a family of admissible joint distributions. The Receiver maintains a belief density $p_t(\theta)$ over $\Theta$ at time $t$ to balance exploration and exploitation. This interaction is formalized in Algorithm~\ref{alg:adaptive_disclosure}.
+
+\begin{algorithm}[!ht]
+\caption{Bayesian Adaptive Disclosure Protocol}
+\label{alg:adaptive_disclosure}
+\begin{algorithmic}[1]
+\State \textbf{Initialize:} Prior belief $p_1(\theta)$ over parameter space $\Theta$.
+\For{$t = 1$ to $T$}
+    \State \textbf{Evaluate risk:} For regime $D \in \{\text{Mandatory}, \text{Voluntary}\}$ and predictor $\hat{y}$, compute expected loss under $p_t(\theta)$.
+    \State \textbf{Selection:} Choose $(D_t, \hat{y}_t)$ minimizing the expected loss to balance exploration and exploitation.
+    \State \textbf{Commitment:} Commit to predictor $\hat{y}_t$ under regime $D_t$.
+    \State \textbf{Interaction:} Sender observes $\hat{y}_t$ and provides best-response message $M_t$.
+    \State \textbf{Realization:} Ground truth $y_t$ is revealed; Receiver incurs loss $\ell(y_t, \hat{y}_t(M_t))$.
+    \State \textbf{Belief Update:} Update posterior using Bayes' rule:
+    \[ p_{t+1}(\theta) \propto p_t(\theta) \cdot \Prob(M_t, y_t \mid \theta, \hat{y}_t) \]
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+The following theorem analyses the regret of this algoritm.
+\begin{theorem}[Regret of Adaptive Disclosure] \label{thm:online_regret}
+Assume that $\Theta$ is compact and that the likelihood functions satisfy standard regularity conditions. Then the Bayesian adaptive disclosure policy described in Algorithm~\ref{alg:adaptive_disclosure} achieves sublinear expected regret:
+\begin{equation}
+    \mathbb{E}[\mathcal{R}_T] \le C \sqrt{T},
+\end{equation}
+where $C$ depends on the statistical complexity and information-theoretic properties of the environment class.
+\end{theorem}

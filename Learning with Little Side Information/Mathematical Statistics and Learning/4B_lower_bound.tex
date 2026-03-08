@@ -1,0 +1,16 @@
+\subsection{Lower Bounds}
+
+In this section, we establish a fundamental limitation of learning from partitioned datasets. Specifically, we show that for any learning algorithm $A$, there exists a probability distribution of $(X, Y, Z)$ such that if $(D,S)$ is a partitioned data set  defined in \eqref{eqn: partioned dataset}, the excess risk $R(A(D,S)) - R(\ws)$ is bounded away from zero with non-vanishing probability. This demonstrates that, even with unlimited data, the inability to observe features, labels, and side information jointly imposes an irreducible barrier to learning performance.
+
+\begin{thm}[Lower Bound on Excess Risk]\label{thm: Lower bound on excess risk}
+    Let $(D,S)$ be a partitioned dataset defined in \eqref{eqn: partioned dataset}, and let $(D,S) \mapsto A(D,S) \subset \mathbb{R}^{d+2}$ be any learning algorithm.
+    Then there exists a distribution of $(X, Y, Z)$ generating the partioned training datasets $(D,S)$ such that for $\ws$ defined in \eqref{eqn: w star}, we have
+    \begin{equation}
+        \mathbb{P}_{(X,Y,Z)}\left[R(A(D,S)) - R(\ws) > 0.19\right] \geq \frac{1}{2}.
+    \end{equation}
+\end{thm}
+
+\begin{proof}[Proof Outline]
+We construct two joint distributions, $(X_1, Y_1, Z_1)$ and $(X_2, Y_2, Z_2)$, such that the marginals $(X_1, Y_1)$ and $(X_1, Z_1)$ are identical to $(X_2, Y_2)$ and $(X_2, Z_2)$, respectively, but the joint distributions over $(X, Y, Z)$ differ. For any true distribution $(X_k, Y_k, Z_k)$ ($k \in \{1,2\}$) generating the partitioned training data, the classification problem reduces to identifying which distribution generated the data. However, since the observed marginals are identical, no algorithm can distinguish between the two distributions based only on the partitioned datasets. Consequently, for any algorithm $A$, we can adversarially select the true distribution such that the excess risk is at least $0.19$ with probability at least $\frac{1}{2}$. This establishes a non-vanishing lower bound on the excess risk for any learning strategy in the partitioned setting.
+\end{proof}
+

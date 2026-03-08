@@ -1,0 +1,82 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{adel2023general}
+T.~Adel and M.~Levene, A general model for side information in neural networks.
+  \emph{Algorithms} \textbf{16} (2023), no.~11, 526
+
+\bibitem{bertsimas2018predictive}
+D.~Bertsimas, C.~Pawlowski, and Y.~D. Zhuo, From predictive methods to missing
+  data imputation: an optimization approach. \emph{Journal of Machine Learning
+  Research} \textbf{18} (2018), no. 196, 1--39
+
+\bibitem{chen2012boosting}
+J.~Chen, X.~Liu, and S.~Lyu, Boosting with side information. In \emph{Asian
+  conference on computer vision}, pp. 563--577, Springer, 2012
+
+\bibitem{della2021regularized}
+A.~Della~Vecchia, J.~Mourtada, E.~De~Vito, and L.~Rosasco, Regularized erm on
+  random subspaces. In \emph{International conference on artificial
+  intelligence and statistics}, pp. 4006--4014, PMLR, 2021
+
+\bibitem{ghahramani1993supervised}
+Z.~Ghahramani and M.~Jordan, Supervised learning from incomplete data via an em
+  approach. \emph{Advances in neural information processing systems} \textbf{6}
+  (1993)
+
+\bibitem{hosna2022transfer}
+A.~Hosna, E.~Merry, J.~Gyalmo, Z.~Alom, Z.~Aung, and M.~A. Azim, Transfer
+  learning: a friendly introduction. \emph{Journal of Big Data} \textbf{9}
+  (2022), no.~1, 102
+
+\bibitem{jonschkowski2015patterns}
+R.~Jonschkowski, S.~H{\"o}fer, and O.~Brock, Patterns for learning with side
+  information. \emph{arXiv preprint arXiv:1511.06429}  (2015)
+
+\bibitem{mollaysa2017regularising}
+A.~Mollaysa, P.~Strasser, and A.~Kalousis, Regularising non-linear models using
+  feature side-information. In \emph{International conference on machine
+  learning}, pp. 2508--2517, PMLR, 2017
+
+\bibitem{nguyen2023imputation}
+T.~Nguyen, T.~L. Vo, P.~Halvorsen, and M.~A. Riegler, Imputation using training
+  labels and classification via label imputation. \emph{arXiv preprint
+  arXiv:2311.16877}  (2023)
+
+\bibitem{sacco2021neural}
+L.~Sacco, D.~Ienco, and R.~Interdonato, A neural network strategy for
+  supervised classification via the learning under privileged information
+  paradigm. In \emph{Sebd}, pp. 83--93, 2021
+
+\bibitem{song2021learning}
+Y.~Song, Z.~Lou, S.~You, E.~Yang, F.~Wang, C.~Qian, C.~Zhang, and X.~Wang,
+  Learning with privileged tasks. In \emph{Proceedings of the ieee/cvf
+  international conference on computer vision}, pp. 10685--10694, 2021
+
+\bibitem{stekhoven2012missforest}
+D.~J. Stekhoven and P.~B{\"u}hlmann, Missforest—non-parametric missing value
+  imputation for mixed-type data. \emph{Bioinformatics} \textbf{28} (2012),
+  no.~1, 112--118
+
+\bibitem{van2007multiple}
+S.~Van~Buuren, Multiple imputation of discrete and continuous data by fully
+  conditional specification. \emph{Statistical methods in medical research}
+  \textbf{16} (2007), no.~3, 219--242
+
+\bibitem{vapnik2015learning}
+V.~Vapnik, R.~Izmailov et~al., Learning using privileged information:
+  similarity control and knowledge transfer. \emph{J. Mach. Learn. Res.}
+  \textbf{16} (2015), no.~1, 2023--2049
+
+\bibitem{vapnik2009new}
+V.~Vapnik and A.~Vashist, A new learning paradigm: Learning using privileged
+  information. \emph{Neural networks} \textbf{22} (2009), no. 5-6, 544--557
+
+\bibitem{wang2018learning}
+S.~Wang, S.~Chen, T.~Chen, and X.~Shi, Learning with privileged information for
+  multi-label classification. \emph{Pattern Recognition} \textbf{81} (2018),
+  60--70
+
+\end{thebibliography}
