@@ -1,4 +1,4 @@
-\section{APPENDIX IV: PROOF OF THE MAIN THEOREM}
+\section{Supplementary Proofs and Results IV: Proof of the Main Theorem}
 
 We now present the proof of Theorem \ref{thm: main theorem}.
 
@@ -45,8 +45,10 @@ We now present the proof of Theorem \ref{thm: main theorem}.
         Thus, we get
         \begin{equation*}
             \begin{aligned}
-                  R(\whl) - R^\phi(\whl) + R^\phi(\wsl) - R(\wsl)\leq &\;|R(\whl) - R^\phi(\whl)| + |R(\wsl) - R^\phi(\wsl)|\\
-                  \leq &\;2L_{(0,1)}(\uh)(|\whlz| + |\wslz|) \leq \ln(4)L(\uh)(|\whlz| + |\wslz|)
+                  & R(\whl) - R^\phi(\whl) + R^\phi(\wsl) - R(\wsl) \\
+                  &\leq |R(\whl) - R^\phi(\whl)| + |R(\wsl) - R^\phi(\wsl)|\\
+                  &\leq 2L_{(0,1)}(\uh)(|\whlz| + |\wslz|) \\
+                  &\leq \ln(4)L(\uh)(|\whlz| + |\wslz|)
             \end{aligned}
         \end{equation*}
 Using Lemma \ref{lem: learning theory on X,Z}, with probability at least $1-\delta$, this simplifies to
@@ -101,8 +103,8 @@ Substituting these results, we obtain with probability at least $1-2\delta$,
         With probability at least $1-2\delta$,
         \begin{equation*}
             \begin{aligned}
-                R(\wsl)-R(w^*) + R^\phi(\whl) - R^\phi(\wsl)\leq &\; \min\Big\{\frac{\lamz|\ws_z|^2}{T(\vs)-R(\ws)},1+\frac{\lamz|\wslz|^2}{T(\vs)-R(\ws)}\Big\} (T(\vs)-R(\ws))\\
-                +& \frac{C_1}{\sqrt{n}},
+                &R(\wsl)-R(w^*) + R^\phi(\whl) - R^\phi(\wsl) \\
+                &\leq \min\Big\{\frac{\lamz|\ws_z|^2}{T(\vs)-R(\ws)},1+\frac{\lamz|\wslz|^2}{T(\vs)-R(\ws)}\Big\} (T(\vs)-R(\ws)) + \frac{C_1}{\sqrt{n}},
             \end{aligned}
         \end{equation*}
         where $C_1 = \mathcal{O}\left( W^2 + \kappa W \sqrt{\ln(1/\delta)} + \kappa^2 \ln(1/\delta) \right)$.
@@ -125,8 +127,9 @@ Substituting these results, we obtain with probability at least $1-2\delta$,
             \begin{aligned}
             R(\wsl) - R(w^*) &\leq
             \min\Bigg\{
-                T(\vs)-R(w^*) + \mathcal{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big),\lambda_c|w^*_{c}|^2 + \lambda_x\|w^*_{x}\|^2 + \lambda_z|w^*_{z}|^2 \\
-                &-(\lambda_c|\wslc|^2 + \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2)
+                T(\vs)-R(w^*) + \mathcal{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big),\\
+                &\quad \lambda_c|w^*_{c}|^2 + \lambda_x\|w^*_{x}\|^2 + \lambda_z|w^*_{z}|^2 \\
+                &\quad -(\lambda_c|\wslc|^2 + \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2)
             \Bigg\}.
             \end{aligned}
         \end{equation}
@@ -206,8 +209,7 @@ Hence
         \end{equation}
         Using Lemma \ref{lem: McDiamird's inequality}, we have
         \begin{equation*}
-            |\rh^\phi(\wsl) - R^\phi(\wsl)|
-            \leq (\ln(2) + K\sqrt{\kappa^2+2}\|\wsl\|)\sqrt{\frac{\ln(2/\delta)}{n}},
+            |\rh^\phi(\wsl) - R^\phi(\wsl)| \leq (\ln(2) + K\sqrt{\kappa^2+2}\|\wsl\|)\sqrt{\frac{\ln(2/\delta)}{n}},
         \end{equation*}
         where $K = \max_y K_y$, and $K_y$ is the Lipschitz constant of $\ell(\cdot, y, \cdot; \cdot)$ for fixed $y$.
         Substituting this into the \eqref{eqn: R w hat lambda minus R w star lambda}, we get with probability at least $1-2\delta$,
@@ -224,17 +226,18 @@ Hence
 Combining the bounds for $R(\wsl)-R(w^*)$ and $R^\phi(\whl)-R^\phi(\wsl)$ given in \eqref{eqn: risk of whl minus risk of ws} and \eqref{eqn: imputed risk of whl - imputed risk of wsl} respectively, we get with probability at least $1-2\delta$,
         \begin{equation*}
             \begin{aligned}
-                R(\wsl)-R(w^*) + R^\phi(\whl) - R^\phi(\wsl) &\leq
-                \min\Bigg\{T(\vs)-R(w^*) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big), \lambda_c|w^*_{c}|^2 + \lambda_x\|w^*_{x}\|^2 + \lambda_z|w^*_{z}|^2 \\
-                    &-(\lambda_c|\wslc|^2 + \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2)\Bigg\} \\
+                R(\wsl)-R(w^*) + R^\phi(\whl) - R^\phi(\wsl) \\
+                &\leq \min\Bigg\{T(\vs)-R(w^*) + \cg{O}\Big(\frac{\mathsf{W}^2}{\sqrt{n}}\Big), \\
+                &\quad \lambda_c|w^*_{c}|^2 + \lambda_x\|w^*_{x}\|^2 + \lambda_z|w^*_{z}|^2 \\
+                &\quad -(\lambda_c|\wslc|^2 + \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2)\Bigg\} \\
                     &+ (\ln(2) + \sqrt{\kappa^2+2}\|\wsl\|)\sqrt{\frac{2\ln(2/\delta)}{n}} \\
                 &+\lambda_c|\wslc|^2 +
                 \lambda_x\|\wslx\|^2 + \lambda_z|\wslz|^2
                 +  \frac{C'}{\sqrt{n}} +
                 \frac{C'^2\kappa^2}{4\sqrt{n}}\\
                 &\leq  \min\{T(\vs) - R(\ws) + \lamz|\wslz|^2,\lamz|\ws_z|^2\} + \frac{C_1}{\sqrt{n}}\\
-                &=\min\Big\{\frac{\lamz|\ws_z|^2}{T(\vs)-R(\ws)},1+\frac{\lamz|\wslz|^2}{T(\vs)-R(\ws)}\Big\}(T(\vs)-R(\ws)) \\
-                &+ \frac{C_1}{\sqrt{n}}.
+                &=\min\Big\{\frac{\lamz|\ws_z|^2}{T(\vs)-R(\ws)},1+\frac{\lamz|\wslz|^2}{T(\vs)-R(\ws)}\Big\} \\
+                &\quad \times (T(\vs)-R(\ws)) + \frac{C_1}{\sqrt{n}}.
                 \end{aligned}
         \end{equation*}
         as claimed. Here $C_1 = \mathcal{O}\left( W^2 + \kappa W \sqrt{\ln(1/\delta)} + \kappa^2 \ln(1/\delta) \right)$.

@@ -1,0 +1,9 @@
+\section{MAIN RESULTS}\label{sec:main_results}
+
+In this section, we characterize the conditions under which a strategic advantage arises across different learning settings. Throughout our analysis, we adopt the shorthand notation $\yhatempt$ to denote the Receiver's prediction when features are withheld (also called default prediction), $\yhatx$ when features are revealed, $\yhatm$ when evaluating on the observed message $M$, and $\yhatvm$ for the vanilla predictor's output on $M$. 
+
+Firstly, we analyze the general regression problem under the assumption of a known environment, deriving distinct necessary and sufficient conditions for the emergence of a strategic advantage. Secondly, we turn to the binary classification problem—also assuming a known environment—and establish the necessary and sufficient conditions for strategic advantage; notably, for classification, these conditions are found to be equivalent. Thirdly, we consider a dynamic setting where the environment is unknown, and the Receiver must interact repeatedly with the Sender. In this case, we propose an online learning algorithm that adaptively selects the appropriate disclosure regime and provide theoretical performance guarantees for the receiver’s learning process. Detailed proofs for all results in this section are deferred to the Postponed Proofs section~\ref{sec:postponed_proofs}.
+
+\input{sections/regression}
+%\input{sections/gaussian_regression}
+\input{sections/classification}

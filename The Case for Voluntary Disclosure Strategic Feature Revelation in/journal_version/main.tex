@@ -1,0 +1,95 @@
+\documentclass[letterpaper, 11pt]{article} % Single-column standard journal format
+
+\usepackage[margin=1in]{geometry} % Standard 1-inch margins
+\raggedbottom                                     
+
+% --- Packages ---
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{color}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype} % Improves spacing and reduces underfull/overfull boxes
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% --- Custom Environments ---
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{assumption}{Assumption}
+
+% --- Math Shortcuts ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\sgn}{sign}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\Ind}[1]{\mathbb{I}\{#1\}}
+\newcommand{\given}{\mid} % Simpler \given for robustness
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\yhatemt}{\hat{y}(\emptyset)}
+\newcommand{\yhatempt}{\hat{y}(\emptyset)}
+\newcommand{\yhatx}{\hat{y}(x)}
+\newcommand{\yhatm}{\hat{y}(M)}
+\newcommand{\yhatvm}{\hat{y}_V(M)}
+\newcommand{\yhatv}{\hat{y}_V}
+\newcommand{\yhatvemt}{\hat{y}_V(\emptyset)}
+\newcommand{\yhatvx}{\hat{y}_V(x)}
+
+% --- Title and Authors ---
+\title{The Case for Voluntary Disclosure: Strategic Feature Revelation in Regression and Classification}
+
+
+\author{Author 1$^{1}$ and Author 2$^{2}$}
+\date{}
+
+\begin{document}
+
+\maketitle
+% \thispagestyle{empty}
+% \pagestyle{empty}
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+This paper addresses a fundamental design question: should a predictive model enforce mandatory feature disclosure or allow voluntary disclosure by participants? Since participants strategically reveal only those features that align with their private objectives, the model must account for opportunistic reporting. For the regression problem, we establish conditions under which the predictive model actually achieves better performance by permitting selective revelation. We extend these results to the classification setting and provide specialized insights for Gaussian distributions. Finally, we explore a dynamic learning framework where the model interacts repeatedly with participants, presenting an algorithm that adaptively switches between disclosure regimes with established theoretical performance bounds.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{sections/introduction}
+
+\input{sections/problem_formulation}
+
+\input{sections/main_results}
+
+\input{sections/learning}
+
+\input{sections/conclusion_and_limitation}
+
+\input{sections/postponed_proofs}
+
+\section*{ACKNOWLEDGMENT}
+The authors thank the support team at Google DeepMind.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

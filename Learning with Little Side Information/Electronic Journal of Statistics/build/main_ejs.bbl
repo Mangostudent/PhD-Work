@@ -1,0 +1,219 @@
+\begin{thebibliography}{16}
+% BibTex style file: imsart-number.bst, 2017-11-03
+% Default style options (sort=1,type=number).
+% Used options (sort=1,type=number).
+
+\bibitem{adel2023general}
+\begin{barticle}[author]
+\bauthor{\bsnm{Adel},~\bfnm{Tameem}\binits{T.}} \AND
+  \bauthor{\bsnm{Levene},~\bfnm{Mark}\binits{M.}}
+(\byear{2023}).
+\btitle{A General Model for Side Information in Neural Networks}.
+\bjournal{Algorithms}
+\bvolume{16}
+\bpages{526}.
+\end{barticle}
+\endbibitem
+
+\bibitem{bertsimas2018predictive}
+\begin{barticle}[author]
+\bauthor{\bsnm{Bertsimas},~\bfnm{Dimitris}\binits{D.}},
+  \bauthor{\bsnm{Pawlowski},~\bfnm{Colin}\binits{C.}} \AND
+  \bauthor{\bsnm{Zhuo},~\bfnm{Ying~Daisy}\binits{Y.~D.}}
+(\byear{2018}).
+\btitle{From predictive methods to missing data imputation: an optimization
+  approach}.
+\bjournal{Journal of Machine Learning Research}
+\bvolume{18}
+\bpages{1--39}.
+\end{barticle}
+\endbibitem
+
+\bibitem{chen2012boosting}
+\begin{binproceedings}[author]
+\bauthor{\bsnm{Chen},~\bfnm{Jixu}\binits{J.}},
+  \bauthor{\bsnm{Liu},~\bfnm{Xiaoming}\binits{X.}} \AND
+  \bauthor{\bsnm{Lyu},~\bfnm{Siwei}\binits{S.}}
+(\byear{2012}).
+\btitle{Boosting with side information}.
+In \bbooktitle{Asian Conference on Computer Vision}
+\bpages{563--577}.
+\bpublisher{Springer}.
+\end{binproceedings}
+\endbibitem
+
+\bibitem{della2021regularized}
+\begin{binproceedings}[author]
+\bauthor{\bsnm{Della~Vecchia},~\bfnm{Andrea}\binits{A.}},
+  \bauthor{\bsnm{Mourtada},~\bfnm{Jaouad}\binits{J.}},
+  \bauthor{\bsnm{De~Vito},~\bfnm{Ernesto}\binits{E.}} \AND
+  \bauthor{\bsnm{Rosasco},~\bfnm{Lorenzo}\binits{L.}}
+(\byear{2021}).
+\btitle{Regularized ERM on random subspaces}.
+In \bbooktitle{International Conference on Artificial Intelligence and
+  Statistics}
+\bpages{4006--4014}.
+\bpublisher{PMLR}.
+\end{binproceedings}
+\endbibitem
+
+\bibitem{ghahramani1993supervised}
+\begin{barticle}[author]
+\bauthor{\bsnm{Ghahramani},~\bfnm{Zoubin}\binits{Z.}} \AND
+  \bauthor{\bsnm{Jordan},~\bfnm{Michael}\binits{M.}}
+(\byear{1993}).
+\btitle{Supervised learning from incomplete data via an EM approach}.
+\bjournal{Advances in neural information processing systems}
+\bvolume{6}.
+\end{barticle}
+\endbibitem
+
+\bibitem{hosna2022transfer}
+\begin{barticle}[author]
+\bauthor{\bsnm{Hosna},~\bfnm{Asmaul}\binits{A.}},
+  \bauthor{\bsnm{Merry},~\bfnm{Ethel}\binits{E.}},
+  \bauthor{\bsnm{Gyalmo},~\bfnm{Jigmey}\binits{J.}},
+  \bauthor{\bsnm{Alom},~\bfnm{Zulfikar}\binits{Z.}},
+  \bauthor{\bsnm{Aung},~\bfnm{Zeyar}\binits{Z.}} \AND
+  \bauthor{\bsnm{Azim},~\bfnm{Mohammad~Abdul}\binits{M.~A.}}
+(\byear{2022}).
+\btitle{Transfer learning: a friendly introduction}.
+\bjournal{Journal of Big Data}
+\bvolume{9}
+\bpages{102}.
+\end{barticle}
+\endbibitem
+
+\bibitem{jonschkowski2015patterns}
+\begin{barticle}[author]
+\bauthor{\bsnm{Jonschkowski},~\bfnm{Rico}\binits{R.}},
+  \bauthor{\bsnm{H{\"o}fer},~\bfnm{Sebastian}\binits{S.}} \AND
+  \bauthor{\bsnm{Brock},~\bfnm{Oliver}\binits{O.}}
+(\byear{2015}).
+\btitle{Patterns for learning with side information}.
+\bjournal{arXiv preprint arXiv:1511.06429}.
+\end{barticle}
+\endbibitem
+
+\bibitem{mollaysa2017regularising}
+\begin{binproceedings}[author]
+\bauthor{\bsnm{Mollaysa},~\bfnm{Amina}\binits{A.}},
+  \bauthor{\bsnm{Strasser},~\bfnm{Pablo}\binits{P.}} \AND
+  \bauthor{\bsnm{Kalousis},~\bfnm{Alexandros}\binits{A.}}
+(\byear{2017}).
+\btitle{Regularising non-linear models using feature side-information}.
+In \bbooktitle{International Conference on Machine Learning}
+\bpages{2508--2517}.
+\bpublisher{PMLR}.
+\end{binproceedings}
+\endbibitem
+
+\bibitem{nguyen2023imputation}
+\begin{barticle}[author]
+\bauthor{\bsnm{Nguyen},~\bfnm{Thu}\binits{T.}},
+  \bauthor{\bsnm{Vo},~\bfnm{Tuan~L}\binits{T.~L.}},
+  \bauthor{\bsnm{Halvorsen},~\bfnm{P{\aa}l}\binits{P.}} \AND
+  \bauthor{\bsnm{Riegler},~\bfnm{Michael~A}\binits{M.~A.}}
+(\byear{2023}).
+\btitle{Imputation using training labels and classification via label
+  imputation}.
+\bjournal{arXiv preprint arXiv:2311.16877}.
+\end{barticle}
+\endbibitem
+
+\bibitem{sacco2021neural}
+\begin{binproceedings}[author]
+\bauthor{\bsnm{Sacco},~\bfnm{Ludovica}\binits{L.}},
+  \bauthor{\bsnm{Ienco},~\bfnm{Dino}\binits{D.}} \AND
+  \bauthor{\bsnm{Interdonato},~\bfnm{Roberto}\binits{R.}}
+(\byear{2021}).
+\btitle{A neural network strategy for supervised classification via the
+  Learning Under Privileged Information paradigm.}
+In \bbooktitle{SEBD}
+\bpages{83--93}.
+\end{binproceedings}
+\endbibitem
+
+\bibitem{song2021learning}
+\begin{binproceedings}[author]
+\bauthor{\bsnm{Song},~\bfnm{Yuru}\binits{Y.}},
+  \bauthor{\bsnm{Lou},~\bfnm{Zan}\binits{Z.}},
+  \bauthor{\bsnm{You},~\bfnm{Shan}\binits{S.}},
+  \bauthor{\bsnm{Yang},~\bfnm{Erkun}\binits{E.}},
+  \bauthor{\bsnm{Wang},~\bfnm{Fei}\binits{F.}},
+  \bauthor{\bsnm{Qian},~\bfnm{Chen}\binits{C.}},
+  \bauthor{\bsnm{Zhang},~\bfnm{Changshui}\binits{C.}} \AND
+  \bauthor{\bsnm{Wang},~\bfnm{Xiaogang}\binits{X.}}
+(\byear{2021}).
+\btitle{Learning with privileged tasks}.
+In \bbooktitle{Proceedings of the IEEE/CVF International Conference on Computer
+  Vision}
+\bpages{10685--10694}.
+\end{binproceedings}
+\endbibitem
+
+\bibitem{stekhoven2012missforest}
+\begin{barticle}[author]
+\bauthor{\bsnm{Stekhoven},~\bfnm{Daniel~J}\binits{D.~J.}} \AND
+  \bauthor{\bsnm{B{\"u}hlmann},~\bfnm{Peter}\binits{P.}}
+(\byear{2012}).
+\btitle{MissForest—non-parametric missing value imputation for mixed-type
+  data}.
+\bjournal{Bioinformatics}
+\bvolume{28}
+\bpages{112--118}.
+\end{barticle}
+\endbibitem
+
+\bibitem{van2007multiple}
+\begin{barticle}[author]
+\bauthor{\bsnm{Van~Buuren},~\bfnm{Stef}\binits{S.}}
+(\byear{2007}).
+\btitle{Multiple imputation of discrete and continuous data by fully
+  conditional specification}.
+\bjournal{Statistical methods in medical research}
+\bvolume{16}
+\bpages{219--242}.
+\end{barticle}
+\endbibitem
+
+\bibitem{vapnik2015learning}
+\begin{barticle}[author]
+\bauthor{\bsnm{Vapnik},~\bfnm{Vladimir}\binits{V.}},
+  \bauthor{\bsnm{Izmailov},~\bfnm{Rauf}\binits{R.}} \betal{et~al.}
+(\byear{2015}).
+\btitle{Learning using privileged information: similarity control and knowledge
+  transfer.}
+\bjournal{J. Mach. Learn. Res.}
+\bvolume{16}
+\bpages{2023--2049}.
+\end{barticle}
+\endbibitem
+
+\bibitem{vapnik2009new}
+\begin{barticle}[author]
+\bauthor{\bsnm{Vapnik},~\bfnm{Vladimir}\binits{V.}} \AND
+  \bauthor{\bsnm{Vashist},~\bfnm{Akshay}\binits{A.}}
+(\byear{2009}).
+\btitle{A new learning paradigm: Learning using privileged information}.
+\bjournal{Neural networks}
+\bvolume{22}
+\bpages{544--557}.
+\end{barticle}
+\endbibitem
+
+\bibitem{wang2018learning}
+\begin{barticle}[author]
+\bauthor{\bsnm{Wang},~\bfnm{Shangfei}\binits{S.}},
+  \bauthor{\bsnm{Chen},~\bfnm{Shiyu}\binits{S.}},
+  \bauthor{\bsnm{Chen},~\bfnm{Tanfang}\binits{T.}} \AND
+  \bauthor{\bsnm{Shi},~\bfnm{Xiaoxiao}\binits{X.}}
+(\byear{2018}).
+\btitle{Learning with privileged information for multi-label classification}.
+\bjournal{Pattern Recognition}
+\bvolume{81}
+\bpages{60--70}.
+\end{barticle}
+\endbibitem
+
+\end{thebibliography}

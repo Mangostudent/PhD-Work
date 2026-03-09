@@ -1,0 +1,28 @@
+Overfull \hbox (2.14516pt too wide) in paragraph at lines 82--84 \T1/ntxtlf/m/n/10.5 For a reg-u-lar-iza-tion param-e-ter $\OML/ntxmi/m/it/10.5
+Overfull \hbox (28.60408pt too wide) detected at line 149 [][]
+Overfull \hbox (7.81885pt too wide) detected at line 28 [][][][][]
+Overfull \hbox (4.71085pt too wide) detected at line 95 [][][][][]
+Overfull \hbox (9.71579pt too wide) in paragraph at lines 14--15 \T1/ntxtlf/m/n/10.5 tively, but the joint dis-tri-bu-tions over $\LMS/ntxsy/m/n
+Overfull \hbox (14.85327pt too wide) in paragraph at lines 14--15 \T1/ntxtlf/m/n/10.5 to iden-ti-fy-ing which dis-tri-bu-tion gen-er-ated the dat
+Overfull \hbox (16.39632pt too wide) in paragraph at lines 31--32 [][]\T1/ntxtlf/b/n/10.5 Lemma 6.2. []\T1/ntxtlf/m/it/10.5 Let $[]$ and $\OML/nt
+Overfull \hbox (16.69557pt too wide) detected at line 59 [][]
+Overfull \hbox (32.27553pt too wide) detected at line 83 []
+Overfull \hbox (26.09996pt too wide) in paragraph at lines 201--205 \T1/ntxtlf/m/n/10.5 holds, then $\OML/ntxmi/m/it/10.5 ^^^[]\LMS/ntxsy/m/n/10.5
+Overfull \hbox (43.3047pt too wide) detected at line 287 [][]
+Overfull \hbox (15.34532pt too wide) in paragraph at lines 14--15 []\T1/ntxtlf/m/n/10.5 For a fixed $\LMS/ntxsy/m/n/10.5 ¹\OML/ntxmi/m/it/10.5 x;
+Overfull \hbox (75.16408pt too wide) detected at line 35 [][]
+Overfull \hbox (71.30266pt too wide) detected at line 40 \U/ntxsym/m/n/10.5 E[]\LMS/ntxsy/m/n/10.5 »\OML/ntxmi/m/it/10.5 `\LMS/ntxsy/m/n
+Overfull \hbox (47.428pt too wide) detected at line 99 [][]
+Overfull \hbox (0.82008pt too wide) detected at line 106 [][]
+Overfull \hbox (40.62021pt too wide) detected at line 153 [][]
+Overfull \hbox (39.80122pt too wide) detected at line 166 [][]
+Overfull \hbox (43.385pt too wide) detected at line 189 [][]
+Overfull \hbox (40.83783pt too wide) detected at line 202 [][]
+Overfull \hbox (7.80534pt too wide) detected at line 240 [][]
+Overfull \hbox (68.61795pt too wide) detected at line 109 [][]
+Overfull \hbox (15.9715pt too wide) detected at line 120 [][]
+Overfull \hbox (40.67519pt too wide) detected at line 142 [][]
+Overfull \hbox (60.44936pt too wide) detected at line 165 [][]
+Overfull \hbox (40.35825pt too wide) detected at line 189 [][]
+Overfull \hbox (54.95471pt too wide) detected at line 208 [][][][][]
+Overfull \hbox (73.105pt too wide) detected at line 241 [][]

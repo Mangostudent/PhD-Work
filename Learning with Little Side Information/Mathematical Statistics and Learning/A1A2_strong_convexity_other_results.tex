@@ -1,5 +1,5 @@
 
-\section{Appendix I: Lemmas About Generalization Gap from Existing Literature}
+\section{Supplementary Proofs and Results I: Lemmas About Generalization Gap from Existing Literature}
 
 In this section, we review key results from \cite{della2021regularized} that will be used in the proof of the main theorem (Theorem \ref{thm: main theorem}). For convenience, we restate these theorems below. Before doing so, we summarize the assumptions and notation on which those results rely.
 
@@ -91,7 +91,7 @@ Thus as $k \to \infty$, $L(a_k) \to \infty$.
 Since $a$ was an arbitrary unit vector, we have $L(a) \to \infty$ as $\|a\| \to \infty$.
 \end{proof}
 
-\section{Appendix II: Bounding optimal weights}\label{sec: Bounding optimal weights}
+\section{Supplementary Proofs and Results II: Bounding optimal weights}\label{sec: Bounding optimal weights}
 
 Algorithm \ref{alg: side information algorithm} trains on the partitioned datasets $D$ and $S$, and returns a classifier with weights $\whl \in \mathbb{R}^{d+2}$. In the forthcoming proof of Theorem \ref{thm: main theorem}, we will show that the excess risk associated with $\whl$ admits an upper bounded involving terms of order $\frac{\|\whl\|}{\sqrt{n}}$. However, since $\whl$ is a random variable, we do not know how terms like $\frac{\|\whl\|}{\sqrt{n}}$ scale with sample size $n$. Thus we seek to show that, with high probability, $\|\whl\|$ lies in a bounded subset of $\R^{d+2}$. A crucial property required for this analysis is the non-separability of the distribution (see \eqref{eqn: distribution conditions}). The lemmas in this section will conclude by providing an upper bound on $\|\whl\|$ and will also establish $\mathsf{W} < \infty$ (defined in \eqref{eqn: uniform weight bound}) as promised.
 

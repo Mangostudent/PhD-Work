@@ -1,0 +1,171 @@
+EMS Press author guidelines
+Author guidelines for articles
+published by EMS Press
+1. The L ATEX file
+• Authors are expected to submit their manuscript in well-structured L ATEX using the
+journal’s provided template andstyle file , and following the instructions given in
+these guidelines.
+• Rename the provided .tex template file using, e.g., the surnames of authors.
+• Insert the contents of your manuscript in the appropriate places; see the comments
+throughout the template.
+• Do not include redundant source code such as unused definitions of macros.
+• Avoid using \def to define own macros.
+• No personal style files should be used.
+• Do not modify the page layout or style in any way. Also, do not attempt to fix
+page breaks and avoid adding or removing extra space to improve the appearance
+of the manuscript. This is done during typesetting.
+• The style file may conflict with older versions of the TeX engine (TeXLive or
+MiKTeX). Experiencing unexpected behaviour, please try first a newer TeX ver-
+sion or the online editor Overleaf. Should the problem persist, contact the produc-
+tion team attaching the full file package (in particular, the log file).
+2. The journal’s style file
+• Include the journal’s style file as shown in the template.
+• Do not edit the style file.
+• The style file automatically loads the following packages:
+amsthm, amsmath, amssymb, enumitem, geometry, caption, graphicx,
+array, hyperref, url, fontenc, inputenc, babel, booktabs, cite,
+EMS Press author guidelines 2
+float, footmisc, multicol, xcolor, newtxmath, newtxtext,
+kvoptions, nag, ragged2e, pdf14, pdftexcmds, xpatch, zref-base
+These should not be loaded again.
+3. Submitting your final manuscript
+Once done with editing your manuscript, please provide us with
+• the.tex file,
+• the corresponding PDF file for reference,
+• the.bib file (in case you use B IBTEX),
+• all figures and illustrations in a standard graphics format along with their source
+files, e.g., SVG files or TikZ code, if available.
+4. Abstract, author addresses, acknowledgments and funding
+• The abstract should provide a brief but comprehensive and self-contained descrip-
+tion of the article and its results. Avoid using direct references to the bibliography
+like ‘[5]’ since the abstract may appear independently from the rest of the article.
+For referencing works, use ‘Petrunin (1998)’ or, if specifying the exact source is
+necessary, ‘Petrunin [Geom. Funct. Anal. 8 (1998), 123–148]’. Inline formulas
+such as WDRnnRdcan be used, but displayed formulas should be avoided.
+• Acknowledgements should be included using the environment ackas in the tem-
+plate. Formal financial support (incl. grant numbers) should be listed next, using
+thefunding environment.
+• A full address should be given for each author, including institute/department,
+university, street address/P.O. Box, ZIP code, city, and country. In addition to an
+original author address at which the research was carried out, a current address
+may be included (clearly distinguished from the original).
+5. Figures
+• Figures and illustrations should be sharp and of good quality, and their parts
+should be clearly discernible. Avoid very small or large symbols within figures as
+well as fuzzy or pixelated lines. Vector graphics formats (EPS, PDF) are strongly
+preferred to raster ones (JPEG, PNG).
+EMS Press author guidelines 3
+• Figures may use colour if this enhances their content. The inclusion of colour
+figures is provided free of charge in the journal’s online and print editions.
+EMS Press author guidelines 4
+• Include figures by writing
+\begin{figure}[t]
+\includegraphics[width=.6\textwidth]{FILENAME}
+\caption{Caption text.}\label{LABEL}
+\end{figure}
+• For subcaptions, load \usepackage[margin=0pt]{subfig} in the preamble
+and then write
+\begin{figure}[t]
+\subfloat[Caption a]{\includegraphics[width=4cm]{FILENAME}}
+\qquad
+\subfloat[Caption b]{\includegraphics[width=4cm]{FILENAME}}
+\caption{Caption text.}
+\end{figure}
+6. Enumerated lists
+• The labels of first level enumerations are by default (1), (2), . . . .
+• You may change them to, e.g., (i), (ii), . . . by using an optional argument:
+\begin{enumerate}[(i)]
+\item ...
+\item ...
+\end{enumerate}
+• For more options see the documentation of the enumitem package.
+7. Theorems and the like
+• For defining theorems and similar environments include appropriate \newtheorem
+commands such as
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+Donotuse\theoremstyle{remark} .
+EMS Press author guidelines 5
+• For a proof, use \begin{proof}...\end{proof} . An end-of-proof symbol ‘ ’
+is added automatically.
+• Use\qedhere to put the symbol ‘ ’ at the end of an unnumbered displayed for-
+mula.
+8. Displayed formulas
+• For displayed formulas with more than one line use
+\begin{align}...\end{align}
+(or the starred form of align to skip numbering) instead of the eqnarray envir-
+onment, since the former yields better spacing.
+• For not numbering every line, add \notag at the end of lines where numbers
+should be skipped:
+ADf .x i/DF0.x/;
+BDg.xi/DG0.x/: (1)
+• Write
+\begin{equation}\begin{aligned}...\end{aligned}\end{equation}
+to get one label for the complete block:
+ADf .x i/DF0.x/;
+BDg.xi/DG0.x/:(2)
+• Other available environments for multiline displays are gather ormultline .
+9. More mathematics
+• Avoid blank lines before or after displayed formulas, unless when starting a new
+paragraph.
+• Avoid $$...$$ and use instead \begin{equation*}...\end{equation*} or
+\[...\] .
+• For horizontal spacing in displayed formulas use \quad or\qquad (not mul-
+tiple~).
+• Leave punctuation marks outside inline formulas: $n>0$.
+• Avoid forcing display style with \displaystyle or\limits for inline formulas.
+EMS Press author guidelines 6
+• For the separator in set notation use \mid (not|).
+• For the double bar indicating a norm use \lVert and\rVert .
+• Operators whose notation is more than one character should be upright. If the
+operator you need is not predefined (such as \dim ,\det or\sin ), write
+\DeclareMathOperator{\Aut}{Aut}
+• Sub- and superscripts that stand for words (such as ‘i’ for ‘initial’) and not for
+variables should be upright. Write $N^{\mathrm{i}}$ .
+• Avoid using \left and\right . To obtain bigger delimiters in displayed formu-
+las, use\big ,\Big ,\bigg or\Bigg .
+• Avoid using \,and\!. A notable exception is before differentials like dxin
+integrals, where \,is normally added.
+10. Grammar rules for displayed formulas
+• Displayed formulas are considered part of grammatical sentences, and they follow
+the same punctuation rules. Example: A displayed formula that ends a sentence
+must end with a full stop. In such cases, avoid horizontal space before punctuation.
+Example: Do notwrite\[ A_n<1\,. \]
+• Put a colon after phrases like ‘as follows’ or ‘the following’ when they introduce
+a displayed formula. Phrases like ‘defined by’, ‘can be seen that’, ‘such that’, ‘we
+have’ etc. must notbe followed by a colon.
+11. Quotation marks, dashes, abbreviations
+• For single and double quotation marks use `... 'and``... ''.
+• The hyphen (code: -) is used for compound words like p-periodic. Do notwrite
+$p-$periodic which gives the minus sign instead.
+• The en-dash (code: --) is used for number ranges and it can stand for ‘and’ as in
+Cauchy–Bunyakovsky–Schwarz.
+• The em-dash (code: ---) with no space before or after may be used to partition a
+sentence or for parenthetical clauses. For this, we prefer the en-dash with a blank
+space before and after.
+• Write all Latin abbreviations upright (not italic): e.g., et al., i.e., etc.
+EMS Press author guidelines 7
+12. Cross-references
+• If you cross-reference a section, subsection, figure, table or theorem-like envir-
+onment, always use \label and\ref . For displayed formulas, use \label and
+\eqref .
+• Do notreference page numbers of your article (avoid using \pageref ).
+• If your article has 50 or more pages, you may include a table of contents using
+\tableofcontents .
+13. Bibliography
+• Items in the bibliography should be ordered alphabetically using numerical labels.
+• Each entry must be cited at least once in the text.
+• Follow closely the different examples of bibliography entries given in our .tex
+template. They show the preferred style for books, articles (in journals and books),
+preprints, reports, and theses.
+• Abbreviate titles of journals and book series as in zbMath Open or Mathematical
+Reviews.
+• We provide a bstfile for authors who use B IBTEX.
+EMS Press
+Institut für Mathematik, Technische Universität Berlin, Straße des 17. Juni 136,
+10623 Berlin, Germany
+For questions regarding these guidelines, please contact us at production@ems.press.

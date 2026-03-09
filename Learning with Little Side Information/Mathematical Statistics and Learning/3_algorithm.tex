@@ -10,7 +10,7 @@ We present our learning algorithm for leveraging side information in classificat
     Choose regularization parameters $(\lamc, \lamx, \lamz)$. For each $(x_i, y_i) \in D$, impute $z_i = \ph(x_i)$. Train a regularized logistic regression model (thresholded at $0.5$) to learn a classifier $\whl: \cg{X} \times \cg{Z} \rightarrow \cg{Y}$.
 \end{enumerate}
 
-Among all regularization choices, only the selection of $\lambda_z$ is non-trivial and thus becomes the primary focus of both theoretical and empirical analysis in this work.
+Among all regularization choices, only the selection of $\lambda_z$ is non-trivial and thus becomes the primary focus of both theoretical and empirical analysis in this work. In principle, the optimal value of $\lambda_z$ depends on the properties of the unknown joint distribution of $(X, Z, Y)$. In standard scenarios, one would set aside a validation set to empirically estimate this hyperparameter. However, in our setting, the data is inherently partitioned and we do not observe the joint sample of all variables, making such empirical tuning infeasible. As a result, the choice of $\lambda_z$ must rely on theoretical considerations rather than direct validation.
 
 \begin{algorithm}[htbp]
     \caption{Learning with Side Information}

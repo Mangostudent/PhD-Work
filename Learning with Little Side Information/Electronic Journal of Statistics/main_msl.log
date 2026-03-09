@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.18)  9 MAR 2026 01:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.18)  8 MAR 2026 15:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./main_msl.tex
-(main_msl.tex
+**"../Mathematical Statistics and Learning/main_msl.tex"
+(../Mathematical Statistics and Learning/main_msl.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\manis\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -1563,13 +1563,12 @@ File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.5pt on input line 341.
 
-(main_msl.aux)
+No file main_msl.aux.
 \openout1 = `main_msl.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 341.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line
  341.
-
 (C:\Users\manis\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
@@ -1697,7 +1696,6 @@ LaTeX Info: Redefining \degres on input line 341.
 LaTeX Info: Command `\dddot' is already robust on input line 341.
 LaTeX Info: Command `\ddddot' is already robust on input line 341.
 Package hyperref Info: Link coloring ON on input line 341.
- (main_msl.out) (main_msl.out)
 \@outlinefile=\write4
 \openout4 = `main_msl.out'.
 
@@ -1833,7 +1831,72 @@ anis/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}
 [2]
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 10.5pt on input line 28.
- [3]) (2_problem_formulation.tex
+
+
+LaTeX Warning: Citation `vapnik2009new' on page 3 undefined on input line 32.
+
+
+LaTeX Warning: Citation `vapnik2015learning' on page 3 undefined on input line 
+33.
+
+
+LaTeX Warning: Citation `sacco2021neural' on page 3 undefined on input line 33.
+
+
+
+LaTeX Warning: Citation `song2021learning' on page 3 undefined on input line 33
+.
+
+
+LaTeX Warning: Citation `wang2018learning' on page 3 undefined on input line 33
+.
+
+[3]
+
+LaTeX Warning: Citation `bertsimas2018predictive' on page 4 undefined on input 
+line 35.
+
+
+LaTeX Warning: Citation `van2007multiple' on page 4 undefined on input line 35.
+
+
+
+LaTeX Warning: Citation `ghahramani1993supervised' on page 4 undefined on input
+ line 35.
+
+
+LaTeX Warning: Citation `stekhoven2012missforest' on page 4 undefined on input 
+line 35.
+
+
+LaTeX Warning: Citation `nguyen2023imputation' on page 4 undefined on input lin
+e 35.
+
+
+LaTeX Warning: Citation `hosna2022transfer' on page 4 undefined on input line 3
+7.
+
+
+LaTeX Warning: Citation `adel2023general' on page 4 undefined on input line 39.
+
+
+
+LaTeX Warning: Citation `chen2012boosting' on page 4 undefined on input line 39
+.
+
+
+LaTeX Warning: Citation `jonschkowski2015patterns' on page 4 undefined on input
+ line 39.
+
+
+LaTeX Warning: Citation `mollaysa2017regularising' on page 4 undefined on input
+ line 39.
+
+
+LaTeX Warning: Citation `adel2023general' on page 4 undefined on input line 39.
+
+
+) (2_problem_formulation.tex
 LaTeX Font Info:    Trying to load font information for OT1+qhv on input line 1
 0.
 
@@ -1864,6 +1927,11 @@ LaTeX Font Warning: Font shape `U/bbm/m/n' in size <10.5> not available
 
 [5{C:/Users/manis/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-rm.e
 nc}]
+
+LaTeX Warning: Reference `lem: finite norm for optimal weights' on page 6 undef
+ined on input line 71.
+
+
 Overfull \hbox (2.14516pt too wide) in paragraph at lines 82--84
 \T1/ntxtlf/m/n/10.5 For a reg-u-lar-iza-tion param-e-ter $\OML/ntxmi/m/it/10.5 
 ^^V \LMS/ntxsy/m/n/10.5 2 \U/ntxsym/m/n/10.5 R$\T1/ntxtlf/m/n/10.5 , the reg-u-
@@ -1929,7 +1997,20 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 5.17001pt on input line 88.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 6.86195pt on input line 88.
+
+LaTeX Warning: Reference `lem: finite norm for optimal weights' on page 6 undef
+ined on input line 106.
+
 [6]
+
+LaTeX Warning: Reference `lem: finite norm for optimal weights' on page 7 undef
+ined on input line 121.
+
+
+LaTeX Warning: Reference `eqn: phi star and phi hat' on page 7 undefined on inp
+ut line 144.
+
+
 Overfull \hbox (28.60408pt too wide) detected at line 149
 [][]
  []
@@ -1944,12 +2025,96 @@ File: t1ntxtt.fd 2012/04/20 v3.1
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
 (Font)              scaled to size 10.5pt on input line 26.
 )
-[8] (4A_upper_bound.tex [9]
+
+LaTeX Warning: Reference `alg: side information algorithm' on page 8 undefined 
+on input line 432.
+
+
+LaTeX Warning: Reference `thm: main theorem' on page 8 undefined on input line 
+432.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 1' on page 8 undefin
+ed on input line 432.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 2' on page 8 undefin
+ed on input line 432.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 3' on page 8 undefin
+ed on input line 432.
+
+
+LaTeX Warning: Reference `thm: Lower bound on excess risk' on page 8 undefined 
+on input line 434.
+
+(4A_upper_bound.tex [8]
+
+LaTeX Warning: Reference `cor: uniform bound on weights' on page 9 undefined on
+ input line 9.
+
+
+LaTeX Warning: Reference `eqn: u star' on page 9 undefined on input line 13.
+
+
+LaTeX Warning: Reference `eqn: v star' on page 9 undefined on input line 13.
+
+
+LaTeX Warning: Reference `eqn: w star' on page 9 undefined on input line 13.
+
+
+LaTeX Warning: Reference `eqn: w lambda star' on page 9 undefined on input line
+ 13.
+
+
+LaTeX Warning: Reference `eqn: uniform weight bound' on page 9 undefined on inp
+ut line 13.
+
+
+LaTeX Warning: Reference `eqn: partioned dataset' on page 9 undefined on input 
+line 14.
+
+[9]
 Overfull \hbox (7.81885pt too wide) detected at line 28
 [][][][][]
  []
 
-[10] [11]
+
+LaTeX Warning: Reference `eqn: main equation' on page 10 undefined on input lin
+e 34.
+
+
+LaTeX Warning: Reference `eqn: main equation' on page 10 undefined on input lin
+e 54.
+
+[10]
+
+LaTeX Warning: Reference `eqn: main equation' on page 11 undefined on input lin
+e 64.
+
+
+LaTeX Warning: Reference `thm: main theorem' on page 11 undefined on input line
+ 70.
+
+[11]
+
+LaTeX Warning: Reference `thm: main theorem' on page 12 undefined on input line
+ 82.
+
+
+LaTeX Warning: Reference `eqn: main equation' on page 12 undefined on input lin
+e 83.
+
+
+LaTeX Warning: Reference `thm: main theorem' on page 12 undefined on input line
+ 83.
+
+
+LaTeX Warning: Reference `lem: bound weights in terms of lambda' on page 12 und
+efined on input line 83.
+
+
 Overfull \hbox (4.71085pt too wide) detected at line 95
 [][][][][]
  []
@@ -1962,13 +2127,109 @@ File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.5pt on input line 110.
 
-[12] [13{C:/Users/manis/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/
-q-ts1.enc}] [14]
+
+LaTeX Warning: Reference `cor: consequence of main theorem 1' on page 12 undefi
+ned on input line 114.
+
+[12{C:/Users/manis/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1
+.enc}]
+
+LaTeX Warning: Reference `cor: consequence of main theorem 2' on page 13 undefi
+ned on input line 120.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 3' on page 13 undefi
+ned on input line 128.
+
+
+LaTeX Warning: Reference `eqn: weaker main equation' on page 13 undefined on in
+put line 151.
+
+
+LaTeX Warning: Reference `eqn: weaker main equation' on page 13 undefined on in
+put line 157.
+
+
+LaTeX Warning: Reference `eqn: main equation' on page 13 undefined on input lin
+e 159.
+
+[13]
+
+LaTeX Warning: Reference `eqn: weaker main equation' on page 14 undefined on in
+put line 193.
+
+
+LaTeX Warning: Reference `eqn: main equation' on page 14 undefined on input lin
+e 205.
+
+[14]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 (Font)              scaled to size 7.66495pt on input line 220.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 (Font)              scaled to size 5.77502pt on input line 220.
- [15] [16]) (4B_lower_bound.tex
+
+
+LaTeX Warning: Reference `eqn: weaker main equation' on page 15 undefined on in
+put line 244.
+
+
+LaTeX Warning: Reference `eqn: main equation' on page 15 undefined on input lin
+e 252.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 3' on page 15 undefi
+ned on input line 258.
+
+[15]
+
+LaTeX Warning: Reference `cor: consequence of main theorem 1' on page 16 undefi
+ned on input line 269.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 2' on page 16 undefi
+ned on input line 274.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 3' on page 16 undefi
+ned on input line 274.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 2' on page 16 undefi
+ned on input line 275.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 3' on page 16 undefi
+ned on input line 281.
+
+
+LaTeX Warning: Reference `eqn: upperbound cor 2' on page 16 undefined on input 
+line 285.
+
+
+LaTeX Warning: Reference `eqn: upperbound cor 3' on page 16 undefined on input 
+line 285.
+
+
+LaTeX Warning: Reference `eqn: upperbound cor 2' on page 16 undefined on input 
+line 285.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 3' on page 16 undefi
+ned on input line 285.
+
+) (4B_lower_bound.tex
+
+LaTeX Warning: Reference `eqn: partioned dataset' on page 16 undefined on input
+ line 3.
+
+
+LaTeX Warning: Reference `eqn: partioned dataset' on page 16 undefined on input
+ line 6.
+
+
+LaTeX Warning: Reference `eqn: w star' on page 16 undefined on input line 7.
+
+[16]
 Overfull \hbox (9.71579pt too wide) in paragraph at lines 14--15
 \T1/ntxtlf/m/n/10.5 tively, but the joint dis-tri-bu-tions over $\LMS/ntxsy/m/n
 /10.5 ¹\OML/ntxmi/m/it/10.5 X; Y; Z\LMS/ntxsy/m/n/10.5 º$ \T1/ntxtlf/m/n/10.5 d
@@ -1982,51 +2243,192 @@ Overfull \hbox (14.85327pt too wide) in paragraph at lines 14--15
 a. How-ever, since the observed marginals
  []
 
-) (4C_simulation_result.tex [17]
-<lambda_frequency.png, id=304, 714.7503pt x 426.393pt>
+) (4C_simulation_result.tex
+
+LaTeX Warning: Reference `cor: consequence of main theorem 1' on page 17 undefi
+ned on input line 4.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 2' on page 17 undefi
+ned on input line 4.
+
+
+LaTeX Warning: Reference `cor: consequence of main theorem 3' on page 17 undefi
+ned on input line 4.
+
+[17]
+
+LaTeX Warning: Reference `fig: lambda plot' on page 18 undefined on input line 
+28.
+
+<lambda_frequency.png, id=148, 714.7503pt x 426.393pt>
 File: lambda_frequency.png Graphic file (type png)
 <use lambda_frequency.png>
-Package pdftex.def Info: lambda_frequency.png  used on input line 35.
+Package pdftex.def Info: lambda_frequency.png  used on input line 32.
 (pdftex.def)             Requested size: 357.37428pt x 213.19597pt.
- [18] [19 <./lambda_frequency.png>]
-<Real_World_Experiments/optimal_lambda_real_world.png, id=325, 867.24pt x 505.8
-9pt>
-File: Real_World_Experiments/optimal_lambda_real_world.png Graphic file (type p
-ng)
-<use Real_World_Experiments/optimal_lambda_real_world.png>
-Package pdftex.def Info: Real_World_Experiments/optimal_lambda_real_world.png  
-used on input line 68.
-(pdftex.def)             Requested size: 433.61894pt x 252.94437pt.
+) [18 <./lambda_frequency.png>]
+No file main_msl.bbl.
+[19] (A1A2_strong_convexity_other_results.tex
 
-Overfull \hbox (76.61894pt too wide) in paragraph at lines 68--69
- [][] 
- []
+LaTeX Warning: Citation `della2021regularized' on page 20 undefined on input li
+ne 4.
 
-[20]) (main_msl.bbl [21 <./Real_World_Experiments/optimal_lambda_real_world.png
->]) [22] (A1A2_strong_convexity_other_results.tex
+
+LaTeX Warning: Reference `thm: main theorem' on page 20 undefined on input line
+ 4.
+
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
 (Font)              scaled to size 7.66495pt on input line 6.
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
 (Font)              scaled to size 5.77502pt on input line 6.
 
-Overfull \hbox (16.39632pt too wide) in paragraph at lines 31--32
+LaTeX Warning: Citation `della2021regularized' on page 20 undefined on input li
+ne 18.
+
+
+LaTeX Warning: Citation `della2021regularized' on page 20 undefined on input li
+ne 19.
+
+
+LaTeX Warning: Reference `eqn: u star' on page 20 undefined on input line 31.
+
+
+LaTeX Warning: Reference `eqn: u hat' on page 20 undefined on input line 31.
+
+
+Overfull \hbox (11.14632pt too wide) in paragraph at lines 31--32
 [][]\T1/ntxtlf/b/n/10.5 Lemma 6.2. []\T1/ntxtlf/m/it/10.5 Let $[]$ and $\OML/nt
 xmi/m/it/10.5 u[]$ \T1/ntxtlf/m/it/10.5 be defined in [] and [], respec-tively.
  Let $\OML/ntxmi/m/it/10.5 S \U/ntxmia/m/it/10.5 = \LMS/ntxsy/m/n/10.5 f¹\OML/n
 txmi/m/it/10.5 x[]; z[]\LMS/ntxsy/m/n/10.5 ºg[]$
  []
 
-[23]
+
+LaTeX Warning: Citation `della2021regularized' on page 20 undefined on input li
+ne 39.
+
+[20]
+
+LaTeX Warning: Citation `della2021regularized' on page 21 undefined on input li
+ne 42.
+
+
+LaTeX Warning: Citation `della2021regularized' on page 21 undefined on input li
+ne 43.
+
+
+LaTeX Warning: Reference `eqn: phi star and phi hat' on page 21 undefined on in
+put line 52.
+
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 21 undefined on
+ input line 52.
+
+
 Overfull \hbox (16.69557pt too wide) detected at line 59
 [][]
  []
+
+
+LaTeX Warning: Citation `della2021regularized' on page 21 undefined on input li
+ne 63.
 
 
 Overfull \hbox (32.27553pt too wide) detected at line 83
 []
  []
 
-[24] [25] [26]
+[21]
+
+LaTeX Warning: Reference `alg: side information algorithm' on page 22 undefined
+ on input line 96.
+
+
+LaTeX Warning: Reference `thm: main theorem' on page 22 undefined on input line
+ 96.
+
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 22 undefined on
+ input line 96.
+
+
+LaTeX Warning: Reference `eqn: uniform weight bound' on page 22 undefined on in
+put line 96.
+
+
+LaTeX Warning: Reference `eqn: rhs eps' on page 22 undefined on input line 120.
+
+
+
+LaTeX Warning: Reference `eqn: partioned dataset' on page 22 undefined on input
+ line 125.
+
+
+LaTeX Warning: Reference `eqn: domain' on page 22 undefined on input line 125.
+
+
+LaTeX Warning: Reference `eqn: u hat' on page 22 undefined on input line 125.
+
+[22]
+
+LaTeX Warning: Reference `eqn: u star' on page 23 undefined on input line 130.
+
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 23 undefined on
+ input line 130.
+
+
+LaTeX Warning: Reference `lem: learning theory on X,Z' on page 23 undefined on 
+input line 130.
+
+
+LaTeX Warning: Reference `eqn: domain' on page 23 undefined on input line 138.
+
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 23 undefined on
+ input line 147.
+
+
+LaTeX Warning: Reference `eqn: phi star and phi hat' on page 23 undefined on in
+put line 153.
+
+
+LaTeX Warning: Reference `eqn: partioned dataset' on page 23 undefined on input
+ line 153.
+
+
+LaTeX Warning: Reference `eqn: phi star and phi hat' on page 23 undefined on in
+put line 161.
+
+
+LaTeX Warning: Reference `lem: Strongly convex' on page 23 undefined on input l
+ine 171.
+
+
+LaTeX Warning: Reference `eqn: domain' on page 23 undefined on input line 171.
+
+
+LaTeX Warning: Reference `defn: strong convex series' on page 23 undefined on i
+nput line 171.
+
+[23]
+
+LaTeX Warning: Reference `lem: learning theory on X,Z' on page 24 undefined on 
+input line 175.
+
+
+LaTeX Warning: Reference `eqn: bounded learning for uh' on page 24 undefined on
+ input line 179.
+
+
+LaTeX Warning: Reference `eqn: strong convex for x z' on page 24 undefined on i
+nput line 179.
+
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 24 undefined on
+ input line 195.
+
+
 Overfull \hbox (26.09996pt too wide) in paragraph at lines 201--205
 \T1/ntxtlf/m/n/10.5 holds, then $\OML/ntxmi/m/it/10.5 ^^^[]\LMS/ntxsy/m/n/10.5 
 ¹\OML/ntxmi/m/it/10.5 x\LMS/ntxsy/m/n/10.5 º \U/ntxmia/m/it/10.5 = []\LMS/ntxsy
@@ -2036,12 +2438,93 @@ Overfull \hbox (26.09996pt too wide) in paragraph at lines 201--205
  ¹\OML/ntxmi/m/it/10.5 X\LMS/ntxsy/m/n/10.5 ºj ^^T O[][][][][][][][]$
  []
 
-[27] [28]
+[24]
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 25 undefined on
+ input line 217.
+
+
+LaTeX Warning: Reference `eqn: w hat lambda' on page 25 undefined on input line
+ 239.
+
+
+LaTeX Warning: Reference `eqn: phi star and phi hat' on page 25 undefined on in
+put line 247.
+
+
+LaTeX Warning: Reference `lem: difference between classifier from cg{X} to cg{Z
+}' on page 25 undefined on input line 261.
+
+[25]
+
+LaTeX Warning: Reference `eqn: partioned dataset' on page 26 undefined on input
+ line 263.
+
+
+LaTeX Warning: Reference `lem: empirical and population risk gap' on page 26 un
+defined on input line 267.
+
+
 Overfull \hbox (43.3047pt too wide) detected at line 287
 [][]
  []
 
-[29]) (A3_other_useful_results.tex [30]
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 26 undefined on
+ input line 290.
+
+
+LaTeX Warning: Reference `eqn: uniform weight bound' on page 26 undefined on in
+put line 294.
+
+
+LaTeX Warning: Reference `eqn: phi star and phi hat' on page 26 undefined on in
+put line 297.
+
+
+LaTeX Warning: Reference `eqn: w star phi lambda' on page 26 undefined on input
+ line 301.
+
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 26 undefined on
+ input line 311.
+
+[26]
+
+LaTeX Warning: Reference `lem: wspsl bounding' on page 27 undefined on input li
+ne 336.
+
+
+LaTeX Warning: Reference `eqn: w lambda star' on page 27 undefined on input lin
+e 342.
+
+
+LaTeX Warning: Reference `lem: wspsl bounding' on page 27 undefined on input li
+ne 349.
+
+
+LaTeX Warning: Reference `lem: other weights bounding' on page 27 undefined on 
+input line 349.
+
+
+LaTeX Warning: Reference `lem: norm bound on u hat' on page 27 undefined on inp
+ut line 349.
+
+
+LaTeX Warning: Reference `lem: whl bounding' on page 27 undefined on input line
+ 349.
+
+) (A3_other_useful_results.tex
+
+LaTeX Warning: Reference `thm: main theorem' on page 27 undefined on input line
+ 3.
+
+[27]
+
+LaTeX Warning: Reference `eqn: phi star and phi hat' on page 28 undefined on in
+put line 7.
+
+
 Overfull \hbox (15.34532pt too wide) in paragraph at lines 14--15
 []\T1/ntxtlf/m/n/10.5 For a fixed $\LMS/ntxsy/m/n/10.5 ¹\OML/ntxmi/m/it/10.5 x;
  y\LMS/ntxsy/m/n/10.5 º$ \T1/ntxtlf/m/n/10.5 and $\OML/ntxmi/m/it/10.5 w$\T1/nt
@@ -2072,7 +2555,28 @@ OML/ntxmi/m/it/10.5 ; []\U/ntxsym/m/n/10.5 E[][]\LMS/ntxsy/m/n/10.5 j\OML/ntxmi
 m/n/10.5 ºj[]\OML/ntxmi/m/it/10.5 :
  []
 
-[31]
+
+LaTeX Warning: Reference `eqn: w hat lambda' on page 28 undefined on input line
+ 55.
+
+
+LaTeX Warning: Reference `eqn: w lambda star' on page 28 undefined on input lin
+e 55.
+
+[28]
+
+LaTeX Warning: Reference `eqn: phi star and phi hat' on page 29 undefined on in
+put line 84.
+
+
+LaTeX Warning: Reference `eqn: partioned dataset' on page 29 undefined on input
+ line 84.
+
+
+LaTeX Warning: Reference `eqn: distribution conditions' on page 29 undefined on
+ input line 84.
+
+
 Overfull \hbox (47.428pt too wide) detected at line 99
 [][]
  []
@@ -2082,7 +2586,12 @@ Overfull \hbox (0.82008pt too wide) detected at line 106
 [][]
  []
 
-[32]
+[29]
+
+LaTeX Warning: Reference `eqn: uniform weight bound' on page 30 undefined on in
+put line 146.
+
+
 Overfull \hbox (40.62021pt too wide) detected at line 153
 [][]
  []
@@ -2092,10 +2601,18 @@ Overfull \hbox (39.80122pt too wide) detected at line 166
 [][]
  []
 
-[33]
+
+LaTeX Warning: Reference `eqn: inverse relation between regulariser and risk z 
+weight' on page 30 undefined on input line 176.
+
+[30]
 Overfull \hbox (43.385pt too wide) detected at line 189
 [][]
  []
+
+
+LaTeX Warning: Reference `eqn: uniform weight bound' on page 31 undefined on in
+put line 196.
 
 
 Overfull \hbox (40.83783pt too wide) detected at line 202
@@ -2103,43 +2620,145 @@ Overfull \hbox (40.83783pt too wide) detected at line 202
  []
 
 
+LaTeX Warning: Reference `eqn: w theta less than w lambda' on page 31 undefined
+ on input line 203.
+
+
+LaTeX Warning: Reference `eqn: order of 1 by root n regulariser' on page 31 und
+efined on input line 209.
+
+
 Overfull \hbox (7.80534pt too wide) detected at line 240
 [][]
  []
 
-[34]) (A4_main_proof.tex [35]
-Overfull \hbox (15.9715pt too wide) detected at line 120
+
+LaTeX Warning: Reference `lem: inverse relation between regulariser and risk' o
+n page 31 undefined on input line 241.
+
+
+LaTeX Warning: Reference `eqn: order of 1 by root n regulariser' on page 31 und
+efined on input line 241.
+
+[31]
+
+LaTeX Warning: Reference `lem: inverse relation between regulariser and risk' o
+n page 32 undefined on input line 245.
+
+
+LaTeX Warning: Reference `eqn: inverse relation between regulariser and risk z'
+ on page 32 undefined on input line 245.
+
+) (A4_main_proof.tex
+
+LaTeX Warning: Reference `thm: main theorem' on page 32 undefined on input line
+ 3.
+
+
+LaTeX Warning: Reference `thm: main theorem' on page 32 undefined on input line
+ 5.
+
+
+LaTeX Warning: Reference `eqn: main equation' on page 32 undefined on input lin
+e 7.
+
+
+LaTeX Warning: Reference `lem: gap in risk when z is replaced with phi hat' on 
+page 32 undefined on input line 34.
+
+[32]
+Overfull \hbox (48.54982pt too wide) detected at line 51
 [][]
  []
 
-[36]
-Overfull \hbox (40.67519pt too wide) detected at line 143
+
+LaTeX Warning: Reference `lem: learning theory on X,Z' on page 33 undefined on 
+input line 52.
+
+
+LaTeX Warning: Reference `lem: bound weights in terms of lambda' on page 33 und
+efined on input line 60.
+
+
+LaTeX Warning: Reference `cor: uniform bound on weights' on page 33 undefined o
+n input line 66.
+
+
+Overfull \hbox (68.61795pt too wide) detected at line 107
 [][]
  []
 
 
-Overfull \hbox (60.44936pt too wide) detected at line 166
+Overfull \hbox (15.9715pt too wide) detected at line 118
 [][]
  []
 
 
-Overfull \hbox (40.35825pt too wide) detected at line 190
+LaTeX Warning: Reference `cor: v star and w star infinity' on page 33 undefined
+ on input line 119.
+
+[33]
+
+LaTeX Warning: Reference `lem: empirical and population risk gap' on page 34 un
+defined on input line 133.
+
+
+Overfull \hbox (40.67519pt too wide) detected at line 140
 [][]
  []
 
-[37]
-Overfull \hbox (54.95471pt too wide) detected at line 209
+
+Overfull \hbox (60.44936pt too wide) detected at line 163
+[][]
+ []
+
+
+Overfull \hbox (40.35825pt too wide) detected at line 187
+[][]
+ []
+
+
+LaTeX Warning: Reference `eqn: replacing w hat with w lambda star' on page 34 u
+ndefined on input line 188.
+
+[34]
+Overfull \hbox (54.95471pt too wide) detected at line 206
 [][][][][]
  []
 
 
-Overfull \hbox (31.09781pt too wide) detected at line 242
+LaTeX Warning: Reference `lem: McDiamird's inequality' on page 35 undefined on 
+input line 207.
+
+
+LaTeX Warning: Reference `eqn: R w hat lambda minus R w star lambda' on page 35
+ undefined on input line 213.
+
+
+LaTeX Warning: Reference `eqn: risk of whl minus risk of ws' on page 35 undefin
+ed on input line 224.
+
+
+LaTeX Warning: Reference `eqn: imputed risk of whl - imputed risk of wsl' on pa
+ge 35 undefined on input line 224.
+
+
+Overfull \hbox (73.105pt too wide) detected at line 239
 [][]
  []
 
-[38]) (A5_lowebound_proof.tex [39]) [40]
+
+LaTeX Warning: Reference `thm: main theorem' on page 35 undefined on input line
+ 244.
+
+[35]) (A5_lowebound_proof.tex
+
+LaTeX Warning: Reference `thm: Lower bound on excess risk' on page 36 undefined
+ on input line 3.
+
+[36])
 No complaints by nag.
-[41] (main_msl.aux)
+[37] (main_msl.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -2149,17 +2768,29 @@ L3 programming layer <2020/03/25>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.45pt have occurred.
 
-Package rerunfilecheck Info: File `main_msl.out' has not changed.
-(rerunfilecheck)             Checksum: 018316A54A36FD1504FFCE133913CAAA;1831.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main_msl.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main_msl.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  8AD029DCB916F5B8858CD27AF299C069;1494.
  ) 
 Here is how much of TeX's memory you used:
- 45053 strings out of 474486
- 964392 string characters out of 5743754
- 1947542 words of memory out of 5000000
- 66320 multiletter control sequences out of 15000+600000
- 669486 words of font info for 161 fonts, out of 8000000 for 9000
+ 44972 strings out of 474486
+ 962498 string characters out of 5743754
+ 1948542 words of memory out of 5000000
+ 66281 multiletter control sequences out of 15000+600000
+ 668891 words of font info for 159 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,16n,131p,1360b,2354s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,16n,131p,1400b,2323s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\manis\AppData\Local\MiKTeX\fonts/pk/ljfour/public/bbm/dpi657\bbm10
 .pk><C:/Users/manis/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewT
 XMI.pfb><C:/Users/manis/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/
@@ -2176,9 +2807,9 @@ MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/manis/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/manis/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/manis/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main_msl.pdf (41 pages, 640370 bytes).
+Output written on main_msl.pdf (37 pages, 410398 bytes).
 PDF statistics:
- 657 PDF objects out of 1000 (max. 8388607)
- 172 named destinations out of 1000 (max. 500000)
- 191 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 387 PDF objects out of 1000 (max. 8388607)
+ 139 named destinations out of 1000 (max. 500000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

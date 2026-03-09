@@ -80,7 +80,7 @@ The interplay between the second and third terms creates a tension in selecting 
 \subsubsection{Retrospective Regularizer Selection}
 
 Theorem \ref{thm: main theorem} provides an explicit upper bound on the excess risk as a function of the regularization parameter $\lamz$. This upper bound holds for all values of $\lamz$ and all distributions. We are interested in determining the value of $\lamz$ that minimizes this upper bound. Since $\lamz$ is a hyperparameter, its optimal value depends on the underlying population distribution. Under certain assumptions, we show that the choice for $\lamz$ may be restricted to either $0$ or $\infty$.
-To facilitate this analysis, we work with a relaxed version of the upper bound \eqref{eqn: main equation} from Theorem \ref{thm: main theorem}. Specifically, by applying Lemma \ref{lem: bound weights in terms of lambda} (given in the Appendix), we have $\lamz |\wslz|^2 \leq \ln(2)$, so we obtain the following relaxed bound.
+To facilitate this analysis, we work with a relaxed version of the upper bound \eqref{eqn: main equation} from Theorem \ref{thm: main theorem}. Specifically, by applying Lemma \ref{lem: bound weights in terms of lambda} (given in the Supplementary Proofs and Results), we have $\lamz |\wslz|^2 \leq \ln(2)$, so we obtain the following relaxed bound.
 
 
 
@@ -243,7 +243,7 @@ Suppose the following two conditions hold:
 \end{equation*}
 Under these conditions, the minimum in both the second and third terms of the upper bound in \eqref{eqn: weaker main equation} is achieved by the first argument. Since the upper bound is minimized at $\Lambda_z^\star$, the derivative with respect to $\lambda_z$ must vanish at this point. This gives
 \begin{equation*}
-    \frac{|\wsz|^2}{T(\vs) - R(\ws)} - \frac{\ln(2)}{\lamz^2} \ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big)\Bigg|_{\lamz = \Lambda_z^\star} = 0.
+    |\wsz|^2 - \frac{\ln(2)}{\lamz^2} \ln(4)\Big(\frac{C_2}{\sqrt{m}} + L(\us)\Big)\Bigg|_{\lamz = \Lambda_z^\star} = 0.
 \end{equation*}
 Solving this yields
 \begin{equation*}
@@ -255,10 +255,10 @@ Substituting this value back into \eqref{eqn: main equation} gives
 \end{equation*}
 \end{proof}
 
-We now show that under some suitable assumption, the Regime III considered in Corollary \ref{cor: consequence of main theorem 3} does not arise.
+We now show that the Regime III considered in Corollary \ref{cor: consequence of main theorem 3} does not arise.
 
 \begin{corollary}
-Let $n$ and $m$ be sufficiently large, and let $L(\us) \leq 1$. Then the optimal value of $\Lambda^\star_z$ is either $\infty$ or $0$.
+Let $n$ and $m$ be sufficiently large. Then the optimal value of $\Lambda^\star_z$ is either $\infty$ or $0$.
 \end{corollary}
 
 \begin{proof}
@@ -282,7 +282,7 @@ and if $\Lambda_z^\star = \frac{\sqrt{2(\ln(2))^2\left(\frac{C_2}{\sqrt{m}} +L(\
 \begin{equation}\label{eqn: upperbound cor 3}
     R(\whl) - R(\ws) \leq \frac{C_1}{\sqrt{n}} + 2|\ws_z|\sqrt{2(\ln(2))^2\Big(\frac{C_2}{\sqrt{m}} +L(\us)\Big)}.
 \end{equation}
-The bound in \eqref{eqn: upperbound cor 2} scales as $\mathcal{O}\left(\frac{1}{\sqrt{m}} + \ln(\us)\right)$, whereas the bound in \eqref{eqn: upperbound cor 3} scales as $\mathcal{O}\left(\frac{1}{m^{1/4}} + \sqrt{\ln(\us)}\right)$. Thus, for sufficiently large $n$ and $m$ and $L(\us) \leq 1$, the bound in \eqref{eqn: upperbound cor 2} is smaller, implying Regime III considered in Corollary \ref{cor: consequence of main theorem 3} will never occur, and hence $\Lambda^\star_z = 0$.
+Note that the logistic risk of the zero predictor is $L(0) = \ln(2) < 1$. By the optimality of $\us$, we have $L(\us) \leq L(0) < 1$. The bound in \eqref{eqn: upperbound cor 2} scales as $\mathcal{O}\left(\frac{1}{\sqrt{m}} + L(\us)\right)$, whereas the bound in \eqref{eqn: upperbound cor 3} scales as $\mathcal{O}\left(\frac{1}{m^{1/4}} + \sqrt{L(\us)}\right)$. Thus, for sufficiently large $n$ and $m$, since $L(\us) < 1$, the bound in \eqref{eqn: upperbound cor 2} is smaller, implying Regime III considered in Corollary \ref{cor: consequence of main theorem 3} will never occur, and hence $\Lambda^\star_z = 0$.
 
 
 
