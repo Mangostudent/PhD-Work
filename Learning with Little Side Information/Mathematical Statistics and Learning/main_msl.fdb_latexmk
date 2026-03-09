@@ -1,19 +1,19 @@
 # Fdb version 4
-["bibtex main_msl"] 1772989204.74561 "main_msl.aux" "main_msl.bbl" "main_msl" 1772989696.23608 0
+["bibtex main_msl"] 1773080908.97444 "main_msl.aux" "main_msl.bbl" "main_msl" 1773081171.93743 0
   "./emss.bst" 1675745446 29346 cb92c4b606c793178a28145a2e299ff0 ""
   "./references.bib" 1751880340 6082 63e142705ee56f71b1651737d163341c ""
-  "main_msl.aux" 1772989695 10013 60aaca96ecbfea4a500b40dd5deb5e9c "pdflatex"
+  "main_msl.aux" 1773081170 10889 d3b1f268f1647c1ae4f0d30fc9d2ae52 "pdflatex"
   (generated)
   "main_msl.bbl"
   "main_msl.blg"
   (rewritten before read)
-["pdflatex"] 1772989692.65761 "c:/Users/manis/OneDrive/Desktop/BigMe/PhD Work/Learning with Little Side Information/Mathematical Statistics and Learning/main_msl.tex" "main_msl.pdf" "main_msl" 1772989696.23691 0
+["pdflatex"] 1773081168.08845 "c:/Users/manis/OneDrive/Desktop/BigMe/PhD Work/Learning with Little Side Information/Mathematical Statistics and Learning/main_msl.tex" "main_msl.pdf" "main_msl" 1773081171.93813 0
   "1_introduction.tex" 1767915489 9906 44b241f141da0c830d04f1cd7ce9ff11 ""
-  "2_problem_formulation.tex" 1769376829 10403 8c0670b60a108ab40739e4b7b4e287f7 ""
+  "2_problem_formulation.tex" 1773081167 10402 9c651825a2b9aa43995c92b9720e8d28 ""
   "3_algorithm.tex" 1772989691 3037 545205a4d10b6f22e77f59649944d5eb ""
   "4A_upper_bound.tex" 1772973788 20232 6f2a9395adeafcf125d080908177f911 ""
   "4B_lower_bound.tex" 1768818843 2071 1ebe5b271b36b00e4795e4a25d02b471 ""
-  "4C_simulation_result.tex" 1769421905 2833 847d6fa6b7463cb67e9e4d5c1f3b3f91 ""
+  "4C_simulation_result.tex" 1773000133 5774 2d02fc2040a1fb72941478a391a5f07d ""
   "A1A2_strong_convexity_other_results.tex" 1772968121 24919 c6a58ed548066e86fb9bff2f66a423a3 ""
   "A3_other_useful_results.tex" 1772968119 11840 5cdc211dee78f0f29b82ba9bd1b59053 ""
   "A4_main_proof.tex" 1772968588 11674 8890ecd21b7e1ed08c0da1191ed26d0e ""
@@ -340,13 +340,14 @@
   "C:/Users/manis/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
   "C:/Users/manis/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1750428951 2269 2de6c7a5fd634dfef00a960544463a38 ""
   "C:/Users/manis/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1750428951 20785 198a9cb2e04238d92c320d0d9edbd76a ""
-  "c:/Users/manis/OneDrive/Desktop/BigMe/PhD Work/Learning with Little Side Information/Mathematical Statistics and Learning/main_msl.tex" 1772967154 15711 674fa8e0a8d8dba2d2bcbf43b1376bf8 ""
+  "Real_World_Experiments/optimal_lambda_real_world.png" 1772999039 174956 481744573ec07c6e77c72ab1b0deb434 ""
+  "c:/Users/manis/OneDrive/Desktop/BigMe/PhD Work/Learning with Little Side Information/Mathematical Statistics and Learning/main_msl.tex" 1773080907 15675 97ecbf8eaee8c2bf8bbf485ff6e69708 ""
   "ems-journal.sty" 1756045506 65637 4cc19be862b9f74c0fcce2dcb4f747e5 ""
   "lambda_frequency.png" 1769353816 18032 a1180ba65628ff8bb3af6ce82f4a874b ""
-  "main_msl.aux" 1772989695 10013 60aaca96ecbfea4a500b40dd5deb5e9c "pdflatex"
-  "main_msl.bbl" 1772989205 3538 228f8a442ca301e77b983513f3271a07 "bibtex main_msl"
-  "main_msl.out" 1772989695 1673 9bb2dd66f61d4e9b17faef565579e1b5 "pdflatex"
-  "main_msl.tex" 1772967154 15711 674fa8e0a8d8dba2d2bcbf43b1376bf8 ""
+  "main_msl.aux" 1773081170 10889 d3b1f268f1647c1ae4f0d30fc9d2ae52 "pdflatex"
+  "main_msl.bbl" 1773080909 3538 228f8a442ca301e77b983513f3271a07 "bibtex main_msl"
+  "main_msl.out" 1773081170 1831 018316a54a36fd1504ffce133913caaa "pdflatex"
+  "main_msl.tex" 1773080907 15675 97ecbf8eaee8c2bf8bbf485ff6e69708 ""
   (generated)
   "main_msl.aux"
   "main_msl.log"

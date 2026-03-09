@@ -29,8 +29,7 @@ Let $\mathcal{X} \subset \mathbb{R}^d$ denote the feature space, $\mathcal{Y} = 
 Consider a dataset $\{(x_k, y_k, z_k)\}_{k=1}^{n+m}$ consisting of i.i.d. samples drawn from the joint distribution of $(X, Y, Z)$. We partition this dataset as follows.
 \begin{equation}\label{eqn: partioned dataset}
     \begin{aligned}
-        D &= \{(x_i, y_i)\}_{i=1}^n \quad \text{(missing } z_i\text{)}, \\
-        S &= \{(x_j, z_j)\}_{j=n+1}^{n+m} \quad \text{(missing } y_j\text{)}.
+        D = \{(x_i, y_i)\}_{i=1}^n \quad \text{(missing  $z_i$\text)}, \quad S = \{(x_j, z_j)\}_{j=n+1}^{n+m} \quad \text{(missing $y_j$)}, \;\; n > m.
     \end{aligned}
 \end{equation}
 Here, $D$ contains feature-label pairs with missing side information, and $S$ contains feature–side information pairs with missing labels.
